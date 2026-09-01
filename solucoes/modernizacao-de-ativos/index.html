@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Recuperação e Modernização de Ativos — Soluções ADPetros</title>
-<meta name="description" content="Diagnóstico técnico, integridade de ativos, modernização e debottlenecking para refinarias e instalações industriais existentes.">
+<title>Recuperação e Modernização de Ativos — Soluções Adpetros</title>
+<meta name="description" content="Diagnóstico técnico, integridade de ativos, modernização e resolução de estrangulamentos operacionais para refinarias e instalações industriais existentes.">
 <link rel="canonical" href="https://www.adpetros.com/solucoes/modernizacao-de-ativos/">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Recuperação e Modernização de Ativos — Soluções ADPetros">
-<meta property="og:description" content="Diagnóstico técnico, integridade de ativos, modernização e debottlenecking para refinarias e instalações industriais existentes.">
+<meta property="og:title" content="Recuperação e Modernização de Ativos — Soluções Adpetros">
+<meta property="og:description" content="Diagnóstico técnico, integridade de ativos, modernização e resolução de estrangulamentos operacionais para refinarias e instalações industriais existentes.">
 <meta property="og:image" content="https://www.adpetros.com/og-image.jpg">
 <meta property="og:url" content="https://www.adpetros.com/solucoes/modernizacao-de-ativos/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Recuperação e Modernização de Ativos — Soluções ADPetros">
-<meta name="twitter:description" content="Diagnóstico técnico, integridade de ativos, modernização e debottlenecking para refinarias e instalações industriais existentes.">
+<meta name="twitter:title" content="Recuperação e Modernização de Ativos — Soluções Adpetros">
+<meta name="twitter:description" content="Diagnóstico técnico, integridade de ativos, modernização e resolução de estrangulamentos operacionais para refinarias e instalações industriais existentes.">
 <meta name="twitter:image" content="https://www.adpetros.com/og-image.jpg">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -27,9 +27,9 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Recuperação e Modernização de Ativos — ADPetros",
+  "name": "Recuperação e Modernização de Ativos — Adpetros",
   "url": "https://www.adpetros.com/solucoes/modernizacao-de-ativos/",
-  "provider": {"@type":"Organization","name":"ADPetros"}
+  "provider": {"@type":"Organization","name":"Adpetros"}
 }
 </script>
 <style>
@@ -177,6 +177,12 @@ body::before{
   align-items:center;
   gap:9px;
   margin-bottom:18px;
+  /* Matches the GSAP "from" state (opacity:0, x:-14) applied at runtime — without this default,
+     the eyebrow renders fully visible for the brief window before GSAP executes, then snaps to
+     hidden the instant the tween's "from" state is applied, then fades back in: a visible
+     flash/flicker on every load. Starting hidden here means JS only ever animates it IN. */
+  opacity:0;
+  transform:translateX(-14px);
 }
 .eyebrow::before{content:'✦';font-size:13px;line-height:1;color:var(--green-2)}
 [data-theme="dark"] .eyebrow{color:#8296a3}
@@ -380,14 +386,19 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .hero-bg::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(5,9,15,.74) 0%,rgba(6,11,18,.5) 42%,rgba(5,9,15,.62) 72%,rgba(4,8,13,.86) 100%)}
 .hero-bg .glow{position:absolute;z-index:1;width:70vw;height:70vw;max-width:900px;max-height:900px;border-radius:50%;background:radial-gradient(circle,rgba(115,149,198,.16),transparent 62%);top:-20%;right:-15%;filter:blur(10px)}
 .hero-bg .hero-vignette{position:absolute;inset:0;z-index:1;background:radial-gradient(120% 90% at 50% 15%,transparent 30%,var(--petrol-950) 100%)}
+.hero-bg>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .hero-inner{position:relative;z-index:2;max-width:var(--container);margin:0 auto;padding:0 var(--pad);width:100%}
 .hero-inner-centered{display:flex;flex-direction:column;align-items:center;text-align:center}
 .hero-inner-centered .eyebrow{justify-content:center}
 .hero h1{font-family:var(--ff-display);font-weight:600;font-size:clamp(34px,5.2vw,72px);line-height:1.12;letter-spacing:-.025em;color:#fbfdfd;max-width:920px}
 .hero h1 .line-mask{display:block}
 .hero h1 .sub{display:block;color:inherit}
-.hero-lead{max-width:560px;margin-top:26px;font-size:clamp(15px,1.05vw,16.5px);line-height:1.75;color:var(--ink-dim)}
-.hero-ctas{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;justify-content:center}
+/* #heroTitle, .hero-lead and .hero-ctas start hidden here (matching the GSAP "from" states set in
+   HERO_SPLIT_JS) so the hero never renders its final visible state before JS runs and then flashes
+   to hidden — see the .eyebrow rule above for the same fix and rationale. */
+#heroTitle{opacity:0}
+.hero-lead{max-width:560px;margin-top:26px;font-size:clamp(15px,1.05vw,16.5px);line-height:1.75;color:var(--ink-dim);opacity:0;transform:translateY(24px)}
+.hero-ctas{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;justify-content:center;opacity:0;transform:translateY(24px)}
 
 /* Marquee ticker strip (replaces the old pillar cards) */
 .marquee-strip{position:relative;z-index:2;margin-top:clamp(48px,9vw,110px);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);background:rgba(2,12,16,.35);overflow:hidden;padding:20px 0}
@@ -451,11 +462,19 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .sol-top{display:grid;grid-template-columns:1fr;gap:40px;align-items:end;margin-bottom:64px}
 @media(min-width:900px){.sol-top{grid-template-columns:1.3fr 1fr}}
 .sol-steps{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line-dark);border:1px solid var(--line-dark);border-radius:20px;overflow:hidden}
-@media(min-width:760px){.sol-steps{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:760px){.sol-steps{grid-template-columns:repeat(var(--sol-steps-cols,4),1fr)}}
 .sol-step{padding:36px 28px;background:var(--petrol-900);min-height:230px;display:flex;flex-direction:column}
 .sol-step .n{font-family:var(--ff-display);font-size:34px;font-weight:800;color:rgba(255,255,255,.18);margin-bottom:20px}
 .sol-step h4{font-size:19px;color:#fff;margin-bottom:10px;font-weight:500}
 .sol-step p{font-size:14.5px;color:var(--ink-dim);line-height:1.6}
+.sol-step-thumb{width:52px;height:52px;border-radius:10px;overflow:hidden;margin-bottom:16px;border:1px solid rgba(255,255,255,.12)}
+.sol-step-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.an-who-grid{display:grid;grid-template-columns:1fr;gap:40px;margin-top:56px}
+@media(min-width:1100px){.an-who-grid{grid-template-columns:1fr 320px;align-items:center}}
+.an-float-wrap{display:flex;align-items:center;justify-content:center}
+.an-float-photo{position:relative;width:100%;max-width:300px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.55);transform:rotate(-2deg);border:6px solid var(--surface)}
+.an-float-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:3/4;display:block}
+@media(min-width:1100px){.an-float-photo{transform:rotate(-3deg) translateY(-14px)}}
 .sol-quote{margin-top:56px;font-family:var(--ff-display);font-weight:500;font-size:clamp(22px,3vw,34px);max-width:820px;color:#fff;letter-spacing:-.01em}
 
 /* ================= PINNED SCROLL-STORY COMPONENT (shared: Markets + Support) ================= */
@@ -780,9 +799,27 @@ footer{background:var(--petrol-950);color:var(--ink);padding:80px 0 30px}
 .check-list .ico{width:17px;height:17px;flex:none;margin-top:2px;color:var(--accent)}
 .sol-two-col{display:grid;grid-template-columns:1fr;gap:40px}
 @media(min-width:900px){.sol-two-col{grid-template-columns:1fr 1fr}}
+
+/* Solution detail pages: "O Problema" — one unified copy block beside a large photo */
+.prob-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
+@media(min-width:900px){.prob-grid{grid-template-columns:1.05fr .95fr;gap:56px}}
+.prob-copy .prob-p{margin-top:18px;font-size:16px;line-height:1.75}
+.prob-copy .big-title{margin-top:14px}
+.prob-photo{border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 24px 56px -26px rgba(0,0,0,.4);aspect-ratio:4/3}
+.prob-photo img{width:100%;height:100%;object-fit:cover;display:block}
+@media(min-width:900px){.prob-photo{aspect-ratio:auto;min-height:420px;height:100%}}
 .sol-markets-note{display:flex;align-items:center;gap:14px;padding:20px 24px;border-radius:var(--radius-md);background:var(--surface);border:1px solid var(--border);margin-top:12px}
 .sol-markets-note svg{width:22px;height:22px;flex:none;color:var(--accent)}
 .sol-markets-note p{font-size:14.5px;line-height:1.6;color:var(--ink-dim)}
+
+/* Solution detail pages: "Imagine a seguinte situação" practical example */
+.example-section .example-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
+@media(min-width:900px){.example-section .example-grid{grid-template-columns:1fr 1fr;gap:52px}}
+.example-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 14px 7px 10px;border-radius:100px;background:var(--accent-dim);color:var(--accent);font-family:var(--ff-display);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:18px}
+.example-badge svg{width:16px;height:16px;flex:none}
+.example-text .example-p{margin-top:16px;font-size:16.5px;line-height:1.75;color:var(--dark-ink-dim)}
+.example-photo{border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 20px 50px -22px rgba(0,0,0,.4);aspect-ratio:4/3}
+.example-photo img{width:100%;height:100%;object-fit:cover;display:block}
 [data-theme="white"] .sol-markets-note,[data-theme="light"] .sol-markets-note{background:rgba(10,32,40,.03);border-color:var(--line-light)}
 [data-theme="white"] .sol-markets-note p,[data-theme="light"] .sol-markets-note p{color:var(--dark-ink-dim)}
 
@@ -822,8 +859,14 @@ footer{background:var(--petrol-950);color:var(--ink);padding:80px 0 30px}
 .photo-section-bg{position:absolute;inset:0;z-index:0}
 .photo-section-bg img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06)}
 .photo-section-bg::after{content:'';position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(5,9,15,.88) 0%,rgba(6,12,19,.72) 30%,rgba(6,12,19,.8) 68%,rgba(5,9,15,.92) 100%),
-  linear-gradient(100deg,rgba(6,12,20,.55) 0%,rgba(6,12,20,.2) 55%,rgba(6,12,20,.55) 100%)}
+  linear-gradient(180deg,rgba(5,10,17,.68) 0%,rgba(5,10,17,.46) 32%,rgba(5,10,17,.56) 66%,rgba(4,8,14,.87) 100%),
+  linear-gradient(100deg,rgba(9,20,34,.56) 0%,rgba(9,20,34,.22) 55%,rgba(9,20,34,.56) 100%)}
+/* Extra darkening for naturally brighter photos (sunset glare, daytime sky) where the default
+   overlay above still lets the image compete with the text — added via extra_class on
+   photo_section_html() per photo, not applied blanket across every section. */
+.photo-section-strong .photo-section-bg::after{background:
+  linear-gradient(180deg,rgba(4,8,13,.8) 0%,rgba(4,8,13,.6) 32%,rgba(4,8,13,.7) 66%,rgba(3,6,11,.92) 100%),
+  linear-gradient(100deg,rgba(7,16,27,.66) 0%,rgba(7,16,27,.32) 55%,rgba(7,16,27,.66) 100%)}
 .photo-section-content{position:relative;z-index:1}
 .photo-section .eyebrow,.photo-section .big-title,.photo-section p{color:var(--ink)}
 .photo-section .big-title .title-dim{color:var(--ink-dim)}
@@ -1001,7 +1044,7 @@ body.cookie-visible .wa-float{bottom:84px}
 
 
 <header class="hero" id="top" data-theme="dark" style="min-height:76vh">
-  <div class="hero-bg"><div class="glow"></div><div class="hero-vignette"></div></div>
+  <div class="hero-bg"><img src="/assets/img/8-lg.jpg" alt="Poços de petróleo ao pôr do sol" loading="eager"><div class="glow"></div><div class="hero-vignette"></div></div>
   <div class="hero-inner hero-inner-centered">
     <div class="eyebrow" data-i18n="m.hero.eyebrow">SOLUÇÕES · RECUPERAÇÃO E MODERNIZAÇÃO DE ATIVOS</div>
     <h1 id="heroTitle">
@@ -1020,15 +1063,14 @@ body.cookie-visible .wa-float{bottom:84px}
 
 <section class="section" data-theme="white">
   <div class="container">
-    <div class="sol-two-col">
-      <div>
+    <div class="prob-grid">
+      <div class="prob-copy">
         <div class="eyebrow" data-i18n="m.prob.eyebrow">O PROBLEMA</div>
         <h2 class="big-title reveal"><span data-i18n="m.prob.title1">Refinarias e instalações</span> <span class="title-dim" data-i18n="m.prob.title2">perdem eficiência ao longo do tempo, muitas vezes sem que isso seja visível de imediato.</span></h2>
+        <p class="reveal dim prob-p" data-i18n="m.prob.p1">Equipamentos envelhecem, processos deixam de estar otimizados e pequenas falhas acumulam-se até se tornarem grandes problemas — de produção, de segurança ou de custo.</p>
+        <p class="reveal dim prob-p" data-i18n="m.prob.p2">Sem um diagnóstico técnico independente, é difícil saber onde investir primeiro.</p>
       </div>
-      <div>
-        <p class="reveal dim" style="line-height:1.75;font-size:16px" data-i18n="m.prob.p1">Equipamentos envelhecem, processos deixam de estar otimizados e pequenas falhas acumulam-se até se tornarem grandes problemas — de produção, de segurança ou de custo.</p>
-        <p class="reveal dim" style="line-height:1.75;font-size:16px;margin-top:16px" data-i18n="m.prob.p2">Sem um diagnóstico técnico independente, é difícil saber onde investir primeiro.</p>
-      </div>
+      <div class="prob-photo reveal-img"><img src="/assets/img/new/v1.jpg" alt="Bomba de extração de petróleo no deserto" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -1041,7 +1083,7 @@ body.cookie-visible .wa-float{bottom:84px}
         <h2 class="big-title reveal"><span data-i18n="m.help.title1">Do diagnóstico</span> <span class="title-dim" data-i18n="m.help.title2">à implementação da melhoria.</span></h2>
       </div>
     </div>
-<div class="sol-steps" style="margin-top:48px">
+<div class="sol-steps" style="--sol-steps-cols:4;margin-top:48px">
       <div class="sol-step flip-card reveal">
         <div class="n">01</div>
         <h4 data-i18n="m.help.s1t">Diagnóstico técnico</h4>
@@ -1054,7 +1096,7 @@ body.cookie-visible .wa-float{bottom:84px}
       </div>
       <div class="sol-step flip-card reveal">
         <div class="n">03</div>
-        <h4 data-i18n="m.help.s3t">Modernização e debottlenecking</h4>
+        <h4 data-i18n="m.help.s3t">Modernização e resolução de estrangulamentos operacionais</h4>
         <p data-i18n="m.help.s3p">Desenvolvemos soluções técnicas para aumentar capacidade, eficiência e fiabilidade.</p>
       </div>
       <div class="sol-step flip-card reveal">
@@ -1063,11 +1105,16 @@ body.cookie-visible .wa-float{bottom:84px}
         <p data-i18n="m.help.s4p">Apoiamos a execução das melhorias definidas, até estarem em operação.</p>
       </div>
     </div>
+<div class="reveal" style="margin-top:36px">
+      <a href="/contactos/" class="btn btn-primary" data-i18n="nav.cta">Falar com a equipa
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
 <section class="section photo-section " data-theme="dark">
-  <div class="photo-section-bg"><img src="/assets/img/18-lg.jpg" alt="Torres de destilação de uma refinaria" loading="lazy"></div>
+  <div class="photo-section-bg"><img src="/assets/img/new/h7.jpg" alt="Bombas de extração em silhueta ao pôr-do-sol" loading="lazy"></div>
   <div class="container photo-section-content">
     <div class="eyebrow" data-i18n="m.photo.eyebrow">ATIVOS EXISTENTES</div>
     <h2 class="big-title reveal"><span data-i18n="m.photo.title1">Cada instalação tem</span> <span class="title-dim" data-i18n="m.photo.title2">uma história e um potencial por explorar.</span></h2>
@@ -1089,7 +1136,7 @@ body.cookie-visible .wa-float{bottom:84px}
       <li><svg class="ico" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="m.inc3">Identificação de falhas</span></li>
       <li><svg class="ico" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="m.inc4">Inspeção de equipamentos</span></li>
       <li><svg class="ico" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="m.inc5">Modernização de instalações</span></li>
-      <li><svg class="ico" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="m.inc6">Debottlenecking</span></li>
+      <li><svg class="ico" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="m.inc6">Resolução de estrangulamentos operacionais</span></li>
       <li><svg class="ico" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="m.inc7">Melhoria de eficiência operacional</span></li>
       <li><svg class="ico" viewBox="0 0 16 16" fill="none"><path d="M3 8.5l3.2 3L13 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="m.inc8">Acompanhamento da implementação</span></li>
     </ul>
@@ -1123,12 +1170,35 @@ body.cookie-visible .wa-float{bottom:84px}
       </div>
       <div class="eng-card">
         <svg viewBox="0 0 24 24" fill="none"><path d="M13 3L4 14h7l-1 7 9-11h-7l1-7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-        <h4 data-i18n="m.cap5">Debottlenecking</h4>
+        <h4 data-i18n="m.cap5">Resolução de estrangulamentos operacionais</h4>
       </div>
       <div class="eng-card">
         <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 17h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M10.3 3.9L2.6 17.5A1.8 1.8 0 004.2 20h15.6a1.8 1.8 0 001.6-2.5L13.7 3.9a1.8 1.8 0 00-3.4 0z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
         <h4 data-i18n="m.cap6">Prevenção e gestão de riscos</h4>
       </div>
+    </div>
+<div class="reveal" style="margin-top:36px">
+      <a href="/contactos/" class="btn btn-primary" data-i18n="cta.talk">Fale connosco
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section example-section" data-theme="white">
+  <div class="container">
+    <div class="example-grid">
+      <div class="example-text">
+        <div class="example-badge"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.6.8.6 1.3V16h5.8v-.8c0-.5.2-1 .6-1.3A6 6 0 0 0 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="m.ex.eyebrow">EXEMPLO PRÁTICO</span></div>
+        <h2 class="big-title reveal" data-i18n="m.ex.title">Imagine a seguinte situação:</h2>
+        <p class="reveal example-p" data-i18n="m.ex.p">Tem um ativo parado ou com desempenho abaixo do esperado, e não sabe se vale a pena recuperá-lo ou substituí-lo. Fazemos o diagnóstico técnico que lhe dá essa resposta, com números, não suposições.</p>
+        <div class="reveal" style="margin-top:28px">
+          <a href="/contactos/" class="btn btn-primary" data-i18n="cta.project">Falar sobre o meu projeto
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="example-photo reveal-img"><img src="/assets/img/17-lg.jpg" alt="Técnico a inspecionar um ativo industrial" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -1142,7 +1212,7 @@ body.cookie-visible .wa-float{bottom:84px}
       </div>
       <div class="cf-card-inner">
         <div class="eyebrow" data-i18n="m.cta.eyebrow">FALE CONNOSCO</div>
-        <h2 class="big-title reveal"><span data-i18n="m.cta.title1">Tem um ativo que precisa</span> <span class="title-dim" data-i18n="m.cta.title2">de diagnóstico ou modernização?</span></h2>
+        <h2 class="big-title reveal"><span data-i18n="m.cta.title1">Tem um ativo de óleo e gás na Venezuela</span> <span class="title-dim" data-i18n="m.cta.title2">que precisa de diagnóstico ou modernização?</span></h2>
         <p class="reveal" data-i18n="m.cta.p">Fale com a nossa equipa técnica sobre a instalação ou o equipamento em questão.</p>
         <div class="hero-ctas reveal">
           <a href="/contactos/" class="btn btn-primary" data-i18n="m.cta.btn1">Falar com a equipa
@@ -1162,7 +1232,7 @@ body.cookie-visible .wa-float{bottom:84px}
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#top" class="logo"><span class="logo-mark"></span>ADPETROS</a>
-        <p data-i18n="ft.tagline">Engenharia industrial. Experiência local. Capacidade de execução.</p>
+        <p data-i18n="ft.tagline">Engenharia de óleo e gás. Experiência local. Capacidade de execução.</p>
       </div>
       <div class="footer-col">
         <h4 data-i18n="ft.nav">NAVEGAÇÃO</h4>
@@ -1193,7 +1263,7 @@ body.cookie-visible .wa-float{bottom:84px}
       </div>
     </div>
     <div class="footer-bottom">
-      <span data-i18n="ft.copy">© 2026 ADPetros. Todos os direitos reservados.</span>
+      <span data-i18n="ft.copy">© 2026 Adpetros. Todos os direitos reservados.</span>
       <a href="mailto:geral@adpetros.com" class="footer-email" data-i18n="ft.email">geral@adpetros.com</a>
     </div>
   </div>
@@ -1304,15 +1374,17 @@ const I18N = {
     "mm.proc.t": "Procurement e Sourcing",
     "mm.proc.d": "Encontrar os recursos necessários ao projeto",
     "mm.all": "Ver todas as soluções",
-    "ft.tagline": "Engenharia industrial. Experiência local. Capacidade de execução.",
+    "ft.tagline": "Engenharia de óleo e gás. Experiência local. Capacidade de execução.",
     "ft.nav": "NAVEGAÇÃO",
     "ft.markets": "MERCADOS",
     "ft.solutions": "SOLUÇÕES",
     "ft.africa": "África",
-    "ft.copy": "© 2026 ADPetros. Todos os direitos reservados.",
+    "ft.copy": "© 2026 Adpetros. Todos os direitos reservados.",
     "mk.pin.ve": "Venezuela",
     "mk.pin.sa": "América do Sul",
     "ft.email": "geral@adpetros.com",
+    "cta.talk": "Fale connosco",
+    "cta.project": "Falar sobre o meu projeto",
     "m.hero.eyebrow": "SOLUÇÕES · RECUPERAÇÃO E MODERNIZAÇÃO DE ATIVOS",
     "m.hero.title1": "Recuperar e modernizar",
     "m.hero.title2": "o que já está no terreno.",
@@ -1331,7 +1403,7 @@ const I18N = {
     "m.help.s1p": "Avaliamos o estado atual dos ativos e identificamos as causas reais dos problemas.",
     "m.help.s2t": "Integridade e inspeção",
     "m.help.s2p": "Verificamos a integridade estrutural e operacional de equipamentos e instalações.",
-    "m.help.s3t": "Modernização e debottlenecking",
+    "m.help.s3t": "Modernização e resolução de estrangulamentos operacionais",
     "m.help.s3p": "Desenvolvemos soluções técnicas para aumentar capacidade, eficiência e fiabilidade.",
     "m.help.s4t": "Acompanhamento da implementação",
     "m.help.s4p": "Apoiamos a execução das melhorias definidas, até estarem em operação.",
@@ -1347,7 +1419,7 @@ const I18N = {
     "m.inc3": "Identificação de falhas",
     "m.inc4": "Inspeção de equipamentos",
     "m.inc5": "Modernização de instalações",
-    "m.inc6": "Debottlenecking",
+    "m.inc6": "Resolução de estrangulamentos operacionais",
     "m.inc7": "Melhoria de eficiência operacional",
     "m.inc8": "Acompanhamento da implementação",
     "m.cap.eyebrow": "CAPACIDADES TÉCNICAS",
@@ -1357,11 +1429,14 @@ const I18N = {
     "m.cap2": "Integridade e inspeção de ativos",
     "m.cap3": "Identificação de falhas",
     "m.cap4": "Modernização de instalações",
-    "m.cap5": "Debottlenecking",
+    "m.cap5": "Resolução de estrangulamentos operacionais",
     "m.cap6": "Prevenção e gestão de riscos",
+    "m.ex.eyebrow": "EXEMPLO PRÁTICO",
+    "m.ex.title": "Imagine a seguinte situação:",
+    "m.ex.p": "Tem um ativo parado ou com desempenho abaixo do esperado, e não sabe se vale a pena recuperá-lo ou substituí-lo. Fazemos o diagnóstico técnico que lhe dá essa resposta, com números, não suposições.",
     "m.cta.eyebrow": "FALE CONNOSCO",
-    "m.cta.title1": "Tem um ativo que precisa",
-    "m.cta.title2": "de diagnóstico ou modernização?",
+    "m.cta.title1": "Tem um ativo de óleo e gás na Venezuela",
+    "m.cta.title2": "que precisa de diagnóstico ou modernização?",
     "m.cta.p": "Fale com a nossa equipa técnica sobre a instalação ou o equipamento em questão.",
     "m.cta.btn1": "Falar com a equipa",
     "m.cta.btn2": "Ver todas as soluções"
@@ -1384,15 +1459,17 @@ const I18N = {
     "mm.proc.t": "Procurement & Sourcing",
     "mm.proc.d": "Find the resources the project needs",
     "mm.all": "See all solutions",
-    "ft.tagline": "Industrial engineering. Local experience. Execution capability.",
+    "ft.tagline": "Oil & gas engineering. Local experience. Execution capability.",
     "ft.nav": "NAVIGATION",
     "ft.markets": "MARKETS",
     "ft.solutions": "SOLUTIONS",
     "ft.africa": "Africa",
-    "ft.copy": "© 2026 ADPetros. All rights reserved.",
+    "ft.copy": "© 2026 Adpetros. All rights reserved.",
     "mk.pin.ve": "Venezuela",
     "mk.pin.sa": "South America",
     "ft.email": "geral@adpetros.com",
+    "cta.talk": "Get in touch",
+    "cta.project": "Talk about my project",
     "m.hero.eyebrow": "SOLUTIONS · ASSET RECOVERY & MODERNISATION",
     "m.hero.title1": "Recovering and modernising",
     "m.hero.title2": "what is already on the ground.",
@@ -1411,7 +1488,7 @@ const I18N = {
     "m.help.s1p": "We assess the current state of assets and identify the real causes of the problems.",
     "m.help.s2t": "Integrity and inspection",
     "m.help.s2p": "We verify the structural and operational integrity of equipment and facilities.",
-    "m.help.s3t": "Modernisation and debottlenecking",
+    "m.help.s3t": "Modernisation and operational bottleneck resolution",
     "m.help.s3p": "We develop technical solutions to increase capacity, efficiency and reliability.",
     "m.help.s4t": "Implementation support",
     "m.help.s4p": "We support the execution of the defined improvements, until they are in operation.",
@@ -1427,21 +1504,24 @@ const I18N = {
     "m.inc3": "Fault identification",
     "m.inc4": "Equipment inspection",
     "m.inc5": "Facility modernisation",
-    "m.inc6": "Debottlenecking",
+    "m.inc6": "Operational bottleneck resolution",
     "m.inc7": "Operational efficiency improvement",
     "m.inc8": "Implementation support",
     "m.cap.eyebrow": "TECHNICAL CAPABILITIES",
     "m.cap.title1": "Competencies behind",
+    "m.ex.eyebrow": "PRACTICAL EXAMPLE",
+    "m.ex.title": "Imagine the following situation:",
+    "m.ex.p": "You have an asset that's stopped or underperforming, and you're not sure whether to recover it or replace it. We run the technical diagnosis that gives you that answer — with numbers, not guesses.",
     "m.cap.title2": "a good diagnosis and a good modernisation.",
     "m.cap1": "Technical diagnosis",
     "m.cap2": "Asset integrity and inspection",
     "m.cap3": "Fault identification",
     "m.cap4": "Facility modernisation",
-    "m.cap5": "Debottlenecking",
+    "m.cap5": "Operational bottleneck resolution",
     "m.cap6": "Risk prevention and management",
     "m.cta.eyebrow": "GET IN TOUCH",
-    "m.cta.title1": "Do you have an asset that needs",
-    "m.cta.title2": "diagnosis or modernisation?",
+    "m.cta.title1": "Do you have an oil & gas asset in Venezuela",
+    "m.cta.title2": "that needs diagnosis or modernisation?",
     "m.cta.p": "Talk to our technical team about the facility or equipment in question.",
     "m.cta.btn1": "Talk to the team",
     "m.cta.btn2": "See all solutions"
@@ -1464,15 +1544,17 @@ const I18N = {
     "mm.proc.t": "Procurement y Sourcing",
     "mm.proc.d": "Encontrar los recursos necesarios para el proyecto",
     "mm.all": "Ver todas las soluciones",
-    "ft.tagline": "Ingeniería industrial. Experiencia local. Capacidad de ejecución.",
+    "ft.tagline": "Ingeniería de petróleo y gas. Experiencia local. Capacidad de ejecución.",
     "ft.nav": "NAVEGACIÓN",
     "ft.markets": "MERCADOS",
     "ft.solutions": "SOLUCIONES",
     "ft.africa": "África",
-    "ft.copy": "© 2026 ADPetros. Todos los derechos reservados.",
+    "ft.copy": "© 2026 Adpetros. Todos los derechos reservados.",
     "mk.pin.ve": "Venezuela",
     "mk.pin.sa": "Sudamérica",
     "ft.email": "geral@adpetros.com",
+    "cta.talk": "Hable con nosotros",
+    "cta.project": "Hablar sobre mi proyecto",
     "m.hero.eyebrow": "SOLUCIONES · RECUPERACIÓN Y MODERNIZACIÓN DE ACTIVOS",
     "m.hero.title1": "Recuperar y modernizar",
     "m.hero.title2": "lo que ya está en el terreno.",
@@ -1491,7 +1573,7 @@ const I18N = {
     "m.help.s1p": "Evaluamos el estado actual de los activos e identificamos las causas reales de los problemas.",
     "m.help.s2t": "Integridad e inspección",
     "m.help.s2p": "Verificamos la integridad estructural y operativa de equipos e instalaciones.",
-    "m.help.s3t": "Modernización y debottlenecking",
+    "m.help.s3t": "Modernización y resolución de estrangulamientos operativos",
     "m.help.s3p": "Desarrollamos soluciones técnicas para aumentar capacidad, eficiencia y fiabilidad.",
     "m.help.s4t": "Apoyo a la implementación",
     "m.help.s4p": "Apoyamos la ejecución de las mejoras definidas, hasta que estén en operación.",
@@ -1506,8 +1588,11 @@ const I18N = {
     "m.inc2": "Integridad de activos",
     "m.inc3": "Identificación de fallos",
     "m.inc4": "Inspección de equipos",
+    "m.ex.eyebrow": "EJEMPLO PRÁCTICO",
+    "m.ex.title": "Imagine la siguiente situación:",
+    "m.ex.p": "Tiene un activo parado o con un rendimiento por debajo de lo esperado, y no sabe si conviene recuperarlo o sustituirlo. Realizamos el diagnóstico técnico que le da esa respuesta, con números, no suposiciones.",
     "m.inc5": "Modernización de instalaciones",
-    "m.inc6": "Debottlenecking",
+    "m.inc6": "Resolución de estrangulamientos operativos",
     "m.inc7": "Mejora de la eficiencia operativa",
     "m.inc8": "Apoyo a la implementación",
     "m.cap.eyebrow": "CAPACIDADES TÉCNICAS",
@@ -1517,11 +1602,11 @@ const I18N = {
     "m.cap2": "Integridad e inspección de activos",
     "m.cap3": "Identificación de fallos",
     "m.cap4": "Modernización de instalaciones",
-    "m.cap5": "Debottlenecking",
+    "m.cap5": "Resolución de estrangulamientos operativos",
     "m.cap6": "Prevención y gestión de riesgos",
     "m.cta.eyebrow": "HABLEMOS",
-    "m.cta.title1": "¿Tiene un activo que necesita",
-    "m.cta.title2": "diagnóstico o modernización?",
+    "m.cta.title1": "¿Tiene un activo de petróleo y gas en Venezuela",
+    "m.cta.title2": "que necesita diagnóstico o modernización?",
     "m.cta.p": "Hable con nuestro equipo técnico sobre la instalación o el equipo en cuestión.",
     "m.cta.btn1": "Hablar con el equipo",
     "m.cta.btn2": "Ver todas las soluciones"
@@ -1675,7 +1760,13 @@ function splitLines(container){
     line.innerHTML = words.map(w=>`<span class="word">${w}</span>`).join(' ');
   });
 }
-splitLines(document.getElementById('heroTitle'));
+const heroTitleEl = document.getElementById('heroTitle');
+splitLines(heroTitleEl);
+/* #heroTitle starts at opacity:0 in CSS (word spans don't exist until splitLines runs, so they
+   can't be pre-hidden via CSS) — reveal the now-split container in this same synchronous tick,
+   right before hiding the individual words below, so the browser never paints the old unsplit
+   plain-text title at full opacity. */
+heroTitleEl.style.opacity = '1';
 gsap.set('#heroTitle .word', {y:'115%', opacity:0});
 gsap.to('#heroTitle .word', {
   y:0, opacity:1, duration:1.1, ease:'power4.out', stagger:0.035, delay:.3
@@ -1694,7 +1785,7 @@ const WHATSAPP_NUMBER = ''; /* TODO(cliente): número em formato internacional s
   } else {
     btn.removeAttribute('target');
     btn.setAttribute('aria-disabled', 'true');
-    console.warn('[ADPetros] Número de WhatsApp por configurar — ver WHATSAPP_NUMBER no script da página.');
+    console.warn('[Adpetros] Número de WhatsApp por configurar — ver WHATSAPP_NUMBER no script da página.');
   }
 })();
 

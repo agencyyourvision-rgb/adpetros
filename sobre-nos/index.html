@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sobre Nós — ADPetros</title>
-<meta name="description" content="A ADPetros é uma empresa europeia de engenharia industrial que combina engenharia europeia, experiência local e capacidade de execução para desenvolver projetos na Venezuela, América do Sul e África.">
+<title>Sobre Nós — Adpetros</title>
+<meta name="description" content="A Adpetros é uma empresa europeia de engenharia de óleo e gás que combina engenharia europeia, experiência local e capacidade de execução para desenvolver projetos na Venezuela, América do Sul e África.">
 <link rel="canonical" href="https://www.adpetros.com/sobre-nos/">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Sobre Nós — ADPetros">
-<meta property="og:description" content="A ADPetros é uma empresa europeia de engenharia industrial que combina engenharia europeia, experiência local e capacidade de execução para desenvolver projetos na Venezuela, América do Sul e África.">
+<meta property="og:title" content="Sobre Nós — Adpetros">
+<meta property="og:description" content="A Adpetros é uma empresa europeia de engenharia de óleo e gás que combina engenharia europeia, experiência local e capacidade de execução para desenvolver projetos na Venezuela, América do Sul e África.">
 <meta property="og:image" content="https://www.adpetros.com/og-image.jpg">
 <meta property="og:url" content="https://www.adpetros.com/sobre-nos/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Sobre Nós — ADPetros">
-<meta name="twitter:description" content="A ADPetros é uma empresa europeia de engenharia industrial que combina engenharia europeia, experiência local e capacidade de execução para desenvolver projetos na Venezuela, América do Sul e África.">
+<meta name="twitter:title" content="Sobre Nós — Adpetros">
+<meta name="twitter:description" content="A Adpetros é uma empresa europeia de engenharia de óleo e gás que combina engenharia europeia, experiência local e capacidade de execução para desenvolver projetos na Venezuela, América do Sul e África.">
 <meta name="twitter:image" content="https://www.adpetros.com/og-image.jpg">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -27,7 +27,7 @@
 {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  "name": "Sobre Nós — ADPetros",
+  "name": "Sobre Nós — Adpetros",
   "url": "https://www.adpetros.com/sobre-nos/"
 }
 </script>
@@ -176,6 +176,12 @@ body::before{
   align-items:center;
   gap:9px;
   margin-bottom:18px;
+  /* Matches the GSAP "from" state (opacity:0, x:-14) applied at runtime — without this default,
+     the eyebrow renders fully visible for the brief window before GSAP executes, then snaps to
+     hidden the instant the tween's "from" state is applied, then fades back in: a visible
+     flash/flicker on every load. Starting hidden here means JS only ever animates it IN. */
+  opacity:0;
+  transform:translateX(-14px);
 }
 .eyebrow::before{content:'✦';font-size:13px;line-height:1;color:var(--green-2)}
 [data-theme="dark"] .eyebrow{color:#8296a3}
@@ -379,14 +385,19 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .hero-bg::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(5,9,15,.74) 0%,rgba(6,11,18,.5) 42%,rgba(5,9,15,.62) 72%,rgba(4,8,13,.86) 100%)}
 .hero-bg .glow{position:absolute;z-index:1;width:70vw;height:70vw;max-width:900px;max-height:900px;border-radius:50%;background:radial-gradient(circle,rgba(115,149,198,.16),transparent 62%);top:-20%;right:-15%;filter:blur(10px)}
 .hero-bg .hero-vignette{position:absolute;inset:0;z-index:1;background:radial-gradient(120% 90% at 50% 15%,transparent 30%,var(--petrol-950) 100%)}
+.hero-bg>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .hero-inner{position:relative;z-index:2;max-width:var(--container);margin:0 auto;padding:0 var(--pad);width:100%}
 .hero-inner-centered{display:flex;flex-direction:column;align-items:center;text-align:center}
 .hero-inner-centered .eyebrow{justify-content:center}
 .hero h1{font-family:var(--ff-display);font-weight:600;font-size:clamp(34px,5.2vw,72px);line-height:1.12;letter-spacing:-.025em;color:#fbfdfd;max-width:920px}
 .hero h1 .line-mask{display:block}
 .hero h1 .sub{display:block;color:inherit}
-.hero-lead{max-width:560px;margin-top:26px;font-size:clamp(15px,1.05vw,16.5px);line-height:1.75;color:var(--ink-dim)}
-.hero-ctas{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;justify-content:center}
+/* #heroTitle, .hero-lead and .hero-ctas start hidden here (matching the GSAP "from" states set in
+   HERO_SPLIT_JS) so the hero never renders its final visible state before JS runs and then flashes
+   to hidden — see the .eyebrow rule above for the same fix and rationale. */
+#heroTitle{opacity:0}
+.hero-lead{max-width:560px;margin-top:26px;font-size:clamp(15px,1.05vw,16.5px);line-height:1.75;color:var(--ink-dim);opacity:0;transform:translateY(24px)}
+.hero-ctas{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap;justify-content:center;opacity:0;transform:translateY(24px)}
 
 /* Marquee ticker strip (replaces the old pillar cards) */
 .marquee-strip{position:relative;z-index:2;margin-top:clamp(48px,9vw,110px);border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);background:rgba(2,12,16,.35);overflow:hidden;padding:20px 0}
@@ -450,11 +461,19 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .sol-top{display:grid;grid-template-columns:1fr;gap:40px;align-items:end;margin-bottom:64px}
 @media(min-width:900px){.sol-top{grid-template-columns:1.3fr 1fr}}
 .sol-steps{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line-dark);border:1px solid var(--line-dark);border-radius:20px;overflow:hidden}
-@media(min-width:760px){.sol-steps{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:760px){.sol-steps{grid-template-columns:repeat(var(--sol-steps-cols,4),1fr)}}
 .sol-step{padding:36px 28px;background:var(--petrol-900);min-height:230px;display:flex;flex-direction:column}
 .sol-step .n{font-family:var(--ff-display);font-size:34px;font-weight:800;color:rgba(255,255,255,.18);margin-bottom:20px}
 .sol-step h4{font-size:19px;color:#fff;margin-bottom:10px;font-weight:500}
 .sol-step p{font-size:14.5px;color:var(--ink-dim);line-height:1.6}
+.sol-step-thumb{width:52px;height:52px;border-radius:10px;overflow:hidden;margin-bottom:16px;border:1px solid rgba(255,255,255,.12)}
+.sol-step-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.an-who-grid{display:grid;grid-template-columns:1fr;gap:40px;margin-top:56px}
+@media(min-width:1100px){.an-who-grid{grid-template-columns:1fr 320px;align-items:center}}
+.an-float-wrap{display:flex;align-items:center;justify-content:center}
+.an-float-photo{position:relative;width:100%;max-width:300px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.55);transform:rotate(-2deg);border:6px solid var(--surface)}
+.an-float-photo img{width:100%;height:100%;object-fit:cover;aspect-ratio:3/4;display:block}
+@media(min-width:1100px){.an-float-photo{transform:rotate(-3deg) translateY(-14px)}}
 .sol-quote{margin-top:56px;font-family:var(--ff-display);font-weight:500;font-size:clamp(22px,3vw,34px);max-width:820px;color:#fff;letter-spacing:-.01em}
 
 /* ================= PINNED SCROLL-STORY COMPONENT (shared: Markets + Support) ================= */
@@ -779,9 +798,27 @@ footer{background:var(--petrol-950);color:var(--ink);padding:80px 0 30px}
 .check-list .ico{width:17px;height:17px;flex:none;margin-top:2px;color:var(--accent)}
 .sol-two-col{display:grid;grid-template-columns:1fr;gap:40px}
 @media(min-width:900px){.sol-two-col{grid-template-columns:1fr 1fr}}
+
+/* Solution detail pages: "O Problema" — one unified copy block beside a large photo */
+.prob-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
+@media(min-width:900px){.prob-grid{grid-template-columns:1.05fr .95fr;gap:56px}}
+.prob-copy .prob-p{margin-top:18px;font-size:16px;line-height:1.75}
+.prob-copy .big-title{margin-top:14px}
+.prob-photo{border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 24px 56px -26px rgba(0,0,0,.4);aspect-ratio:4/3}
+.prob-photo img{width:100%;height:100%;object-fit:cover;display:block}
+@media(min-width:900px){.prob-photo{aspect-ratio:auto;min-height:420px;height:100%}}
 .sol-markets-note{display:flex;align-items:center;gap:14px;padding:20px 24px;border-radius:var(--radius-md);background:var(--surface);border:1px solid var(--border);margin-top:12px}
 .sol-markets-note svg{width:22px;height:22px;flex:none;color:var(--accent)}
 .sol-markets-note p{font-size:14.5px;line-height:1.6;color:var(--ink-dim)}
+
+/* Solution detail pages: "Imagine a seguinte situação" practical example */
+.example-section .example-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
+@media(min-width:900px){.example-section .example-grid{grid-template-columns:1fr 1fr;gap:52px}}
+.example-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 14px 7px 10px;border-radius:100px;background:var(--accent-dim);color:var(--accent);font-family:var(--ff-display);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:18px}
+.example-badge svg{width:16px;height:16px;flex:none}
+.example-text .example-p{margin-top:16px;font-size:16.5px;line-height:1.75;color:var(--dark-ink-dim)}
+.example-photo{border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 20px 50px -22px rgba(0,0,0,.4);aspect-ratio:4/3}
+.example-photo img{width:100%;height:100%;object-fit:cover;display:block}
 [data-theme="white"] .sol-markets-note,[data-theme="light"] .sol-markets-note{background:rgba(10,32,40,.03);border-color:var(--line-light)}
 [data-theme="white"] .sol-markets-note p,[data-theme="light"] .sol-markets-note p{color:var(--dark-ink-dim)}
 
@@ -821,8 +858,14 @@ footer{background:var(--petrol-950);color:var(--ink);padding:80px 0 30px}
 .photo-section-bg{position:absolute;inset:0;z-index:0}
 .photo-section-bg img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06)}
 .photo-section-bg::after{content:'';position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(5,9,15,.88) 0%,rgba(6,12,19,.72) 30%,rgba(6,12,19,.8) 68%,rgba(5,9,15,.92) 100%),
-  linear-gradient(100deg,rgba(6,12,20,.55) 0%,rgba(6,12,20,.2) 55%,rgba(6,12,20,.55) 100%)}
+  linear-gradient(180deg,rgba(5,10,17,.68) 0%,rgba(5,10,17,.46) 32%,rgba(5,10,17,.56) 66%,rgba(4,8,14,.87) 100%),
+  linear-gradient(100deg,rgba(9,20,34,.56) 0%,rgba(9,20,34,.22) 55%,rgba(9,20,34,.56) 100%)}
+/* Extra darkening for naturally brighter photos (sunset glare, daytime sky) where the default
+   overlay above still lets the image compete with the text — added via extra_class on
+   photo_section_html() per photo, not applied blanket across every section. */
+.photo-section-strong .photo-section-bg::after{background:
+  linear-gradient(180deg,rgba(4,8,13,.8) 0%,rgba(4,8,13,.6) 32%,rgba(4,8,13,.7) 66%,rgba(3,6,11,.92) 100%),
+  linear-gradient(100deg,rgba(7,16,27,.66) 0%,rgba(7,16,27,.32) 55%,rgba(7,16,27,.66) 100%)}
 .photo-section-content{position:relative;z-index:1}
 .photo-section .eyebrow,.photo-section .big-title,.photo-section p{color:var(--ink)}
 .photo-section .big-title .title-dim{color:var(--ink-dim)}
@@ -1001,6 +1044,7 @@ body.cookie-visible .wa-float{bottom:84px}
 
 <header class="hero hero-breathe" id="top" data-theme="dark" style="min-height:90vh">
   <div class="hero-bg">
+    <img src="/assets/img/18-lg.jpg" alt="Instalações industriais ao entardecer">
     <div class="glow"></div>
     <div class="hero-vignette"></div>
   </div>
@@ -1010,7 +1054,7 @@ body.cookie-visible .wa-float{bottom:84px}
       <span class="line-mask"><span class="line" data-i18n="an.hero.title1">Uma empresa de engenharia</span></span>
       <span class="line-mask"><span class="line sub" data-i18n="an.hero.title2">pensada para operar para além da engenharia.</span></span>
     </h1>
-    <p class="hero-lead reveal" data-i18n="an.hero.lead">A ADPetros é uma empresa europeia de engenharia industrial, com experiência nos setores do petróleo, gás e indústria petroquímica e conhecimento dos mercados onde atua — da Venezuela à América do Sul e África.</p>
+    <p class="hero-lead reveal" data-i18n="an.hero.lead">A Adpetros é uma empresa europeia de engenharia de óleo e gás, com experiência nos setores do petróleo, gás e indústria petroquímica e conhecimento dos mercados onde atua — da Venezuela à América do Sul e África.</p>
     <div class="hero-ctas reveal">
       <a href="/contactos/" class="btn btn-primary" data-i18n="an.hero.cta1">Falar com a equipa
         <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1028,29 +1072,34 @@ body.cookie-visible .wa-float{bottom:84px}
         <div class="eyebrow" data-i18n="an.who.eyebrow">QUEM SOMOS</div>
         <h2 class="big-title reveal"><span data-i18n="an.who.title1">Engenharia europeia.</span> <span class="title-dim" data-i18n="an.who.title2">Presença onde o projeto acontece.</span></h2>
       </div>
-      <p class="lead dim reveal" data-i18n="an.who.lead">A ADPetros nasceu para responder a um problema concreto: bons projetos de engenharia perdem-se quando faltam as condições para os executar no terreno. Combinamos rigor técnico europeu com experiência acumulada nos mercados onde atuamos, para que um projeto não dependa apenas de um bom estudo, mas também da capacidade real de o pôr em prática.</p>
+      <p class="lead dim reveal" data-i18n="an.who.lead">A Adpetros nasceu para responder a um problema concreto: bons projetos de engenharia perdem-se quando faltam as condições para os executar no terreno. Combinamos rigor técnico europeu com experiência acumulada nos mercados onde atuamos, para que um projeto não dependa apenas de um bom estudo, mas também da capacidade real de o pôr em prática.</p>
     </div>
 
-    <div class="sol-steps" style="margin-top:56px">
-      <div class="sol-step flip-card reveal">
-        <div class="n">01</div>
-        <h4 data-i18n="an.who.s1t">Engenharia europeia</h4>
-        <p data-i18n="an.who.s1p">Conhecimento técnico aplicado a projetos e operações industriais complexas.</p>
+    <div class="an-who-grid">
+      <div class="sol-steps">
+        <div class="sol-step flip-card reveal">
+          <div class="n">01</div>
+          <h4 data-i18n="an.who.s1t">Engenharia europeia</h4>
+          <p data-i18n="an.who.s1p">Conhecimento técnico aplicado a projetos e operações industriais complexas.</p>
+        </div>
+        <div class="sol-step flip-card reveal">
+          <div class="n">02</div>
+          <h4 data-i18n="an.who.s2t">Experiência local</h4>
+          <p data-i18n="an.who.s2p">Conhecimento dos mercados e do contexto onde desenvolvemos os projetos.</p>
+        </div>
+        <div class="sol-step flip-card reveal">
+          <div class="n">03</div>
+          <h4 data-i18n="an.who.s3t">Rede no terreno</h4>
+          <p data-i18n="an.who.s3p">Profissionais, fornecedores e parceiros que conhecemos e em quem confiamos.</p>
+        </div>
+        <div class="sol-step flip-card reveal">
+          <div class="n">04</div>
+          <h4 data-i18n="an.who.s4t">Capacidade de execução</h4>
+          <p data-i18n="an.who.s4p">Estrutura preparada para transformar planeamento em operação real.</p>
+        </div>
       </div>
-      <div class="sol-step flip-card reveal">
-        <div class="n">02</div>
-        <h4 data-i18n="an.who.s2t">Experiência local</h4>
-        <p data-i18n="an.who.s2p">Conhecimento dos mercados e do contexto onde desenvolvemos os projetos.</p>
-      </div>
-      <div class="sol-step flip-card reveal">
-        <div class="n">03</div>
-        <h4 data-i18n="an.who.s3t">Rede no terreno</h4>
-        <p data-i18n="an.who.s3p">Profissionais, fornecedores e parceiros que conhecemos e em quem confiamos.</p>
-      </div>
-      <div class="sol-step flip-card reveal">
-        <div class="n">04</div>
-        <h4 data-i18n="an.who.s4t">Capacidade de execução</h4>
-        <p data-i18n="an.who.s4p">Estrutura preparada para transformar planeamento em operação real.</p>
+      <div class="an-float-wrap reveal-img">
+        <div class="an-float-photo"><img src="/assets/img/11-lg.jpg" alt="Engenheiro da Adpetros no terreno junto a uma instalação industrial" loading="lazy"></div>
       </div>
     </div>
   </div>
@@ -1066,7 +1115,7 @@ body.cookie-visible .wa-float{bottom:84px}
       </div>
       <div style="max-width:520px">
         <p class="reveal dim" data-i18n="an.why2.p1" style="line-height:1.75;font-size:16px">Quando uma empresa decide desenvolver um projeto num mercado que não conhece bem, a engenharia costuma ser a parte mais previsível do processo. O que normalmente atrasa ou compromete um projeto é tudo o resto: compreender o contexto local, encontrar fornecedores de confiança, organizar equipas, coordenar logística e criar as condições práticas para executar.</p>
-        <p class="reveal dim" data-i18n="an.why2.p2" style="line-height:1.75;font-size:16px;margin-top:16px">É por isso que a ADPetros combina engenharia com experiência local — para que um projeto não tenha de resolver esse caminho sozinho.</p>
+        <p class="reveal dim" data-i18n="an.why2.p2" style="line-height:1.75;font-size:16px;margin-top:16px">É por isso que a Adpetros combina engenharia com experiência local — para que um projeto não tenha de resolver esse caminho sozinho.</p>
       </div>
     </div>
   </div>
@@ -1090,7 +1139,7 @@ body.cookie-visible .wa-float{bottom:84px}
           </video>
         </div>
         <div class="why-hero-body">
-          <h3 data-i18n="why.cardtitle">Simplifique com a ADPetros</h3>
+          <h3 data-i18n="why.cardtitle">Simplifique com a Adpetros</h3>
           <a href="/contactos/" class="why-hero-btn"><span data-i18n="why.cta">Fale connosco</span></a>
         </div>
       </article>
@@ -1146,19 +1195,19 @@ body.cookie-visible .wa-float{bottom:84px}
       <div class="glass contact-info-card reveal-img" style="padding:clamp(32px,4vw,48px)">
         <span class="m-tag" data-i18n="an.mk.ve.tag">MERCADO PRINCIPAL</span>
         <h3 style="font-family:var(--ff-display);font-size:clamp(24px,2.6vw,32px);font-weight:500;color:#fff;margin-top:14px" data-i18n="an.mk.ve.title">Venezuela</h3>
-        <p style="margin-top:16px;line-height:1.7;color:var(--ink-dim)" data-i18n="an.mk.ve.p1">A Venezuela é o mercado onde a ADPetros construiu a sua experiência mais profunda. Conhecemos o setor do petróleo e gás do país, as suas particularidades regulatórias e operacionais, e mantemos relações próximas com empresas, entidades e profissionais locais.</p>
+        <p style="margin-top:16px;line-height:1.7;color:var(--ink-dim)" data-i18n="an.mk.ve.p1">A Venezuela é o mercado onde a Adpetros construiu a sua experiência mais profunda, trabalhando ao mais alto nível com a PDVSA e outras entidades do setor. Conhecemos o setor do petróleo e gás do país, as suas particularidades regulatórias e operacionais, e mantemos relações próximas com empresas, entidades e profissionais locais.</p>
         <p style="margin-top:14px;line-height:1.7;color:var(--ink-dim)" data-i18n="an.mk.ve.p2">Esse conhecimento acumulado permite-nos apoiar empresas internacionais que queiram avaliar oportunidades, investir ou desenvolver projetos no país com uma base de confiança já construída — em vez de partirem do zero.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:24px">
         <div class="glass contact-info-card reveal-img" style="flex:1;justify-content:center">
           <span class="m-tag" data-i18n="an.mk.sa.tag">AMÉRICA DO SUL</span>
           <h3 style="font-family:var(--ff-display);font-size:clamp(20px,2vw,25px);font-weight:500;color:#fff;margin-top:12px" data-i18n="an.mk.sa.title">América do Sul</h3>
-          <p style="margin-top:12px;line-height:1.7;color:var(--ink-dim);font-size:14.5px" data-i18n="an.mk.sa.p1">A experiência adquirida na Venezuela e a proximidade cultural e operacional da região permitem à ADPetros avaliar e apoiar projetos noutros mercados sul-americanos, de acordo com as necessidades específicas de cada operação.</p>
+          <p style="margin-top:12px;line-height:1.7;color:var(--ink-dim);font-size:14.5px" data-i18n="an.mk.sa.p1">A experiência adquirida na Venezuela e a proximidade cultural e operacional da região permitem à Adpetros avaliar e apoiar projetos noutros mercados sul-americanos, de acordo com as necessidades específicas de cada operação.</p>
         </div>
         <div class="glass contact-info-card reveal-img" style="flex:1;justify-content:center">
           <span class="m-tag" data-i18n="an.mk.af.tag">ÁFRICA</span>
           <h3 style="font-family:var(--ff-display);font-size:clamp(20px,2vw,25px);font-weight:500;color:#fff;margin-top:12px" data-i18n="an.mk.af.title">África</h3>
-          <p style="margin-top:12px;line-height:1.7;color:var(--ink-dim);font-size:14.5px" data-i18n="an.mk.af.p1">Com destaque para Angola e a Guiné Equatorial, a ADPetros acompanha também mercados na África Central, aplicando a mesma lógica de combinar engenharia com conhecimento do contexto local.</p>
+          <p style="margin-top:12px;line-height:1.7;color:var(--ink-dim);font-size:14.5px" data-i18n="an.mk.af.p1">Trabalhamos ao mais alto nível com as entidades de cada mercado — GEPETROL na Guiné Equatorial 🇬🇶, SNPC no Congo Brazzaville 🇨🇬, o Ministério dos Hidrocarbonetos na República Democrática do Congo 🇨🇩, e ADNOC nos Emirados Árabes Unidos 🇦🇪 — com destaque também para Angola 🇦🇴, aplicando a mesma lógica de combinar engenharia com conhecimento do contexto local em cada um destes mercados.</p>
         </div>
       </div>
     </div>
@@ -1172,7 +1221,7 @@ body.cookie-visible .wa-float{bottom:84px}
       <div>
         <div class="eyebrow" data-i18n="an.eng.eyebrow">A BASE TÉCNICA</div>
         <h2 class="big-title reveal"><span data-i18n="an.eng.title1">Engenharia que sustenta</span> <span class="title-dim" data-i18n="an.eng.title2">tudo o resto.</span></h2>
-        <p class="lead dim reveal" style="margin-top:20px" data-i18n="an.eng.lead">A capacidade de execução da ADPetros assenta em conhecimento técnico sólido, organizado nas seguintes especialidades.</p>
+        <p class="lead dim reveal" style="margin-top:20px" data-i18n="an.eng.lead">A capacidade de execução da Adpetros assenta em conhecimento técnico sólido, organizado nas seguintes especialidades.</p>
       </div>
     </div>
 
@@ -1212,16 +1261,18 @@ body.cookie-visible .wa-float{bottom:84px}
 </section>
 
 <!-- 07 A NOSSA FORMA DE TRABALHAR -->
-<section class="section" data-theme="dark">
-  <div class="container">
+<section class="section photo-section photo-section-strong" data-theme="dark">
+  <div class="photo-section-bg"><img src="/assets/img/new/h1.jpg" alt="Equipa da ADPetros a analisar um projeto junto a uma instalação industrial" loading="lazy"></div>
+  <div class="container photo-section-content">
     <div class="sol-top">
       <div>
-        <div class="eyebrow" data-i18n="an.work.eyebrow">A NOSSA FORMA DE TRABALHAR</div>
-        <h2 class="big-title reveal"><span data-i18n="an.work.title1">O projeto não termina</span> <span class="title-dim" data-i18n="an.work.title2">na engenharia.</span></h2>
+        <div class="eyebrow" data-i18n="an.work.eyebrow">EXPERIÊNCIA LOCAL. OPORTUNIDADES GLOBAIS.</div>
+        <h2 class="big-title reveal"><span data-i18n="an.work.title1">Quer investir em óleo e gás?</span> <span class="title-dim" data-i18n="an.work.title2">Comece pelo parceiro certo.</span></h2>
       </div>
       <div style="max-width:520px">
-        <p class="reveal dim" style="line-height:1.75;font-size:16px" data-i18n="an.work.p1">A ADPetros procura construir relações de longo prazo com os seus clientes, acompanhando não apenas o desenvolvimento técnico, mas também os desafios necessários para colocar cada projeto em funcionamento.</p>
-        <p class="reveal dim" style="line-height:1.75;font-size:16px;margin-top:16px" data-i18n="an.work.p2">Honestidade, conhecimento técnico, experiência local e capacidade de execução orientam a forma como trabalhamos. O nosso objetivo é simples: criar as condições para o projeto avançar.</p>
+        <p class="reveal dim" style="line-height:1.75;font-size:16px" data-i18n="an.work.p1">A ADPetros conhece o mercado venezuelano, os seus principais operadores e as estruturas necessárias para desenvolver novos negócios no setor.</p>
+        <p class="reveal dim" style="line-height:1.75;font-size:16px;margin-top:16px" data-i18n="an.work.p2">Com relações construídas junto de entidades governamentais, instituições, operadores e parceiros locais, ajudamos empresas internacionais a compreender o mercado, identificar oportunidades e criar as condições necessárias para avançar.</p>
+        <p class="reveal" style="line-height:1.6;font-size:18px;font-weight:500;color:#fff;margin-top:24px;padding-top:22px;border-top:1px solid var(--line-dark)" data-i18n="an.work.p3">Da oportunidade à operação, somos a ligação entre o investimento internacional e o mercado local.</p>
       </div>
     </div>
   </div>
@@ -1259,7 +1310,7 @@ body.cookie-visible .wa-float{bottom:84px}
     <div class="footer-top">
       <div class="footer-brand">
         <a href="#top" class="logo"><span class="logo-mark"></span>ADPETROS</a>
-        <p data-i18n="ft.tagline">Engenharia industrial. Experiência local. Capacidade de execução.</p>
+        <p data-i18n="ft.tagline">Engenharia de óleo e gás. Experiência local. Capacidade de execução.</p>
       </div>
       <div class="footer-col">
         <h4 data-i18n="ft.nav">NAVEGAÇÃO</h4>
@@ -1290,7 +1341,7 @@ body.cookie-visible .wa-float{bottom:84px}
       </div>
     </div>
     <div class="footer-bottom">
-      <span data-i18n="ft.copy">© 2026 ADPetros. Todos os direitos reservados.</span>
+      <span data-i18n="ft.copy">© 2026 Adpetros. Todos os direitos reservados.</span>
       <a href="mailto:geral@adpetros.com" class="footer-email" data-i18n="ft.email">geral@adpetros.com</a>
     </div>
   </div>
@@ -1401,25 +1452,27 @@ const I18N = {
     "mm.proc.t": "Procurement e Sourcing",
     "mm.proc.d": "Encontrar os recursos necessários ao projeto",
     "mm.all": "Ver todas as soluções",
-    "ft.tagline": "Engenharia industrial. Experiência local. Capacidade de execução.",
+    "ft.tagline": "Engenharia de óleo e gás. Experiência local. Capacidade de execução.",
     "ft.nav": "NAVEGAÇÃO",
     "ft.markets": "MERCADOS",
     "ft.solutions": "SOLUÇÕES",
     "ft.africa": "África",
-    "ft.copy": "© 2026 ADPetros. Todos os direitos reservados.",
+    "ft.copy": "© 2026 Adpetros. Todos os direitos reservados.",
     "mk.pin.ve": "Venezuela",
     "mk.pin.sa": "América do Sul",
     "ft.email": "geral@adpetros.com",
+    "cta.talk": "Fale connosco",
+    "cta.project": "Falar sobre o meu projeto",
     "an.hero.eyebrow": "SOBRE A ADPETROS",
     "an.hero.title1": "Uma empresa de engenharia",
     "an.hero.title2": "pensada para operar para além da engenharia.",
-    "an.hero.lead": "A ADPetros é uma empresa europeia de engenharia industrial, com experiência nos setores do petróleo, gás e indústria petroquímica e conhecimento dos mercados onde atua — da Venezuela à América do Sul e África.",
+    "an.hero.lead": "A Adpetros é uma empresa europeia de engenharia de óleo e gás, com experiência nos setores do petróleo, gás e indústria petroquímica e conhecimento dos mercados onde atua — da Venezuela à América do Sul e África.",
     "an.hero.cta1": "Falar com a equipa",
     "an.hero.cta2": "Conhecer as soluções",
     "an.who.eyebrow": "QUEM SOMOS",
     "an.who.title1": "Engenharia europeia.",
     "an.who.title2": "Presença onde o projeto acontece.",
-    "an.who.lead": "A ADPetros nasceu para responder a um problema concreto: bons projetos de engenharia perdem-se quando faltam as condições para os executar no terreno. Combinamos rigor técnico europeu com experiência acumulada nos mercados onde atuamos, para que um projeto não dependa apenas de um bom estudo, mas também da capacidade real de o pôr em prática.",
+    "an.who.lead": "A Adpetros nasceu para responder a um problema concreto: bons projetos de engenharia perdem-se quando faltam as condições para os executar no terreno. Combinamos rigor técnico europeu com experiência acumulada nos mercados onde atuamos, para que um projeto não dependa apenas de um bom estudo, mas também da capacidade real de o pôr em prática.",
     "an.who.s1t": "Engenharia europeia",
     "an.who.s1p": "Conhecimento técnico aplicado a projetos e operações industriais complexas.",
     "an.who.s2t": "Experiência local",
@@ -1432,25 +1485,25 @@ const I18N = {
     "an.why2.title1": "Um projeto internacional exige",
     "an.why2.title2": "mais do que um bom estudo de engenharia.",
     "an.why2.p1": "Quando uma empresa decide desenvolver um projeto num mercado que não conhece bem, a engenharia costuma ser a parte mais previsível do processo. O que normalmente atrasa ou compromete um projeto é tudo o resto: compreender o contexto local, encontrar fornecedores de confiança, organizar equipas, coordenar logística e criar as condições práticas para executar.",
-    "an.why2.p2": "É por isso que a ADPetros combina engenharia com experiência local — para que um projeto não tenha de resolver esse caminho sozinho.",
+    "an.why2.p2": "É por isso que a Adpetros combina engenharia com experiência local — para que um projeto não tenha de resolver esse caminho sozinho.",
     "an.mk.eyebrow": "MERCADOS",
     "an.mk.title1": "Conhecer o terreno",
     "an.mk.title2": "faz a diferença.",
     "an.mk.lead": "A experiência local não é um discurso — é o que nos permite antecipar problemas que só aparecem depois de um projeto já estar em curso.",
     "an.mk.ve.tag": "MERCADO PRINCIPAL",
     "an.mk.ve.title": "Venezuela",
-    "an.mk.ve.p1": "A Venezuela é o mercado onde a ADPetros construiu a sua experiência mais profunda. Conhecemos o setor do petróleo e gás do país, as suas particularidades regulatórias e operacionais, e mantemos relações próximas com empresas, entidades e profissionais locais.",
+    "an.mk.ve.p1": "A Venezuela é o mercado onde a Adpetros construiu a sua experiência mais profunda, trabalhando ao mais alto nível com a PDVSA e outras entidades do setor. Conhecemos o setor do petróleo e gás do país, as suas particularidades regulatórias e operacionais, e mantemos relações próximas com empresas, entidades e profissionais locais.",
     "an.mk.ve.p2": "Esse conhecimento acumulado permite-nos apoiar empresas internacionais que queiram avaliar oportunidades, investir ou desenvolver projetos no país com uma base de confiança já construída — em vez de partirem do zero.",
     "an.mk.sa.tag": "AMÉRICA DO SUL",
     "an.mk.sa.title": "América do Sul",
-    "an.mk.sa.p1": "A experiência adquirida na Venezuela e a proximidade cultural e operacional da região permitem à ADPetros avaliar e apoiar projetos noutros mercados sul-americanos, de acordo com as necessidades específicas de cada operação.",
+    "an.mk.sa.p1": "A experiência adquirida na Venezuela e a proximidade cultural e operacional da região permitem à Adpetros avaliar e apoiar projetos noutros mercados sul-americanos, de acordo com as necessidades específicas de cada operação.",
     "an.mk.af.tag": "ÁFRICA",
     "an.mk.af.title": "África",
-    "an.mk.af.p1": "Com destaque para Angola e a Guiné Equatorial, a ADPetros acompanha também mercados na África Central, aplicando a mesma lógica de combinar engenharia com conhecimento do contexto local.",
+    "an.mk.af.p1": "Trabalhamos ao mais alto nível com as entidades de cada mercado — GEPETROL na Guiné Equatorial 🇬🇶, SNPC no Congo Brazzaville 🇨🇬, o Ministério dos Hidrocarbonetos na República Democrática do Congo 🇨🇩, e ADNOC nos Emirados Árabes Unidos 🇦🇪 — com destaque também para Angola 🇦🇴, aplicando a mesma lógica de combinar engenharia com conhecimento do contexto local em cada um destes mercados.",
     "an.eng.eyebrow": "A BASE TÉCNICA",
     "an.eng.title1": "Engenharia que sustenta",
     "an.eng.title2": "tudo o resto.",
-    "an.eng.lead": "A capacidade de execução da ADPetros assenta em conhecimento técnico sólido, organizado nas seguintes especialidades.",
+    "an.eng.lead": "A capacidade de execução da Adpetros assenta em conhecimento técnico sólido, organizado nas seguintes especialidades.",
     "an.eng.c1": "Engenharia de processo",
     "an.eng.c2": "Engenharia mecânica",
     "an.eng.c3": "Engenharia civil e estrutural",
@@ -1458,21 +1511,22 @@ const I18N = {
     "an.eng.c5": "Integridade e inspeção de ativos",
     "an.eng.c6": "Automação e controlo de processo",
     "an.eng.cta": "Conhecer a nossa engenharia",
-    "an.work.eyebrow": "A NOSSA FORMA DE TRABALHAR",
-    "an.work.title1": "O projeto não termina",
-    "an.work.title2": "na engenharia.",
-    "an.work.p1": "A ADPetros procura construir relações de longo prazo com os seus clientes, acompanhando não apenas o desenvolvimento técnico, mas também os desafios necessários para colocar cada projeto em funcionamento.",
-    "an.work.p2": "Honestidade, conhecimento técnico, experiência local e capacidade de execução orientam a forma como trabalhamos. O nosso objetivo é simples: criar as condições para o projeto avançar.",
+    "an.work.eyebrow": "EXPERIÊNCIA LOCAL. OPORTUNIDADES GLOBAIS.",
+    "an.work.title1": "Quer investir em óleo e gás?",
+    "an.work.title2": "Comece pelo parceiro certo.",
+    "an.work.p1": "A ADPetros conhece o mercado venezuelano, os seus principais operadores e as estruturas necessárias para desenvolver novos negócios no setor.",
+    "an.work.p2": "Com relações construídas junto de entidades governamentais, instituições, operadores e parceiros locais, ajudamos empresas internacionais a compreender o mercado, identificar oportunidades e criar as condições necessárias para avançar.",
+    "an.work.p3": "Da oportunidade à operação, somos a ligação entre o investimento internacional e o mercado local.",
     "an.cta.eyebrow": "FALE CONNOSCO",
-    "an.cta.title1": "Quer perceber como podemos",
-    "an.cta.title2": "ajudar o seu projeto?",
+    "an.cta.title1": "Quer avaliar um projeto de óleo e gás",
+    "an.cta.title2": "na Venezuela? Somos os parceiros certos.",
     "an.cta.p": "Fale com a nossa equipa ou explore as soluções que oferecemos para cada fase do projeto.",
     "an.cta.cta1": "Falar com a equipa",
     "an.cta.cta2": "Conhecer as soluções",
     "why.eyebrow": "O VALOR DA EXPERIÊNCIA LOCAL",
     "why.title1": "Menos complexidade,",
     "why.title2": "mais possibilidades.",
-    "why.cardtitle": "Simplifique com a ADPetros",
+    "why.cardtitle": "Simplifique com a Adpetros",
     "why.cta": "Fale connosco",
     "why1.t": "Conhecimento técnico",
     "why1.p": "Experiência de engenharia aplicada a projetos e operações industriais.",
@@ -1505,25 +1559,27 @@ const I18N = {
     "mm.proc.t": "Procurement & Sourcing",
     "mm.proc.d": "Find the resources the project needs",
     "mm.all": "See all solutions",
-    "ft.tagline": "Industrial engineering. Local experience. Execution capability.",
+    "ft.tagline": "Oil & gas engineering. Local experience. Execution capability.",
     "ft.nav": "NAVIGATION",
     "ft.markets": "MARKETS",
     "ft.solutions": "SOLUTIONS",
     "ft.africa": "Africa",
-    "ft.copy": "© 2026 ADPetros. All rights reserved.",
+    "ft.copy": "© 2026 Adpetros. All rights reserved.",
     "mk.pin.ve": "Venezuela",
     "mk.pin.sa": "South America",
     "ft.email": "geral@adpetros.com",
+    "cta.talk": "Get in touch",
+    "cta.project": "Talk about my project",
     "an.hero.eyebrow": "ABOUT ADPETROS",
     "an.hero.title1": "An engineering company",
     "an.hero.title2": "built to operate beyond engineering.",
-    "an.hero.lead": "ADPetros is a European industrial engineering company with experience in the oil, gas and petrochemical sectors and knowledge of the markets where it operates — from Venezuela to South America and Africa.",
+    "an.hero.lead": "Adpetros is a European oil & gas engineering company with experience in the oil, gas and petrochemical sectors and knowledge of the markets where it operates — from Venezuela to South America and Africa.",
     "an.hero.cta1": "Talk to the team",
     "an.hero.cta2": "See our solutions",
     "an.who.eyebrow": "WHO WE ARE",
     "an.who.title1": "European engineering.",
     "an.who.title2": "Presence where the project happens.",
-    "an.who.lead": "ADPetros was created to answer a concrete problem: good engineering projects get lost when the conditions to execute them on the ground are missing. We combine European technical rigour with experience built in the markets where we operate, so a project doesn't depend only on a good study, but also on the real capacity to put it into practice.",
+    "an.who.lead": "Adpetros was created to answer a concrete problem: good engineering projects get lost when the conditions to execute them on the ground are missing. We combine European technical rigour with experience built in the markets where we operate, so a project doesn't depend only on a good study, but also on the real capacity to put it into practice.",
     "an.who.s1t": "European engineering",
     "an.who.s1p": "Technical knowledge applied to complex industrial projects and operations.",
     "an.who.s2t": "Local experience",
@@ -1536,25 +1592,25 @@ const I18N = {
     "an.why2.title1": "An international project needs",
     "an.why2.title2": "more than a good engineering study.",
     "an.why2.p1": "When a company decides to develop a project in a market it doesn't know well, engineering is usually the most predictable part of the process. What normally delays or compromises a project is everything else: understanding the local context, finding trustworthy suppliers, organising teams, coordinating logistics and creating the practical conditions to execute.",
-    "an.why2.p2": "That's why ADPetros combines engineering with local experience — so a project doesn't have to figure that path out alone.",
+    "an.why2.p2": "That's why Adpetros combines engineering with local experience — so a project doesn't have to figure that path out alone.",
     "an.mk.eyebrow": "MARKETS",
     "an.mk.title1": "Knowing the ground",
     "an.mk.title2": "makes the difference.",
     "an.mk.lead": "Local experience isn't a talking point — it's what lets us anticipate problems that only appear once a project is already underway.",
     "an.mk.ve.tag": "PRIMARY MARKET",
     "an.mk.ve.title": "Venezuela",
-    "an.mk.ve.p1": "Venezuela is the market where ADPetros has built its deepest experience. We know the country's oil and gas sector, its regulatory and operational particularities, and we maintain close relationships with local companies, entities and professionals.",
+    "an.mk.ve.p1": "Venezuela is the market where Adpetros has built its deepest experience, working at the highest level with PDVSA and other sector entities. We know the country's oil and gas sector, its regulatory and operational particularities, and we maintain close relationships with local companies, entities and professionals.",
     "an.mk.ve.p2": "That accumulated knowledge lets us support international companies looking to assess opportunities, invest or develop projects in the country on an already-built foundation of trust — instead of starting from zero.",
     "an.mk.sa.tag": "SOUTH AMERICA",
     "an.mk.sa.title": "South America",
-    "an.mk.sa.p1": "The experience gained in Venezuela, together with the region's cultural and operational proximity, allows ADPetros to assess and support projects in other South American markets, according to the specific needs of each operation.",
+    "an.mk.sa.p1": "The experience gained in Venezuela, together with the region's cultural and operational proximity, allows Adpetros to assess and support projects in other South American markets, according to the specific needs of each operation.",
     "an.mk.af.tag": "AFRICA",
     "an.mk.af.title": "Africa",
-    "an.mk.af.p1": "With particular focus on Angola and Equatorial Guinea, ADPetros also follows markets in Central Africa, applying the same logic of combining engineering with knowledge of the local context.",
+    "an.mk.af.p1": "We work at the highest level with the entities in each market — GEPETROL in Equatorial Guinea 🇬🇶, SNPC in Congo Brazzaville 🇨🇬, the Ministry of Hydrocarbons in the Democratic Republic of Congo 🇨🇩, and ADNOC in the United Arab Emirates 🇦🇪 — with particular focus also on Angola 🇦🇴, applying the same logic of combining engineering with knowledge of the local context in each of these markets.",
     "an.eng.eyebrow": "THE TECHNICAL BASE",
     "an.eng.title1": "Engineering that supports",
     "an.eng.title2": "everything else.",
-    "an.eng.lead": "ADPetros' execution capability rests on solid technical knowledge, organised across the following specialities.",
+    "an.eng.lead": "Adpetros' execution capability rests on solid technical knowledge, organised across the following specialities.",
     "an.eng.c1": "Process engineering",
     "an.eng.c2": "Mechanical engineering",
     "an.eng.c3": "Civil and structural engineering",
@@ -1562,21 +1618,22 @@ const I18N = {
     "an.eng.c5": "Asset integrity and inspection",
     "an.eng.c6": "Automation and process control",
     "an.eng.cta": "See our engineering",
-    "an.work.eyebrow": "HOW WE WORK",
-    "an.work.title1": "The project doesn't end",
-    "an.work.title2": "at engineering.",
-    "an.work.p1": "ADPetros looks to build long-term relationships with its clients, following not only the technical development but also the challenges needed to put each project into operation.",
-    "an.work.p2": "Honesty, technical knowledge, local experience and execution capability guide how we work. Our goal is simple: create the conditions for the project to move forward.",
+    "an.work.eyebrow": "LOCAL EXPERIENCE. GLOBAL OPPORTUNITIES.",
+    "an.work.title1": "Want to invest in oil and gas?",
+    "an.work.title2": "Start with the right partner.",
+    "an.work.p1": "Adpetros knows the Venezuelan market, its main operators and the structures needed to develop new business in the sector.",
+    "an.work.p2": "With relationships built with government entities, institutions, operators and local partners, we help international companies understand the market, identify opportunities and create the conditions needed to move forward.",
+    "an.work.p3": "From opportunity to operation, we are the link between international investment and the local market.",
     "an.cta.eyebrow": "GET IN TOUCH",
-    "an.cta.title1": "Want to see how we can",
-    "an.cta.title2": "help your project?",
+    "an.cta.title1": "Want to evaluate an oil & gas project",
+    "an.cta.title2": "in Venezuela? We're the right partner.",
     "an.cta.p": "Talk to our team or explore the solutions we offer for each phase of a project.",
     "an.cta.cta1": "Talk to the team",
     "an.cta.cta2": "See our solutions",
     "why.eyebrow": "THE VALUE OF LOCAL EXPERIENCE",
     "why.title1": "Less complexity,",
     "why.title2": "more possibilities.",
-    "why.cardtitle": "Simplify with ADPetros",
+    "why.cardtitle": "Simplify with Adpetros",
     "why.cta": "Contact us",
     "why1.t": "Technical knowledge",
     "why1.p": "Engineering experience applied to industrial projects and operations.",
@@ -1609,25 +1666,27 @@ const I18N = {
     "mm.proc.t": "Procurement y Sourcing",
     "mm.proc.d": "Encontrar los recursos necesarios para el proyecto",
     "mm.all": "Ver todas las soluciones",
-    "ft.tagline": "Ingeniería industrial. Experiencia local. Capacidad de ejecución.",
+    "ft.tagline": "Ingeniería de petróleo y gas. Experiencia local. Capacidad de ejecución.",
     "ft.nav": "NAVEGACIÓN",
     "ft.markets": "MERCADOS",
     "ft.solutions": "SOLUCIONES",
     "ft.africa": "África",
-    "ft.copy": "© 2026 ADPetros. Todos los derechos reservados.",
+    "ft.copy": "© 2026 Adpetros. Todos los derechos reservados.",
     "mk.pin.ve": "Venezuela",
     "mk.pin.sa": "Sudamérica",
     "ft.email": "geral@adpetros.com",
+    "cta.talk": "Hable con nosotros",
+    "cta.project": "Hablar sobre mi proyecto",
     "an.hero.eyebrow": "SOBRE ADPETROS",
     "an.hero.title1": "Una empresa de ingeniería",
     "an.hero.title2": "pensada para operar más allá de la ingeniería.",
-    "an.hero.lead": "ADPetros es una empresa europea de ingeniería industrial, con experiencia en los sectores de petróleo, gas e industria petroquímica y conocimiento de los mercados donde opera — desde Venezuela hasta Sudamérica y África.",
+    "an.hero.lead": "Adpetros es una empresa europea de ingeniería de petróleo y gas, con experiencia en los sectores de petróleo, gas e industria petroquímica y conocimiento de los mercados donde opera — desde Venezuela hasta Sudamérica y África.",
     "an.hero.cta1": "Hablar con el equipo",
     "an.hero.cta2": "Conocer las soluciones",
     "an.who.eyebrow": "QUIÉNES SOMOS",
     "an.who.title1": "Ingeniería europea.",
     "an.who.title2": "Presencia donde el proyecto ocurre.",
-    "an.who.lead": "ADPetros nació para responder a un problema concreto: los buenos proyectos de ingeniería se pierden cuando faltan las condiciones para ejecutarlos en el terreno. Combinamos el rigor técnico europeo con la experiencia acumulada en los mercados donde operamos, para que un proyecto no dependa solo de un buen estudio, sino también de la capacidad real de llevarlo a cabo.",
+    "an.who.lead": "Adpetros nació para responder a un problema concreto: los buenos proyectos de ingeniería se pierden cuando faltan las condiciones para ejecutarlos en el terreno. Combinamos el rigor técnico europeo con la experiencia acumulada en los mercados donde operamos, para que un proyecto no dependa solo de un buen estudio, sino también de la capacidad real de llevarlo a cabo.",
     "an.who.s1t": "Ingeniería europea",
     "an.who.s1p": "Conocimiento técnico aplicado a proyectos y operaciones industriales complejas.",
     "an.who.s2t": "Experiencia local",
@@ -1640,25 +1699,25 @@ const I18N = {
     "an.why2.title1": "Un proyecto internacional exige",
     "an.why2.title2": "más que un buen estudio de ingeniería.",
     "an.why2.p1": "Cuando una empresa decide desarrollar un proyecto en un mercado que no conoce bien, la ingeniería suele ser la parte más previsible del proceso. Lo que normalmente retrasa o compromete un proyecto es todo lo demás: comprender el contexto local, encontrar proveedores de confianza, organizar equipos, coordinar la logística y crear las condiciones prácticas para ejecutar.",
-    "an.why2.p2": "Por eso ADPetros combina ingeniería con experiencia local — para que un proyecto no tenga que resolver ese camino solo.",
+    "an.why2.p2": "Por eso Adpetros combina ingeniería con experiencia local — para que un proyecto no tenga que resolver ese camino solo.",
     "an.mk.eyebrow": "MERCADOS",
     "an.mk.title1": "Conocer el terreno",
     "an.mk.title2": "marca la diferencia.",
     "an.mk.lead": "La experiencia local no es un discurso — es lo que nos permite anticipar problemas que solo aparecen cuando un proyecto ya está en marcha.",
     "an.mk.ve.tag": "MERCADO PRINCIPAL",
     "an.mk.ve.title": "Venezuela",
-    "an.mk.ve.p1": "Venezuela es el mercado donde ADPetros ha construido su experiencia más profunda. Conocemos el sector de petróleo y gas del país, sus particularidades regulatorias y operativas, y mantenemos relaciones cercanas con empresas, entidades y profesionales locales.",
+    "an.mk.ve.p1": "Venezuela es el mercado donde Adpetros ha construido su experiencia más profunda, trabajando al más alto nivel con PDVSA y otras entidades del sector. Conocemos el sector de petróleo y gas del país, sus particularidades regulatorias y operativas, y mantenemos relaciones cercanas con empresas, entidades y profesionales locales.",
     "an.mk.ve.p2": "Ese conocimiento acumulado nos permite apoyar a empresas internacionales que deseen evaluar oportunidades, invertir o desarrollar proyectos en el país sobre una base de confianza ya construida — en lugar de partir de cero.",
     "an.mk.sa.tag": "SUDAMÉRICA",
     "an.mk.sa.title": "Sudamérica",
-    "an.mk.sa.p1": "La experiencia adquirida en Venezuela, junto con la proximidad cultural y operativa de la región, permite a ADPetros evaluar y apoyar proyectos en otros mercados sudamericanos, según las necesidades específicas de cada operación.",
+    "an.mk.sa.p1": "La experiencia adquirida en Venezuela, junto con la proximidad cultural y operativa de la región, permite a Adpetros evaluar y apoyar proyectos en otros mercados sudamericanos, según las necesidades específicas de cada operación.",
     "an.mk.af.tag": "ÁFRICA",
     "an.mk.af.title": "África",
-    "an.mk.af.p1": "Con especial atención a Angola y Guinea Ecuatorial, ADPetros también sigue mercados en África Central, aplicando la misma lógica de combinar ingeniería con conocimiento del contexto local.",
+    "an.mk.af.p1": "Trabajamos al más alto nivel con las entidades de cada mercado — GEPETROL en Guinea Ecuatorial 🇬🇶, SNPC en Congo Brazzaville 🇨🇬, el Ministerio de Hidrocarburos en la República Democrática del Congo 🇨🇩, y ADNOC en los Emiratos Árabes Unidos 🇦🇪 — con especial atención también a Angola 🇦🇴, aplicando la misma lógica de combinar ingeniería con conocimiento del contexto local en cada uno de estos mercados.",
     "an.eng.eyebrow": "LA BASE TÉCNICA",
     "an.eng.title1": "Ingeniería que sostiene",
     "an.eng.title2": "todo lo demás.",
-    "an.eng.lead": "La capacidad de ejecución de ADPetros se apoya en un conocimiento técnico sólido, organizado en las siguientes especialidades.",
+    "an.eng.lead": "La capacidad de ejecución de Adpetros se apoya en un conocimiento técnico sólido, organizado en las siguientes especialidades.",
     "an.eng.c1": "Ingeniería de procesos",
     "an.eng.c2": "Ingeniería mecánica",
     "an.eng.c3": "Ingeniería civil y estructural",
@@ -1666,21 +1725,22 @@ const I18N = {
     "an.eng.c5": "Integridad e inspección de activos",
     "an.eng.c6": "Automatización y control de procesos",
     "an.eng.cta": "Conocer nuestra ingeniería",
-    "an.work.eyebrow": "NUESTRA FORMA DE TRABAJAR",
-    "an.work.title1": "El proyecto no termina",
-    "an.work.title2": "en la ingeniería.",
-    "an.work.p1": "ADPetros busca construir relaciones a largo plazo con sus clientes, acompañando no solo el desarrollo técnico, sino también los desafíos necesarios para poner en marcha cada proyecto.",
-    "an.work.p2": "Honestidad, conocimiento técnico, experiencia local y capacidad de ejecución guían nuestra forma de trabajar. Nuestro objetivo es simple: crear las condiciones para que el proyecto avance.",
+    "an.work.eyebrow": "EXPERIENCIA LOCAL. OPORTUNIDADES GLOBALES.",
+    "an.work.title1": "¿Quiere invertir en petróleo y gas?",
+    "an.work.title2": "Empiece por el socio adecuado.",
+    "an.work.p1": "Adpetros conoce el mercado venezolano, sus principales operadores y las estructuras necesarias para desarrollar nuevos negocios en el sector.",
+    "an.work.p2": "Con relaciones construidas junto a entidades gubernamentales, instituciones, operadores y socios locales, ayudamos a empresas internacionales a comprender el mercado, identificar oportunidades y crear las condiciones necesarias para avanzar.",
+    "an.work.p3": "De la oportunidad a la operación, somos el vínculo entre la inversión internacional y el mercado local.",
     "an.cta.eyebrow": "HABLEMOS",
-    "an.cta.title1": "¿Quiere entender cómo podemos",
-    "an.cta.title2": "ayudar a su proyecto?",
+    "an.cta.title1": "¿Quiere evaluar un proyecto de petróleo y gas",
+    "an.cta.title2": "en Venezuela? Somos el socio adecuado.",
     "an.cta.p": "Hable con nuestro equipo o explore las soluciones que ofrecemos para cada fase del proyecto.",
     "an.cta.cta1": "Hablar con el equipo",
     "an.cta.cta2": "Conocer las soluciones",
     "why.eyebrow": "EL VALOR DE LA EXPERIENCIA LOCAL",
     "why.title1": "Menos complejidad,",
     "why.title2": "más posibilidades.",
-    "why.cardtitle": "Simplifique con ADPetros",
+    "why.cardtitle": "Simplifique con Adpetros",
     "why.cta": "Contáctenos",
     "why1.t": "Conocimiento técnico",
     "why1.p": "Experiencia de ingeniería aplicada a proyectos y operaciones industriales.",
@@ -1844,7 +1904,13 @@ function splitLines(container){
     line.innerHTML = words.map(w=>`<span class="word">${w}</span>`).join(' ');
   });
 }
-splitLines(document.getElementById('heroTitle'));
+const heroTitleEl = document.getElementById('heroTitle');
+splitLines(heroTitleEl);
+/* #heroTitle starts at opacity:0 in CSS (word spans don't exist until splitLines runs, so they
+   can't be pre-hidden via CSS) — reveal the now-split container in this same synchronous tick,
+   right before hiding the individual words below, so the browser never paints the old unsplit
+   plain-text title at full opacity. */
+heroTitleEl.style.opacity = '1';
 gsap.set('#heroTitle .word', {y:'115%', opacity:0});
 gsap.to('#heroTitle .word', {
   y:0, opacity:1, duration:1.1, ease:'power4.out', stagger:0.035, delay:.3
@@ -1863,7 +1929,7 @@ const WHATSAPP_NUMBER = ''; /* TODO(cliente): número em formato internacional s
   } else {
     btn.removeAttribute('target');
     btn.setAttribute('aria-disabled', 'true');
-    console.warn('[ADPetros] Número de WhatsApp por configurar — ver WHATSAPP_NUMBER no script da página.');
+    console.warn('[Adpetros] Número de WhatsApp por configurar — ver WHATSAPP_NUMBER no script da página.');
   }
 })();
 
