@@ -7,7 +7,7 @@ I18N = merge_i18n({
     "sh.eyebrow": "SOLUÇÕES",
     "sh.title1": "O que podemos fazer",
     "sh.title2": "pelo seu projeto.",
-    "sh.lead": "Cada projeto tem necessidades diferentes. Estas são as grandes áreas onde a ADPetros pode ajudar — da avaliação inicial à operação no terreno.",
+    "sh.lead": "Cada projeto tem necessidades diferentes. Estas são as grandes áreas onde a ADPETROS pode ajudar — da avaliação inicial à operação no terreno.",
     "sh.c1.t": "Engenharia",
     "sh.c1.p": "Engenharia e desenvolvimento técnico para projetos e operações industriais.",
     "sh.c2.t": "Implementação de Projetos",
@@ -20,15 +20,15 @@ I18N = merge_i18n({
     "sh.c5.p": "Identificação, seleção e aquisição de equipamentos, componentes e fornecedores.",
     "sh.cta": "Saber mais",
     "sh.cta.eyebrow": "NÃO SABE POR ONDE COMEÇAR?",
-    "sh.cta.title1": "Fale connosco",
-    "sh.cta.title2": "e ajudamo-lo a encontrar a solução certa.",
+    "sh.cta.title1": "Tem um projeto de óleo e gás",
+    "sh.cta.title2": "na Venezuela? Vamos encontrar a solução certa.",
     "sh.cta.btn": "Falar com a equipa",
   },
   'en': {
     "sh.eyebrow": "SOLUTIONS",
     "sh.title1": "What we can do",
     "sh.title2": "for your project.",
-    "sh.lead": "Every project has different needs. These are the main areas where ADPetros can help — from the initial assessment to operating on the ground.",
+    "sh.lead": "Every project has different needs. These are the main areas where ADPETROS can help — from the initial assessment to operating on the ground.",
     "sh.c1.t": "Engineering",
     "sh.c1.p": "Engineering and technical development for industrial projects and operations.",
     "sh.c2.t": "Project Implementation",
@@ -41,15 +41,15 @@ I18N = merge_i18n({
     "sh.c5.p": "Identifying, selecting and acquiring equipment, components and suppliers.",
     "sh.cta": "Learn more",
     "sh.cta.eyebrow": "NOT SURE WHERE TO START?",
-    "sh.cta.title1": "Talk to us",
-    "sh.cta.title2": "and we'll help you find the right solution.",
+    "sh.cta.title1": "Have an oil & gas project",
+    "sh.cta.title2": "in Venezuela? Let's find the right solution.",
     "sh.cta.btn": "Talk to the team",
   },
   'es': {
     "sh.eyebrow": "SOLUCIONES",
     "sh.title1": "Qué podemos hacer",
     "sh.title2": "por su proyecto.",
-    "sh.lead": "Cada proyecto tiene necesidades diferentes. Estas son las grandes áreas donde ADPetros puede ayudar — desde la evaluación inicial hasta la operación en el terreno.",
+    "sh.lead": "Cada proyecto tiene necesidades diferentes. Estas son las grandes áreas donde ADPETROS puede ayudar — desde la evaluación inicial hasta la operación en el terreno.",
     "sh.c1.t": "Ingeniería",
     "sh.c1.p": "Ingeniería y desarrollo técnico para proyectos y operaciones industriales.",
     "sh.c2.t": "Implementación de Proyectos",
@@ -62,8 +62,8 @@ I18N = merge_i18n({
     "sh.c5.p": "Identificación, selección y adquisición de equipos, componentes y proveedores.",
     "sh.cta": "Saber más",
     "sh.cta.eyebrow": "¿NO SABE POR DÓNDE EMPEZAR?",
-    "sh.cta.title1": "Hable con nosotros",
-    "sh.cta.title2": "y le ayudamos a encontrar la solución adecuada.",
+    "sh.cta.title1": "¿Tiene un proyecto de petróleo y gas",
+    "sh.cta.title2": "en Venezuela? Encontremos la solución adecuada.",
     "sh.cta.btn": "Hablar con el equipo",
   },
 })
@@ -73,7 +73,7 @@ BODY = """
   <div class="container">
     <div class="eyebrow" data-i18n="sh.eyebrow">SOLUÇÕES</div>
     <h1 class="big-title reveal"><span data-i18n="sh.title1">O que podemos fazer</span> <span class="title-dim" data-i18n="sh.title2">pelo seu projeto.</span></h1>
-    <p class="page-hero-lead reveal" data-i18n="sh.lead">Cada projeto tem necessidades diferentes. Estas são as grandes áreas onde a ADPetros pode ajudar — da avaliação inicial à operação no terreno.</p>
+    <p class="page-hero-lead reveal" data-i18n="sh.lead">Cada projeto tem necessidades diferentes. Estas são as grandes áreas onde a ADPETROS pode ajudar — da avaliação inicial à operação no terreno.</p>
   </div>
 
   <div class="container" style="margin-top:clamp(48px,6vw,72px)">
@@ -133,7 +133,7 @@ BODY = """
       </div>
       <div class="cf-card-inner">
         <div class="eyebrow" data-i18n="sh.cta.eyebrow">NÃO SABE POR ONDE COMEÇAR?</div>
-        <h2 class="big-title reveal"><span data-i18n="sh.cta.title1">Fale connosco</span> <span class="title-dim" data-i18n="sh.cta.title2">e ajudamo-lo a encontrar a solução certa.</span></h2>
+        <h2 class="big-title reveal"><span data-i18n="sh.cta.title1">Tem um projeto de óleo e gás</span> <span class="title-dim" data-i18n="sh.cta.title2">na Venezuela? Vamos encontrar a solução certa.</span></h2>
         <div class="hero-ctas reveal">
           <a href="/contactos/" class="btn btn-primary" data-i18n="sh.cta.btn">Falar com a equipa
             <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -149,21 +149,21 @@ LD_JSON = """<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": "Soluções — ADPetros",
+  "name": "Solutions — ADPETROS",
   "url": "https://www.adpetros.com/solucoes/",
   "itemListElement": [
-    {"@type":"ListItem","position":1,"name":"Engenharia","url":"https://www.adpetros.com/solucoes/engenharia/"},
-    {"@type":"ListItem","position":2,"name":"Implementação de Projetos","url":"https://www.adpetros.com/solucoes/implementacao-de-projetos/"},
-    {"@type":"ListItem","position":3,"name":"Recuperação e Modernização de Ativos","url":"https://www.adpetros.com/solucoes/modernizacao-de-ativos/"},
-    {"@type":"ListItem","position":4,"name":"Energia e Descarbonização","url":"https://www.adpetros.com/solucoes/energia-e-descarbonizacao/"},
-    {"@type":"ListItem","position":5,"name":"Procurement e Sourcing","url":"https://www.adpetros.com/solucoes/procurement-e-sourcing/"}
+    {"@type":"ListItem","position":1,"name":"Engineering","url":"https://www.adpetros.com/solucoes/engenharia/"},
+    {"@type":"ListItem","position":2,"name":"Project Implementation","url":"https://www.adpetros.com/solucoes/implementacao-de-projetos/"},
+    {"@type":"ListItem","position":3,"name":"Asset Recovery & Modernization","url":"https://www.adpetros.com/solucoes/modernizacao-de-ativos/"},
+    {"@type":"ListItem","position":4,"name":"Energy & Decarbonization","url":"https://www.adpetros.com/solucoes/energia-e-descarbonizacao/"},
+    {"@type":"ListItem","position":5,"name":"Procurement & Sourcing","url":"https://www.adpetros.com/solucoes/procurement-e-sourcing/"}
   ]
 }
 </script>"""
 
 html = build_page(
-    title="Soluções — ADPetros",
-    description="Conheça as soluções da ADPetros: engenharia, implementação de projetos, recuperação e modernização de ativos, energia e descarbonização, procurement e sourcing.",
+    title="Solutions — ADPETROS",
+    description="Discover ADPETROS's solutions: engineering, project implementation, asset recovery and modernization, energy and decarbonization, procurement and sourcing.",
     path="/solucoes/",
     active_nav="solutions",
     body_html=BODY,

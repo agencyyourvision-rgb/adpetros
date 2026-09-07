@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Contactos — Adpetros</title>
-<meta name="description" content="Fale com a equipa da Adpetros sobre um projeto, uma operação ou uma oportunidade nos mercados onde atuamos.">
+<title>Contact — ADPETROS</title>
+<meta name="description" content="Talk to the ADPETROS team about a project, an operation or an opportunity in the markets where we work.">
 <link rel="canonical" href="https://www.adpetros.com/contactos/">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Contactos — Adpetros">
-<meta property="og:description" content="Fale com a equipa da Adpetros sobre um projeto, uma operação ou uma oportunidade nos mercados onde atuamos.">
+<meta property="og:title" content="Contact — ADPETROS">
+<meta property="og:description" content="Talk to the ADPETROS team about a project, an operation or an opportunity in the markets where we work.">
 <meta property="og:image" content="https://www.adpetros.com/og-image.jpg">
 <meta property="og:url" content="https://www.adpetros.com/contactos/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Contactos — Adpetros">
-<meta name="twitter:description" content="Fale com a equipa da Adpetros sobre um projeto, uma operação ou uma oportunidade nos mercados onde atuamos.">
+<meta name="twitter:title" content="Contact — ADPETROS">
+<meta name="twitter:description" content="Talk to the ADPETROS team about a project, an operation or an opportunity in the markets where we work.">
 <meta name="twitter:image" content="https://www.adpetros.com/og-image.jpg">
 
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -27,7 +27,7 @@
 {
   "@context": "https://schema.org",
   "@type": "ContactPage",
-  "name": "Contactos — Adpetros",
+  "name": "Contact — ADPETROS",
   "url": "https://www.adpetros.com/contactos/"
 }
 </script>
@@ -686,6 +686,14 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .flare-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center}
 @media(min-width:980px){.flare-grid{grid-template-columns:1fr 1fr}}
 .flare-visual{position:relative;aspect-ratio:1/1;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,var(--petrol-800),var(--petrol-950));border:1px solid var(--line-dark)}
+/* .is-diagram: variant used to present a real technical diagram (client-supplied) instead of the
+   generic flame illustration. The source diagram is landscape, so this swaps the forced 1:1 aspect
+   ratio for the diagram's own ratio and frames it on a white plate (it has a white background) so
+   it reads cleanly against the dark card, with the caption placed below instead of overlapping it. */
+.flare-visual.is-diagram{aspect-ratio:890/505;display:flex;flex-direction:column;justify-content:center;padding:56px 28px 20px}
+.flare-diagram-plate{background:#fff;border-radius:14px;padding:18px;box-shadow:0 18px 40px rgba(4,8,13,.35)}
+.flare-diagram-plate img{display:block;width:100%;height:auto;border-radius:4px}
+.flare-diagram-caption{position:absolute;left:24px;right:24px;bottom:16px;font-size:12px;line-height:1.5;color:rgba(255,255,255,.5);text-align:center}
 .flame-wrap{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
 .flame{width:46%;height:60%;position:relative;filter:blur(.3px)}
 .flame svg{width:100%;height:100%}
@@ -696,6 +704,10 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .flare-metrics{position:absolute;top:24px;left:24px;right:24px;display:flex;justify-content:space-between}
 .flare-metrics .m-tag{font-family:var(--ff-display);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);background:rgba(255,255,255,.06);border:1px solid var(--line-dark);padding:7px 12px;border-radius:8px}
 .flare-copy p{color:var(--dark-ink-dim);margin-top:22px;font-size:clamp(15px,1.05vw,16.5px);line-height:1.75;max-width:520px}
+.flare-copy p.flare-sub{color:var(--dark-ink);font-weight:600;margin-top:26px;margin-bottom:2px}
+.flare-list{margin-top:14px;display:flex;flex-direction:column;gap:11px;max-width:520px}
+.flare-list li{position:relative;padding-left:22px;font-size:15px;line-height:1.6;color:var(--dark-ink-dim)}
+.flare-list li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
 .flare-ctas{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap}
 
 /* ================= SECTION 11 CTA FINAL — large centered card ================= */
@@ -1003,12 +1015,12 @@ body.cookie-visible .wa-float{bottom:84px}
       <div class="lang-switch" id="langSwitch">
         <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.4"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9s1.3-6.4 3.8-9z" stroke="currentColor" stroke-width="1.4"/></svg>
-          <span id="langLabel">PT</span>
+          <span id="langLabel">EN</span>
         </button>
         <div class="lang-menu" role="menu">
-          <button data-lang="pt" class="active">Português <span>PT</span></button>
-          <button data-lang="en">English <span>EN</span></button>
+          <button data-lang="en" class="active">English <span>EN</span></button>
           <button data-lang="es">Español <span>ES</span></button>
+          <button data-lang="pt">Português <span>PT</span></button>
         </div>
       </div>
       <a href="/contactos/" class="btn btn-primary nav-cta-desktop" data-i18n="nav.cta">Falar com a equipa</a>
@@ -1042,9 +1054,9 @@ body.cookie-visible .wa-float{bottom:84px}
   </ul>
   <a href="/contactos/" class="btn btn-primary" data-i18n="nav.cta">Falar com a equipa</a>
   <div class="mobile-lang">
-    <button data-lang="pt" class="active">PT</button>
-    <button data-lang="en">EN</button>
+    <button data-lang="en" class="active">EN</button>
     <button data-lang="es">ES</button>
+    <button data-lang="pt">PT</button>
   </div>
 </div>
 
@@ -1074,19 +1086,23 @@ body.cookie-visible .wa-float{bottom:84px}
           </div>
           <div class="form-row">
             <div class="form-field">
-              <label for="ctEmail" data-i18n="ct.form.email">E-mail</label>
+              <label for="ctEmail" data-i18n="ct.form.email">E-mail profissional</label>
               <input type="email" id="ctEmail" name="email" required>
             </div>
             <div class="form-field">
-              <label for="ctMarket" data-i18n="ct.form.market">Mercado de interesse</label>
-              <select id="ctMarket" name="market">
-                <option value="" data-i18n="ct.form.market.opt0">Selecionar</option>
-                <option value="Venezuela" data-i18n="ct.form.market.opt1">Venezuela</option>
-                <option value="América do Sul" data-i18n="ct.form.market.opt2">América do Sul</option>
-                <option value="África" data-i18n="ct.form.market.opt3">África</option>
-                <option value="Outro" data-i18n="ct.form.market.opt4">Outro</option>
-              </select>
+              <label for="ctPosition" data-i18n="ct.form.position">Cargo</label>
+              <input type="text" id="ctPosition" name="position">
             </div>
+          </div>
+          <div class="form-field">
+            <label for="ctMarket" data-i18n="ct.form.market">Mercado de interesse</label>
+            <select id="ctMarket" name="market">
+              <option value="" data-i18n="ct.form.market.opt0">Selecionar</option>
+              <option value="Venezuela" data-i18n="ct.form.market.opt1">Venezuela</option>
+              <option value="América do Sul" data-i18n="ct.form.market.opt2">América do Sul</option>
+              <option value="África" data-i18n="ct.form.market.opt3">África</option>
+              <option value="Outro" data-i18n="ct.form.market.opt4">Outro</option>
+            </select>
           </div>
           <div class="form-field">
             <label for="ctMessage" data-i18n="ct.form.message">Descreva brevemente o projeto ou a oportunidade</label>
@@ -1106,7 +1122,7 @@ body.cookie-visible .wa-float{bottom:84px}
       <div class="glass contact-info-card reveal-img">
         <div class="contact-info-group">
           <h4 data-i18n="ct.info.email">E-MAIL</h4>
-          <a href="mailto:geral@adpetros.com">geral@adpetros.com</a>
+          <a href="mailto:info@adpetros.com">info@adpetros.com</a>
         </div>
         <div class="contact-info-divider"></div>
         <div class="contact-info-group">
@@ -1166,8 +1182,8 @@ body.cookie-visible .wa-float{bottom:84px}
       </div>
     </div>
     <div class="footer-bottom">
-      <span data-i18n="ft.copy">© 2026 Adpetros. Todos os direitos reservados.</span>
-      <a href="mailto:geral@adpetros.com" class="footer-email" data-i18n="ft.email">geral@adpetros.com</a>
+      <span data-i18n="ft.copy">© 2026 ADPETROS. Todos os direitos reservados.</span>
+      <a href="mailto:info@adpetros.com" class="footer-email" data-i18n="ft.email">info@adpetros.com</a>
     </div>
   </div>
 </footer>
@@ -1282,10 +1298,10 @@ const I18N = {
     "ft.markets": "MERCADOS",
     "ft.solutions": "SOLUÇÕES",
     "ft.africa": "África",
-    "ft.copy": "© 2026 Adpetros. Todos os direitos reservados.",
+    "ft.copy": "© 2026 ADPETROS. Todos os direitos reservados.",
     "mk.pin.ve": "Venezuela",
     "mk.pin.sa": "América do Sul",
-    "ft.email": "geral@adpetros.com",
+    "ft.email": "info@adpetros.com",
     "cta.talk": "Fale connosco",
     "cta.project": "Falar sobre o meu projeto",
     "ct.eyebrow": "FALE CONNOSCO",
@@ -1294,7 +1310,8 @@ const I18N = {
     "ct.lead": "Está a avaliar um investimento, uma operação ou uma oportunidade num dos mercados onde atuamos? Preencha o formulário ou utilize os contactos abaixo — a nossa equipa responde o mais brevemente possível.",
     "ct.form.name": "Nome",
     "ct.form.company": "Empresa",
-    "ct.form.email": "E-mail",
+    "ct.form.email": "E-mail profissional",
+    "ct.form.position": "Cargo",
     "ct.form.market": "Mercado de interesse",
     "ct.form.market.opt0": "Selecionar",
     "ct.form.market.opt1": "Venezuela",
@@ -1336,10 +1353,10 @@ const I18N = {
     "ft.markets": "MARKETS",
     "ft.solutions": "SOLUTIONS",
     "ft.africa": "Africa",
-    "ft.copy": "© 2026 Adpetros. All rights reserved.",
+    "ft.copy": "© 2026 ADPETROS. All rights reserved.",
     "mk.pin.ve": "Venezuela",
     "mk.pin.sa": "South America",
-    "ft.email": "geral@adpetros.com",
+    "ft.email": "info@adpetros.com",
     "cta.talk": "Get in touch",
     "cta.project": "Talk about my project",
     "ct.eyebrow": "GET IN TOUCH",
@@ -1348,7 +1365,8 @@ const I18N = {
     "ct.lead": "Are you assessing an investment, an operation or an opportunity in one of the markets where we operate? Fill in the form or use the contacts below — our team replies as soon as possible.",
     "ct.form.name": "Name",
     "ct.form.company": "Company",
-    "ct.form.email": "Email",
+    "ct.form.email": "Professional email",
+    "ct.form.position": "Position",
     "ct.form.market": "Market of interest",
     "ct.form.market.opt0": "Select",
     "ct.form.market.opt1": "Venezuela",
@@ -1390,10 +1408,10 @@ const I18N = {
     "ft.markets": "MERCADOS",
     "ft.solutions": "SOLUCIONES",
     "ft.africa": "África",
-    "ft.copy": "© 2026 Adpetros. Todos los derechos reservados.",
+    "ft.copy": "© 2026 ADPETROS. Todos los derechos reservados.",
     "mk.pin.ve": "Venezuela",
     "mk.pin.sa": "Sudamérica",
-    "ft.email": "geral@adpetros.com",
+    "ft.email": "info@adpetros.com",
     "cta.talk": "Hable con nosotros",
     "cta.project": "Hablar sobre mi proyecto",
     "ct.eyebrow": "HABLEMOS",
@@ -1402,7 +1420,8 @@ const I18N = {
     "ct.lead": "¿Está evaluando una inversión, una operación o una oportunidad en uno de los mercados donde operamos? Complete el formulario o utilice los contactos abajo — nuestro equipo responde lo antes posible.",
     "ct.form.name": "Nombre",
     "ct.form.company": "Empresa",
-    "ct.form.email": "Correo electrónico",
+    "ct.form.email": "Correo electrónico profesional",
+    "ct.form.position": "Cargo",
     "ct.form.market": "Mercado de interés",
     "ct.form.market.opt0": "Seleccionar",
     "ct.form.market.opt1": "Venezuela",
@@ -1423,7 +1442,7 @@ const I18N = {
   }
 };
 
-let currentLang = 'pt';
+let currentLang = 'en';
 function applyLang(lang){
   if(!I18N[lang]) return;
   currentLang = lang;
@@ -1431,12 +1450,40 @@ function applyLang(lang){
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const key = el.getAttribute('data-i18n');
     const val = I18N[lang][key];
-    if(val !== undefined) el.textContent = val;
+    if(val === undefined) return;
+    if(el.classList.contains('line')){
+      /* Hero-title lines are split into <span class="word"> pieces by splitLines() right after
+         load, purely for the one-off intro stagger animation (see HERO_SPLIT_JS below). Because of
+         that split, this element has element children by the time a language switch happens — the
+         "find the first text node" fallback below (meant for CTA buttons with a trailing icon)
+         would instead grab a stray whitespace text node left over from the word-join and overwrite
+         it with the WHOLE new sentence, while every stale <span class="word"> from the old language
+         stayed in the DOM untouched. That produced duplicated/garbled hero-title text on language
+         switch. Rebuilding the words from scratch keeps the DOM in sync with the new language; the
+         intro stagger has already played by the time anyone switches language, so the rebuilt words
+         are shown immediately at their final (visible) state instead of replaying the reveal. */
+      const words = val.trim().split(/\s+/);
+      el.innerHTML = words.map(w=>`<span class="word">${w}</span>`).join(' ');
+      el.querySelectorAll('.word').forEach(w=>{ w.style.opacity = '1'; w.style.transform = 'none'; });
+    } else if(el.children.length){
+      /* Some data-i18n elements (CTA buttons) carry a trailing <svg> icon child alongside their
+         label text — el.textContent would wipe that icon out. Replace only the leading text node
+         instead, leaving any element children (the icon) untouched. */
+      let node = el.firstChild;
+      while(node && node.nodeType !== Node.TEXT_NODE) node = node.nextSibling;
+      if(node) node.textContent = val;
+      else el.insertBefore(document.createTextNode(val), el.firstChild);
+    } else {
+      el.textContent = val;
+    }
   });
   document.querySelectorAll('#langLabel').forEach(el=> el.textContent = lang.toUpperCase());
   document.querySelectorAll('.lang-menu button, .mobile-lang button').forEach(btn=>{
     btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
   });
+  /* Remember the visitor's choice so it survives navigation to another page — every page on the
+     site checks this before falling back to the English default (see below). */
+  try{ localStorage.setItem('adpetrosLang', lang); }catch(e){}
   if(window.ScrollTrigger) ScrollTrigger.refresh();
 }
 document.querySelectorAll('.lang-menu button, .mobile-lang button').forEach(btn=>{
@@ -1446,6 +1493,15 @@ document.querySelectorAll('.lang-menu button, .mobile-lang button').forEach(btn=
     langSwitch.classList.remove('open');
   });
 });
+/* The site's primary/default language is English — the HTML is authored with Portuguese as the
+   baked-in fallback text (for no-JS / first-paint), but we immediately (synchronously, in this same
+   parse/execute tick, before the browser gets a chance to paint) swap every [data-i18n] node over to
+   whichever language the visitor last picked (persisted in localStorage so it holds across page
+   navigation), or English by default if they haven't chosen one yet. PT/ES remain available via the
+   switcher. */
+let savedLang = 'en';
+try{ const s = localStorage.getItem('adpetrosLang'); if(s && I18N[s]) savedLang = s; }catch(e){}
+applyLang(savedLang);
 
 /* ---------- Background videos: play only while visible ---------- */
 (function bgVideos(){
@@ -1571,6 +1627,7 @@ if(contactForm){
     const name = document.getElementById('ctName').value;
     const company = document.getElementById('ctCompany').value;
     const email = document.getElementById('ctEmail').value;
+    const position = document.getElementById('ctPosition').value;
     const market = document.getElementById('ctMarket').value;
     const message = document.getElementById('ctMessage').value;
     const subject = encodeURIComponent('Novo contacto via site — ' + name);
@@ -1578,12 +1635,13 @@ if(contactForm){
       'Nome: ' + name,
       'Empresa: ' + company,
       'E-mail: ' + email,
+      'Cargo: ' + position,
       'Mercado de interesse: ' + market,
       '',
       message
     ];
     const body = encodeURIComponent(bodyLines.join('\n'));
-    window.location.href = 'mailto:geral@adpetros.com?subject=' + subject + '&body=' + body;
+    window.location.href = 'mailto:info@adpetros.com?subject=' + subject + '&body=' + body;
     document.getElementById('ctSuccess').classList.add('show');
   });
 }
@@ -1598,7 +1656,7 @@ const WHATSAPP_NUMBER = ''; /* TODO(cliente): número em formato internacional s
   } else {
     btn.removeAttribute('target');
     btn.setAttribute('aria-disabled', 'true');
-    console.warn('[Adpetros] Número de WhatsApp por configurar — ver WHATSAPP_NUMBER no script da página.');
+    console.warn('[ADPETROS] Número de WhatsApp por configurar — ver WHATSAPP_NUMBER no script da página.');
   }
 })();
 

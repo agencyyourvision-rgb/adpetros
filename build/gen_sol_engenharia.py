@@ -1,6 +1,6 @@
 import sys
 sys.path.insert(0, '/home/claude/adpetros-site/build')
-from sitegen import build_page, write_page, merge_i18n, sol_steps_html, check_list_html, eng_cards_html, photo_section_html
+from sitegen import build_page, write_page, merge_i18n, sol_steps_html, check_list_html, eng_cards_html, photo_section_html, example_situation_html, inline_cta_html
 
 P = "e"  # prefix
 
@@ -16,16 +16,16 @@ ENG_ICONS = [
 I18N = merge_i18n({
   'pt': {
     "e.hero.eyebrow": "SOLUÇÕES · ENGENHARIA",
-    "e.hero.title1": "Engenharia que transforma",
-    "e.hero.title2": "um projeto em algo que se pode construir.",
-    "e.hero.lead": "Antes de qualquer operação no terreno, um projeto precisa de uma base técnica sólida. A nossa equipa de engenharia estuda, desenha e prepara os projetos para a fase seguinte — a implementação.",
+    "e.hero.title1": "Engenharia que transforma conceitos",
+    "e.hero.title2": "em realidades construíveis.",
+    "e.hero.lead": "Antes de qualquer operação no terreno, um ativo precisa de uma base técnica sólida. A nossa equipa de engenharia estuda, desenha e prepara o seu projeto para a fase mais crítica: a IMPLEMENTAÇÃO.",
     "e.hero.cta1": "Falar sobre um projeto", "e.hero.cta2": "Ver todas as soluções",
 
     "e.prob.eyebrow": "O PROBLEMA",
     "e.prob.title1": "Um projeto mal preparado",
-    "e.prob.title2": "tecnicamente custa mais tempo e mais dinheiro depois.",
-    "e.prob.p1": "Decisões de engenharia tomadas sem rigor técnico, ou sem conhecimento do contexto onde o projeto vai operar, geram retrabalho, atrasos e custos que só aparecem mais tarde — muitas vezes já na fase de implementação.",
-    "e.prob.p2": "Um bom projeto de engenharia antecipa estes problemas antes de se tornarem caros.",
+    "e.prob.title2": "tecnicamente implica atrasos graves e custos inflacionados mais à frente.",
+    "e.prob.p1": "Decisões de engenharia tomadas sem rigor técnico, ou sem um conhecimento profundo do ambiente operacional, geram retrabalho dispendioso, atrasos no projeto e despesas imprevistas que só surgem mais tarde — muitas vezes já durante a implementação ativa.",
+    "e.prob.p2": "Um projeto de engenharia excecional elimina estes riscos ao identificar e mitigar problemas muito antes de estes afetarem o seu resultado final.",
 
     "e.help.eyebrow": "COMO A ADPETROS AJUDA",
     "e.help.title1": "Da análise técnica",
@@ -54,24 +54,26 @@ I18N = merge_i18n({
     "e.cap1": "Engenharia de processo", "e.cap2": "Engenharia mecânica", "e.cap3": "Engenharia civil e estrutural",
     "e.cap4": "Engenharia elétrica e instrumentação", "e.cap5": "Integridade e inspeção de ativos", "e.cap6": "Automação e controlo de processo",
 
+    "e.ex.eyebrow": "EXEMPLO PRÁTICO", "e.ex.title": "Imagine a seguinte situação:",
+    "e.ex.p": "Identificou um ativo estratégico, mas precisa de uma avaliação de risco rigorosa para apresentar à administração da sua empresa. A nossa equipa de engenharia entra em ação para analisar a viabilidade técnica, as projeções de CAPEX e as restrições operacionais ocultas, garantindo total clareza antes de finalizar o seu investimento.",
     "e.cta.eyebrow": "FALE CONNOSCO",
-    "e.cta.title1": "Quer avançar com",
-    "e.cta.title2": "um projeto de engenharia?",
+    "e.cta.title1": "Quer avançar com um projeto de engenharia",
+    "e.cta.title2": "de óleo e gás na Venezuela?",
     "e.cta.p": "Fale com a nossa equipa técnica sobre as necessidades do seu projeto.",
     "e.cta.btn1": "Falar com a equipa", "e.cta.btn2": "Ver todas as soluções",
   },
   'en': {
     "e.hero.eyebrow": "SOLUTIONS · ENGINEERING",
-    "e.hero.title1": "Engineering that turns",
-    "e.hero.title2": "a project into something that can be built.",
-    "e.hero.lead": "Before any operation on the ground, a project needs a solid technical foundation. Our engineering team studies, designs and prepares projects for the next phase — implementation.",
+    "e.hero.title1": "Engineering that turns concepts",
+    "e.hero.title2": "into buildable realities.",
+    "e.hero.lead": "Before any field operations can begin, an asset requires a solid technical foundation. Our engineering team studies, designs, and prepares your project for its most critical next phase: IMPLEMENTATION.",
     "e.hero.cta1": "Talk about a project", "e.hero.cta2": "See all solutions",
 
     "e.prob.eyebrow": "THE PROBLEM",
     "e.prob.title1": "A technically unprepared project",
-    "e.prob.title2": "costs more time and more money later.",
-    "e.prob.p1": "Engineering decisions made without technical rigour, or without knowledge of the context where the project will operate, generate rework, delays and costs that only appear later — often already during implementation.",
-    "e.prob.p2": "A good engineering project anticipates these problems before they become expensive.",
+    "e.prob.title2": "incurs severe delays and inflated costs down the line.",
+    "e.prob.p1": "Engineering decisions made without technical rigor, or without a deep understanding of the operating environment, generate costly rework, project delays, and unforeseen expenses that surface late—often during active implementation.",
+    "e.prob.p2": "Exceptional engineering design eliminates these liabilities by identifying and mitigating risks long before they impact your bottom line.",
 
     "e.help.eyebrow": "HOW ADPETROS HELPS",
     "e.help.title1": "From technical analysis",
@@ -95,29 +97,31 @@ I18N = merge_i18n({
     "e.inc7": "Technical specification and project documentation", "e.inc8": "Technical support during implementation",
 
     "e.cap.eyebrow": "TECHNICAL CAPABILITIES",
+    "e.ex.eyebrow": "PRACTICAL EXAMPLE", "e.ex.title": "Imagine the following situation:",
+    "e.ex.p": "You've identified a strategic asset, but you need a thorough risk evaluation to present to the board executives of your firm. Our engineering team steps in to analyze technical viability, CAPEX projections, and hidden operational constraints, ensuring total clarity before you finalize your investment.",
     "e.cap.title1": "Specialities that support",
     "e.cap.title2": "every phase of the project.",
     "e.cap1": "Process engineering", "e.cap2": "Mechanical engineering", "e.cap3": "Civil and structural engineering",
     "e.cap4": "Electrical engineering and instrumentation", "e.cap5": "Asset integrity and inspection", "e.cap6": "Automation and process control",
 
     "e.cta.eyebrow": "GET IN TOUCH",
-    "e.cta.title1": "Want to move forward with",
-    "e.cta.title2": "an engineering project?",
+    "e.cta.title1": "Want to move forward with an oil & gas",
+    "e.cta.title2": "engineering project in Venezuela?",
     "e.cta.p": "Talk to our technical team about your project's needs.",
     "e.cta.btn1": "Talk to the team", "e.cta.btn2": "See all solutions",
   },
   'es': {
     "e.hero.eyebrow": "SOLUCIONES · INGENIERÍA",
-    "e.hero.title1": "Ingeniería que convierte",
-    "e.hero.title2": "un proyecto en algo que se puede construir.",
-    "e.hero.lead": "Antes de cualquier operación en el terreno, un proyecto necesita una base técnica sólida. Nuestro equipo de ingeniería estudia, diseña y prepara los proyectos para la siguiente fase — la implementación.",
+    "e.hero.title1": "Ingeniería que convierte conceptos",
+    "e.hero.title2": "en realidades construibles.",
+    "e.hero.lead": "Antes de cualquier operación en el terreno, un activo necesita una base técnica sólida. Nuestro equipo de ingeniería estudia, diseña y prepara su proyecto para la fase más crítica: la IMPLEMENTACIÓN.",
     "e.hero.cta1": "Hablar sobre un proyecto", "e.hero.cta2": "Ver todas las soluciones",
 
     "e.prob.eyebrow": "EL PROBLEMA",
     "e.prob.title1": "Un proyecto mal preparado",
-    "e.prob.title2": "técnicamente cuesta más tiempo y dinero después.",
-    "e.prob.p1": "Las decisiones de ingeniería tomadas sin rigor técnico, o sin conocimiento del contexto donde operará el proyecto, generan retrabajo, retrasos y costes que solo aparecen más tarde — a menudo ya en la fase de implementación.",
-    "e.prob.p2": "Un buen proyecto de ingeniería anticipa estos problemas antes de que se vuelvan costosos.",
+    "e.prob.title2": "técnicamente implica retrasos graves y costes inflados más adelante.",
+    "e.prob.p1": "Las decisiones de ingeniería tomadas sin rigor técnico, o sin un conocimiento profundo del entorno operativo, generan retrabajo costoso, retrasos en el proyecto y gastos imprevistos que solo aparecen más tarde — a menudo ya durante la implementación activa.",
+    "e.prob.p2": "Un proyecto de ingeniería excepcional elimina estos riesgos al identificar y mitigar problemas mucho antes de que afecten su resultado final.",
 
     "e.help.eyebrow": "CÓMO AYUDA ADPETROS",
     "e.help.title1": "Del análisis técnico",
@@ -136,6 +140,8 @@ I18N = merge_i18n({
     "e.inc.title1": "Especialidades de ingeniería",
     "e.inc.title2": "organizadas en un solo equipo.",
     "e.inc1": "Ingeniería de procesos", "e.inc2": "Ingeniería mecánica",
+    "e.ex.eyebrow": "EJEMPLO PRÁCTICO", "e.ex.title": "Imagine la siguiente situación:",
+    "e.ex.p": "Ha identificado un activo estratégico, pero necesita una evaluación de riesgo rigurosa para presentar a la dirección de su empresa. Nuestro equipo de ingeniería interviene para analizar la viabilidad técnica, las proyecciones de CAPEX y las restricciones operativas ocultas, garantizando total claridad antes de finalizar su inversión.",
     "e.inc3": "Ingeniería civil y estructural", "e.inc4": "Ingeniería eléctrica e instrumentación",
     "e.inc5": "Integridad e inspección de activos", "e.inc6": "Automatización y control de procesos",
     "e.inc7": "Especificación técnica y documentación de proyecto", "e.inc8": "Apoyo técnico durante la implementación",
@@ -147,8 +153,8 @@ I18N = merge_i18n({
     "e.cap4": "Ingeniería eléctrica e instrumentación", "e.cap5": "Integridad e inspección de activos", "e.cap6": "Automatización y control de procesos",
 
     "e.cta.eyebrow": "HABLEMOS",
-    "e.cta.title1": "¿Quiere avanzar con",
-    "e.cta.title2": "un proyecto de ingeniería?",
+    "e.cta.title1": "¿Quiere avanzar con un proyecto de ingeniería",
+    "e.cta.title2": "de petróleo y gas en Venezuela?",
     "e.cta.p": "Hable con nuestro equipo técnico sobre las necesidades de su proyecto.",
     "e.cta.btn1": "Hablar con el equipo", "e.cta.btn2": "Ver todas las soluciones",
   },
@@ -178,24 +184,31 @@ cap_cards = eng_cards_html([
 ])
 
 photo_section = photo_section_html(
-    img='/assets/img/15-lg.jpg', alt='Plataforma offshore ao largo, vista aérea',
+    img='/assets/img/new/h4.jpg', alt='Plataforma offshore ao pôr-do-sol, vista aérea',
     eyebrow_key='e.photo.eyebrow', eyebrow_def='NO TERRENO',
     title1_key='e.photo.title1', title1_def='Engenharia pensada',
     title2_key='e.photo.title2', title2_def='para o contexto onde vai operar.',
     text_key='e.photo.text', text_def='Cada estudo tem em conta as condições reais do terreno — do clima às particularidades logísticas de cada mercado — e não apenas a folha de cálculo.',
+    extra_class='photo-section-strong',
 )
 
+example_html = example_situation_html(
+    prefix='e', eyebrow_def='EXEMPLO PRÁTICO', title_def='Imagine a seguinte situação:',
+    text_def='Identificou um ativo estratégico, mas precisa de uma avaliação de risco rigorosa para apresentar à administração da sua empresa. A nossa equipa de engenharia entra em ação para analisar a viabilidade técnica, as projeções de CAPEX e as restrições operacionais ocultas, garantindo total clareza antes de finalizar o seu investimento.',
+    img='/assets/img/new/v12.jpg', alt='Dois colegas de equipa com capacetes na mão, prontos para colaborar num projeto',
+    cta_href='/contactos/', cta_key='cta.project', cta_def='Falar sobre o meu projeto',
+)
 BODY = f"""
-<header class="hero" id="top" data-theme="dark" style="min-height:76vh">
-  <div class="hero-bg"><div class="glow"></div><div class="hero-vignette"></div></div>
+<header class="hero" id="top" data-theme="dark">
+  <div class="hero-bg"><img src="/assets/img/11-lg.jpg" alt="Engenheiro a apontar para uma instalação industrial ao entardecer" loading="eager"><div class="glow"></div><div class="hero-vignette"></div></div>
   <div class="hero-inner hero-inner-centered">
     <div class="eyebrow" data-i18n="e.hero.eyebrow">SOLUÇÕES · ENGENHARIA</div>
     <h1 id="heroTitle">
-      <span class="line-mask"><span class="line" data-i18n="e.hero.title1">Engenharia que transforma</span></span>
-      <span class="line-mask"><span class="line sub" data-i18n="e.hero.title2">um projeto em algo que se pode construir.</span></span>
+      <span class="line-mask"><span class="line" data-i18n="e.hero.title1">Engenharia que transforma conceitos</span></span>
+      <span class="line-mask"><span class="line sub" data-i18n="e.hero.title2">em realidades construíveis.</span></span>
     </h1>
-    <p class="hero-lead reveal" data-i18n="e.hero.lead">Antes de qualquer operação no terreno, um projeto precisa de uma base técnica sólida. A nossa equipa de engenharia estuda, desenha e prepara os projetos para a fase seguinte — a implementação.</p>
-    <div class="hero-ctas reveal">
+    <p class="hero-lead" data-i18n="e.hero.lead">Antes de qualquer operação no terreno, um ativo precisa de uma base técnica sólida. A nossa equipa de engenharia estuda, desenha e prepara o seu projeto para a fase mais crítica: a IMPLEMENTAÇÃO.</p>
+    <div class="hero-ctas">
       <a href="/contactos/" class="btn btn-primary" data-i18n="e.hero.cta1">Falar sobre um projeto
         <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -206,15 +219,14 @@ BODY = f"""
 
 <section class="section" data-theme="white">
   <div class="container">
-    <div class="sol-two-col">
-      <div>
+    <div class="prob-grid">
+      <div class="prob-copy">
         <div class="eyebrow" data-i18n="e.prob.eyebrow">O PROBLEMA</div>
-        <h2 class="big-title reveal"><span data-i18n="e.prob.title1">Um projeto mal preparado</span> <span class="title-dim" data-i18n="e.prob.title2">tecnicamente custa mais tempo e mais dinheiro depois.</span></h2>
+        <h2 class="big-title reveal"><span data-i18n="e.prob.title1">Um projeto mal preparado</span> <span class="title-dim" data-i18n="e.prob.title2">tecnicamente implica atrasos graves e custos inflacionados mais à frente.</span></h2>
+        <p class="reveal dim prob-p" data-i18n="e.prob.p1">Decisões de engenharia tomadas sem rigor técnico, ou sem um conhecimento profundo do ambiente operacional, geram retrabalho dispendioso, atrasos no projeto e despesas imprevistas que só surgem mais tarde — muitas vezes já durante a implementação ativa.</p>
+        <p class="reveal dim prob-p" data-i18n="e.prob.p2">Um projeto de engenharia excecional elimina estes riscos ao identificar e mitigar problemas muito antes de estes afetarem o seu resultado final.</p>
       </div>
-      <div>
-        <p class="reveal dim" style="line-height:1.75;font-size:16px" data-i18n="e.prob.p1">Decisões de engenharia tomadas sem rigor técnico, ou sem conhecimento do contexto onde o projeto vai operar, geram retrabalho, atrasos e custos que só aparecem mais tarde — muitas vezes já na fase de implementação.</p>
-        <p class="reveal dim" style="line-height:1.75;font-size:16px;margin-top:16px" data-i18n="e.prob.p2">Um bom projeto de engenharia antecipa estes problemas antes de se tornarem caros.</p>
-      </div>
+      <div class="prob-photo reveal-img"><img src="/assets/img/new/v8.jpg" alt="Técnico com rádio a observar uma instalação industrial ao entardecer" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -228,6 +240,7 @@ BODY = f"""
       </div>
     </div>
 {sol_steps}
+{inline_cta_html()}
   </div>
 </section>
 
@@ -254,8 +267,11 @@ BODY = f"""
       </div>
     </div>
     {cap_cards}
+{inline_cta_html(key='cta.talk', default='Fale connosco')}
   </div>
 </section>
+
+{example_html}
 
 <section class="section cta-final" data-theme="dark">
   <div class="container">
@@ -266,7 +282,7 @@ BODY = f"""
       </div>
       <div class="cf-card-inner">
         <div class="eyebrow" data-i18n="e.cta.eyebrow">FALE CONNOSCO</div>
-        <h2 class="big-title reveal"><span data-i18n="e.cta.title1">Quer avançar com</span> <span class="title-dim" data-i18n="e.cta.title2">um projeto de engenharia?</span></h2>
+        <h2 class="big-title reveal"><span data-i18n="e.cta.title1">Quer avançar com um projeto de engenharia</span> <span class="title-dim" data-i18n="e.cta.title2">de óleo e gás na Venezuela?</span></h2>
         <p class="reveal" data-i18n="e.cta.p">Fale com a nossa equipa técnica sobre as necessidades do seu projeto.</p>
         <div class="hero-ctas reveal">
           <a href="/contactos/" class="btn btn-primary" data-i18n="e.cta.btn1">Falar com a equipa
@@ -284,15 +300,15 @@ LD_JSON = """<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Engenharia — ADPetros",
+  "name": "Engineering — ADPETROS",
   "url": "https://www.adpetros.com/solucoes/engenharia/",
-  "provider": {"@type":"Organization","name":"ADPetros"}
+  "provider": {"@type":"Organization","name":"ADPETROS"}
 }
 </script>"""
 
 html = build_page(
-    title="Engenharia — Soluções ADPetros",
-    description="Engenharia de processo, mecânica, civil, elétrica, integridade de ativos e automação para projetos e operações industriais.",
+    title="Engineering — ADPETROS Solutions",
+    description="Process, mechanical, civil, electrical, asset integrity and automation engineering for industrial projects and operations.",
     path="/solucoes/engenharia/",
     active_nav="solutions",
     body_html=BODY,

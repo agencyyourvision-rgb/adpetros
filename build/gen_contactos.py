@@ -8,7 +8,8 @@ I18N = merge_i18n({
         "ct.title1": "Vamos falar", "ct.title2": "sobre o seu projeto.",
         "ct.lead": "Está a avaliar um investimento, uma operação ou uma oportunidade num dos mercados onde atuamos? Preencha o formulário ou utilize os contactos abaixo — a nossa equipa responde o mais brevemente possível.",
         "ct.form.name": "Nome", "ct.form.company": "Empresa",
-        "ct.form.email": "E-mail", "ct.form.market": "Mercado de interesse",
+        "ct.form.email": "E-mail profissional", "ct.form.position": "Cargo",
+        "ct.form.market": "Mercado de interesse",
         "ct.form.market.opt0": "Selecionar",
         "ct.form.market.opt1": "Venezuela", "ct.form.market.opt2": "América do Sul",
         "ct.form.market.opt3": "África", "ct.form.market.opt4": "Outro",
@@ -27,7 +28,8 @@ I18N = merge_i18n({
         "ct.title1": "Let's talk", "ct.title2": "about your project.",
         "ct.lead": "Are you assessing an investment, an operation or an opportunity in one of the markets where we operate? Fill in the form or use the contacts below — our team replies as soon as possible.",
         "ct.form.name": "Name", "ct.form.company": "Company",
-        "ct.form.email": "Email", "ct.form.market": "Market of interest",
+        "ct.form.email": "Professional email", "ct.form.position": "Position",
+        "ct.form.market": "Market of interest",
         "ct.form.market.opt0": "Select",
         "ct.form.market.opt1": "Venezuela", "ct.form.market.opt2": "South America",
         "ct.form.market.opt3": "Africa", "ct.form.market.opt4": "Other",
@@ -46,7 +48,8 @@ I18N = merge_i18n({
         "ct.title1": "Hablemos", "ct.title2": "sobre su proyecto.",
         "ct.lead": "¿Está evaluando una inversión, una operación o una oportunidad en uno de los mercados donde operamos? Complete el formulario o utilice los contactos abajo — nuestro equipo responde lo antes posible.",
         "ct.form.name": "Nombre", "ct.form.company": "Empresa",
-        "ct.form.email": "Correo electrónico", "ct.form.market": "Mercado de interés",
+        "ct.form.email": "Correo electrónico profesional", "ct.form.position": "Cargo",
+        "ct.form.market": "Mercado de interés",
         "ct.form.market.opt0": "Seleccionar",
         "ct.form.market.opt1": "Venezuela", "ct.form.market.opt2": "América del Sur",
         "ct.form.market.opt3": "África", "ct.form.market.opt4": "Otro",
@@ -86,19 +89,23 @@ BODY = """
           </div>
           <div class="form-row">
             <div class="form-field">
-              <label for="ctEmail" data-i18n="ct.form.email">E-mail</label>
+              <label for="ctEmail" data-i18n="ct.form.email">E-mail profissional</label>
               <input type="email" id="ctEmail" name="email" required>
             </div>
             <div class="form-field">
-              <label for="ctMarket" data-i18n="ct.form.market">Mercado de interesse</label>
-              <select id="ctMarket" name="market">
-                <option value="" data-i18n="ct.form.market.opt0">Selecionar</option>
-                <option value="Venezuela" data-i18n="ct.form.market.opt1">Venezuela</option>
-                <option value="América do Sul" data-i18n="ct.form.market.opt2">América do Sul</option>
-                <option value="África" data-i18n="ct.form.market.opt3">África</option>
-                <option value="Outro" data-i18n="ct.form.market.opt4">Outro</option>
-              </select>
+              <label for="ctPosition" data-i18n="ct.form.position">Cargo</label>
+              <input type="text" id="ctPosition" name="position">
             </div>
+          </div>
+          <div class="form-field">
+            <label for="ctMarket" data-i18n="ct.form.market">Mercado de interesse</label>
+            <select id="ctMarket" name="market">
+              <option value="" data-i18n="ct.form.market.opt0">Selecionar</option>
+              <option value="Venezuela" data-i18n="ct.form.market.opt1">Venezuela</option>
+              <option value="América do Sul" data-i18n="ct.form.market.opt2">América do Sul</option>
+              <option value="África" data-i18n="ct.form.market.opt3">África</option>
+              <option value="Outro" data-i18n="ct.form.market.opt4">Outro</option>
+            </select>
           </div>
           <div class="form-field">
             <label for="ctMessage" data-i18n="ct.form.message">Descreva brevemente o projeto ou a oportunidade</label>
@@ -118,7 +125,7 @@ BODY = """
       <div class="glass contact-info-card reveal-img">
         <div class="contact-info-group">
           <h4 data-i18n="ct.info.email">E-MAIL</h4>
-          <a href="mailto:geral@adpetros.com">geral@adpetros.com</a>
+          <a href="mailto:info@adpetros.com">info@adpetros.com</a>
         </div>
         <div class="contact-info-divider"></div>
         <div class="contact-info-group">
@@ -149,6 +156,7 @@ if(contactForm){
     const name = document.getElementById('ctName').value;
     const company = document.getElementById('ctCompany').value;
     const email = document.getElementById('ctEmail').value;
+    const position = document.getElementById('ctPosition').value;
     const market = document.getElementById('ctMarket').value;
     const message = document.getElementById('ctMessage').value;
     const subject = encodeURIComponent('Novo contacto via site — ' + name);
@@ -156,12 +164,13 @@ if(contactForm){
       'Nome: ' + name,
       'Empresa: ' + company,
       'E-mail: ' + email,
+      'Cargo: ' + position,
       'Mercado de interesse: ' + market,
       '',
       message
     ];
     const body = encodeURIComponent(bodyLines.join('\\n'));
-    window.location.href = 'mailto:geral@adpetros.com?subject=' + subject + '&body=' + body;
+    window.location.href = 'mailto:info@adpetros.com?subject=' + subject + '&body=' + body;
     document.getElementById('ctSuccess').classList.add('show');
   });
 }
@@ -171,14 +180,14 @@ LD_JSON = """<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ContactPage",
-  "name": "Contactos — ADPetros",
+  "name": "Contact — ADPETROS",
   "url": "https://www.adpetros.com/contactos/"
 }
 </script>"""
 
 html = build_page(
-    title="Contactos — ADPetros",
-    description="Fale com a equipa da ADPetros sobre um projeto, uma operação ou uma oportunidade nos mercados onde atuamos.",
+    title="Contact — ADPETROS",
+    description="Talk to the ADPETROS team about a project, an operation or an opportunity in the markets where we work.",
     path="/contactos/",
     active_nav="contact",
     body_html=BODY,

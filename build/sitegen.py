@@ -32,7 +32,7 @@ with open(os.path.join(SHARED, 'extracted_footer.html'), encoding='utf-8') as f:
 with open(os.path.join(SHARED, 'js_part1_utils.js'), encoding='utf-8') as f:
     JS_UTILS = f.read()
 
-APPLY_LANG_JS = """let currentLang = 'pt';
+APPLY_LANG_JS = """let currentLang = 'en';
 function applyLang(lang){
   if(!I18N[lang]) return;
   currentLang = lang;
@@ -40,12 +40,40 @@ function applyLang(lang){
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const key = el.getAttribute('data-i18n');
     const val = I18N[lang][key];
-    if(val !== undefined) el.textContent = val;
+    if(val === undefined) return;
+    if(el.classList.contains('line')){
+      /* Hero-title lines are split into <span class="word"> pieces by splitLines() right after
+         load, purely for the one-off intro stagger animation (see HERO_SPLIT_JS below). Because of
+         that split, this element has element children by the time a language switch happens — the
+         "find the first text node" fallback below (meant for CTA buttons with a trailing icon)
+         would instead grab a stray whitespace text node left over from the word-join and overwrite
+         it with the WHOLE new sentence, while every stale <span class="word"> from the old language
+         stayed in the DOM untouched. That produced duplicated/garbled hero-title text on language
+         switch. Rebuilding the words from scratch keeps the DOM in sync with the new language; the
+         intro stagger has already played by the time anyone switches language, so the rebuilt words
+         are shown immediately at their final (visible) state instead of replaying the reveal. */
+      const words = val.trim().split(/\\s+/);
+      el.innerHTML = words.map(w=>`<span class="word">${w}</span>`).join(' ');
+      el.querySelectorAll('.word').forEach(w=>{ w.style.opacity = '1'; w.style.transform = 'none'; });
+    } else if(el.children.length){
+      /* Some data-i18n elements (CTA buttons) carry a trailing <svg> icon child alongside their
+         label text — el.textContent would wipe that icon out. Replace only the leading text node
+         instead, leaving any element children (the icon) untouched. */
+      let node = el.firstChild;
+      while(node && node.nodeType !== Node.TEXT_NODE) node = node.nextSibling;
+      if(node) node.textContent = val;
+      else el.insertBefore(document.createTextNode(val), el.firstChild);
+    } else {
+      el.textContent = val;
+    }
   });
   document.querySelectorAll('#langLabel').forEach(el=> el.textContent = lang.toUpperCase());
   document.querySelectorAll('.lang-menu button, .mobile-lang button').forEach(btn=>{
     btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
   });
+  /* Remember the visitor's choice so it survives navigation to another page — every page on the
+     site checks this before falling back to the English default (see below). */
+  try{ localStorage.setItem('adpetrosLang', lang); }catch(e){}
   if(window.ScrollTrigger) ScrollTrigger.refresh();
 }
 document.querySelectorAll('.lang-menu button, .mobile-lang button').forEach(btn=>{
@@ -54,7 +82,16 @@ document.querySelectorAll('.lang-menu button, .mobile-lang button').forEach(btn=
     applyLang(btn.getAttribute('data-lang'));
     langSwitch.classList.remove('open');
   });
-});"""
+});
+/* The site's primary/default language is English — the HTML is authored with Portuguese as the
+   baked-in fallback text (for no-JS / first-paint), but we immediately (synchronously, in this same
+   parse/execute tick, before the browser gets a chance to paint) swap every [data-i18n] node over to
+   whichever language the visitor last picked (persisted in localStorage so it holds across page
+   navigation), or English by default if they haven't chosen one yet. PT/ES remain available via the
+   switcher. */
+let savedLang = 'en';
+try{ const s = localStorage.getItem('adpetrosLang'); if(s && I18N[s]) savedLang = s; }catch(e){}
+applyLang(savedLang);"""
 
 REVEAL_JS = """/* ---------- GSAP scroll storytelling ---------- */
 gsap.registerPlugin(ScrollTrigger);
@@ -159,14 +196,23 @@ function splitLines(container){
     line.innerHTML = words.map(w=>`<span class="word">${w}</span>`).join(' ');
   });
 }
-splitLines(document.getElementById('heroTitle'));
+const heroTitleEl = document.getElementById('heroTitle');
+splitLines(heroTitleEl);
+/* #heroTitle starts at opacity:0 in CSS (word spans don't exist until splitLines runs, so they
+   can't be pre-hidden via CSS) — reveal the now-split container in this same synchronous tick,
+   right before hiding the individual words below, so the browser never paints the old unsplit
+   plain-text title at full opacity. */
+heroTitleEl.style.opacity = '1';
 gsap.set('#heroTitle .word', {y:'115%', opacity:0});
 gsap.to('#heroTitle .word', {
   y:0, opacity:1, duration:1.1, ease:'power4.out', stagger:0.035, delay:.3
 });
-gsap.set('.hero-lead, .hero-ctas', {opacity:0, y:24});
-gsap.to('.hero-lead', {opacity:1, y:0, duration:1, ease:'power3.out', delay:1});
-gsap.to('.hero-ctas', {opacity:1, y:0, duration:1, ease:'power3.out', delay:1.15});
+/* Scoped to ".hero" specifically — .hero-lead/.hero-ctas are reused outside the hero (e.g. the
+   CTA-final section's button row) and must never be touched by this once-off page-load timeline;
+   those reused instances are driven solely by the generic .reveal scroll system instead. */
+gsap.set('.hero .hero-lead, .hero .hero-ctas', {opacity:0, y:24});
+gsap.to('.hero .hero-lead', {opacity:1, y:0, duration:1, ease:'power3.out', delay:1});
+gsap.to('.hero .hero-ctas', {opacity:1, y:0, duration:1, ease:'power3.out', delay:1.15});
 """
 
 REFRESH_JS = """window.addEventListener('load', ()=> ScrollTrigger.refresh());
@@ -218,7 +264,7 @@ const WHATSAPP_NUMBER = ''; /* TODO(cliente): número em formato internacional s
   } else {
     btn.removeAttribute('target');
     btn.setAttribute('aria-disabled', 'true');
-    console.warn('[ADPetros] Número de WhatsApp por configurar — ver WHATSAPP_NUMBER no script da página.');
+    console.warn('[ADPETROS] Número de WhatsApp por configurar — ver WHATSAPP_NUMBER no script da página.');
   }
 })();
 """
@@ -316,7 +362,7 @@ def build_js(i18n_dict, extra_css_only_js='', include_hero_split=True, extra_js=
 
 
 def build_page(*, title, description, path, active_nav, body_html, i18n_dict,
-                include_hero_split=True, extra_js='', is_home=False, lang_attr='pt-PT',
+                include_hero_split=True, extra_js='', is_home=False, lang_attr='en',
                 ld_json=None):
     nav_html = make_nav(active_nav, is_home=is_home)
     footer_html = make_footer()
@@ -362,8 +408,12 @@ GENERIC_WHY_ICON = '<svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7
 
 
 def sol_steps_html(items, extra_style=''):
-    """items: list of dicts {n, tkey, tdef, pkey, pdef}"""
-    out = [f'<div class="sol-steps" style="{extra_style}">']
+    """items: list of dicts {n, tkey, tdef, pkey, pdef}
+    The grid's column count on desktop (>=760px) tracks the real number of items via the
+    --sol-steps-cols custom property, so a 3-item page gets 3 equal columns filling the full
+    width instead of the CSS assuming 4 and leaving an empty trailing slot."""
+    style = f'--sol-steps-cols:{len(items)};{extra_style}'
+    out = [f'<div class="sol-steps" style="{style}">']
     for it in items:
         out.append(f'''      <div class="sol-step flip-card reveal">
         <div class="n">{it['n']}</div>
@@ -410,6 +460,18 @@ def why_mini_html(items):
     return '\n'.join(out)
 
 
+def inline_cta_html(href='/contactos/', key='nav.cta', default='Falar com a equipa', style='primary', margin_top=36):
+    """A lightweight, in-flow conversion CTA — reuses the site's existing .btn style/arrow icon
+    exactly as-is (no new button style). Meant to sit inside an existing section, right below its
+    content, so solution pages offer a few natural chances to convert along the way instead of
+    saving the only CTA for the very end of the page."""
+    return f'''<div class="reveal" style="margin-top:{margin_top}px">
+      <a href="{href}" class="btn btn-{style}" data-i18n="{key}">{default}
+        <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>'''
+
+
 def photo_section_html(*, img, alt, eyebrow_key, eyebrow_def, title1_key, title1_def, title2_key, title2_def,
                         text_key=None, text_def=None, cta_href=None, cta_key=None, cta_def=None, extra_class=''):
     """A full-bleed photography section with a petrol overlay, used on solution detail pages.
@@ -434,11 +496,41 @@ def photo_section_html(*, img, alt, eyebrow_key, eyebrow_def, title1_key, title1
 </section>'''
 
 
+def example_situation_html(*, prefix, eyebrow_def, title_def, text_def, img, alt, img_first=False,
+                            cta_href=None, cta_key=None, cta_def=None):
+    """'Imagine a seguinte situação' — a light, easy-to-scan two-column example
+    (text + real photo) used on solution detail pages to make the service concrete."""
+    order_style = ' style="order:2"' if img_first else ''
+    cta_html = ''
+    if cta_href and cta_key:
+        cta_html = f'''
+        <div class="reveal" style="margin-top:28px">
+          <a href="{cta_href}" class="btn btn-primary" data-i18n="{cta_key}">{cta_def}
+            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>'''
+    text_block = f'''
+      <div class="example-text"{order_style}>
+        <div class="example-badge"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.6.8.6 1.3V16h5.8v-.8c0-.5.2-1 .6-1.3A6 6 0 0 0 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="{prefix}.ex.eyebrow">{eyebrow_def}</span></div>
+        <h2 class="big-title reveal" data-i18n="{prefix}.ex.title">{title_def}</h2>
+        <p class="reveal example-p" data-i18n="{prefix}.ex.p">{text_def}</p>{cta_html}
+      </div>'''
+    photo_block = f'''
+      <div class="example-photo reveal-img"><img src="{img}" alt="{alt}" loading="lazy"></div>'''
+    inner = (photo_block + text_block) if img_first else (text_block + photo_block)
+    return f'''<section class="section example-section" data-theme="white">
+  <div class="container">
+    <div class="example-grid">{inner}
+    </div>
+  </div>
+</section>'''
+
+
 WHY_BENTO_I18N = {
   'pt': {
     "why.eyebrow": "O VALOR DA EXPERIÊNCIA LOCAL",
     "why.title1": "Menos complexidade,", "why.title2": "mais possibilidades.",
-    "why.cardtitle": "Simplifique com a ADPetros", "why.cta": "Fale connosco",
+    "why.cardtitle": "Simplifique com a ADPETROS", "why.cta": "Fale connosco",
     "why1.t": "Conhecimento técnico", "why1.p": "Experiência de engenharia aplicada a projetos e operações industriais.",
     "why2.t": "Conhecimento local", "why2.p": "Conhecimento dos mercados e das particularidades de cada país.",
     "why3.t": "Rede no terreno", "why3.p": "Rede de empresas, profissionais e fornecedores locais.",
@@ -449,7 +541,7 @@ WHY_BENTO_I18N = {
   'en': {
     "why.eyebrow": "THE VALUE OF LOCAL EXPERIENCE",
     "why.title1": "Less complexity,", "why.title2": "more possibilities.",
-    "why.cardtitle": "Simplify with ADPetros", "why.cta": "Contact us",
+    "why.cardtitle": "Simplify with ADPETROS", "why.cta": "Contact us",
     "why1.t": "Technical knowledge", "why1.p": "Engineering experience applied to industrial projects and operations.",
     "why2.t": "Local knowledge", "why2.p": "Knowledge of markets and the particularities of each country.",
     "why3.t": "Network on the ground", "why3.p": "A network of companies, professionals and local suppliers.",
@@ -460,7 +552,7 @@ WHY_BENTO_I18N = {
   'es': {
     "why.eyebrow": "EL VALOR DE LA EXPERIENCIA LOCAL",
     "why.title1": "Menos complejidad,", "why.title2": "más posibilidades.",
-    "why.cardtitle": "Simplifique con ADPetros", "why.cta": "Contáctenos",
+    "why.cardtitle": "Simplifique con ADPETROS", "why.cta": "Contáctenos",
     "why1.t": "Conocimiento técnico", "why1.p": "Experiencia de ingeniería aplicada a proyectos y operaciones industriales.",
     "why2.t": "Conocimiento local", "why2.p": "Conocimiento de los mercados y de las particularidades de cada país.",
     "why3.t": "Red en el terreno", "why3.p": "Red de empresas, profesionales y proveedores locales.",
@@ -492,7 +584,7 @@ def why_bento_html(cta_href='/contactos/'):
           </video>
         </div>
         <div class="why-hero-body">
-          <h3 data-i18n="why.cardtitle">Simplifique com a ADPetros</h3>
+          <h3 data-i18n="why.cardtitle">Simplifique com a ADPETROS</h3>
           <a href="{cta_href}" class="why-hero-btn"><span data-i18n="why.cta">Fale connosco</span></a>
         </div>
       </article>
@@ -514,7 +606,7 @@ def why_bento_html(cta_href='/contactos/'):
           <p data-i18n="why3.p">Rede de empresas, profissionais e fornecedores locais.</p>
         </article>
         <article class="why-mini">
-          <div class="why-mini-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M13 3L4 14h7l-1 7 9-11h-7l1-7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+          <div class="why-mini-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M13 3L4 14h7l-1 7 9-11h-7l1-7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
           <h4 data-i18n="why4.t">Eficiência operacional</h4>
           <p data-i18n="why4.p">Estrutura local que reduz deslocações e simplifica a operação.</p>
         </article>
