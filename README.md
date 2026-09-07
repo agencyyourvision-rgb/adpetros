@@ -54,7 +54,12 @@ Cada script escreve diretamente para a respetiva pasta na raiz do site. A Home n
 
 Site 100% estático — sem "Build Command" nem "Output Directory" a configurar no Vercel (deixar em branco / "Other"). O Vercel serve `/solucoes/index.html` automaticamente em `/solucoes/`, tal como as outras subpastas.
 
+## Contactos confirmados
+
+- **E-mail**: `info@adpetros.com` — usado no rodapé, na página de Contactos e como destino do formulário (abre o cliente de e-mail do visitante com a mensagem pronta a enviar).
+- **WhatsApp / telefone**: `+971 52 433 1781`, confirmado pelo cliente. O botão flutuante de WhatsApp está ativo em todas as páginas (`WHATSAPP_NUMBER` em cada `<script>`, ou em `build/sitegen.py` para as páginas geradas) e o mesmo número está visível na página de Contactos.
+
 ## Por confirmar
 
-- **WhatsApp**: o botão flutuante já está implementado em todas as páginas, mas fica desativado (com aviso na consola) até o número real ser adicionado. Procurar `WHATSAPP_NUMBER` no `<script>` de cada página (ou em `build/sitegen.py`, constante `WHATSAPP_JS`, para as páginas geradas) e preencher no formato internacional sem espaços, ex: `'351912345678'`.
-- **Morada e telefone**: não constam no rodapé (só o e-mail `geral@adpetros.com`, já confirmado) nem na página de Contactos, onde aparecem como "[a confirmar]" até serem fornecidos.
+- **Morada**: continua sem ser fornecida — aparece como "[a confirmar]" na página de Contactos até ser recebida.
+- **LinkedIn**: idem, "[a confirmar]" na página de Contactos.
