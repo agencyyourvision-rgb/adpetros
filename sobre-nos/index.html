@@ -686,6 +686,17 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .flare-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center}
 @media(min-width:980px){.flare-grid{grid-template-columns:1fr 1fr}}
 .flare-visual{position:relative;aspect-ratio:1/1;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,var(--petrol-800),var(--petrol-950));border:1px solid var(--line-dark)}
+/* .is-diagram: variant used to present a real technical diagram (client-supplied) instead of the
+   generic flame illustration. The source diagram is landscape, so instead of forcing the card's
+   usual 1:1 aspect ratio (which would make the tag row and caption overlap the image — a fixed
+   aspect-ratio card can't reliably also fit padding-based chrome above/below a scaled image at
+   every viewport width), the card lays its tag row / white plate / caption out in normal top-to-
+   bottom flex flow and simply grows to whatever height that content needs. */
+.flare-visual.is-diagram{aspect-ratio:auto;display:flex;flex-direction:column;gap:20px;padding:24px}
+.flare-visual.is-diagram .flare-metrics{position:static}
+.flare-diagram-plate{background:#fff;border-radius:14px;padding:18px;box-shadow:0 18px 40px rgba(4,8,13,.35)}
+.flare-diagram-plate img{display:block;width:100%;height:auto;border-radius:4px}
+.flare-diagram-caption{margin:0;font-size:12px;line-height:1.5;color:rgba(255,255,255,.5);text-align:center}
 .flame-wrap{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
 .flame{width:46%;height:60%;position:relative;filter:blur(.3px)}
 .flame svg{width:100%;height:100%}
@@ -1973,7 +1984,7 @@ gsap.to('.hero .hero-lead', {opacity:1, y:0, duration:1, ease:'power3.out', dela
 gsap.to('.hero .hero-ctas', {opacity:1, y:0, duration:1, ease:'power3.out', delay:1.15});
 
 /* ---------- WhatsApp floating button ---------- */
-const WHATSAPP_NUMBER = ''; /* TODO(cliente): número em formato internacional sem espaços, ex: '351912345678'. Deixar vazio até ser confirmado — nao inventar um contacto. */
+const WHATSAPP_NUMBER = '971524331781'; /* Número confirmado pelo cliente: +971 52 433 1781 */
 (function initWhatsApp(){
   const btn = document.getElementById('waFloat');
   if(!btn) return;

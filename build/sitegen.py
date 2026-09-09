@@ -255,7 +255,7 @@ WHATSAPP_HTML = """<a href="#" id="waFloat" class="wa-float" aria-label="Falar n
 </a>"""
 
 WHATSAPP_JS = """/* ---------- WhatsApp floating button ---------- */
-const WHATSAPP_NUMBER = ''; /* TODO(cliente): número em formato internacional sem espaços, ex: '351912345678'. Deixar vazio até ser confirmado — nao inventar um contacto. */
+const WHATSAPP_NUMBER = '971524331781'; /* Número confirmado pelo cliente: +971 52 433 1781 */
 (function initWhatsApp(){
   const btn = document.getElementById('waFloat');
   if(!btn) return;

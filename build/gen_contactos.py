@@ -19,7 +19,6 @@ I18N = merge_i18n({
         "ct.form.success": "Obrigado. A sua mensagem está pronta no seu cliente de e-mail — basta confirmar o envio.",
         "ct.info.email": "E-MAIL", "ct.info.phone": "TELEFONE", "ct.info.address": "MORADA",
         "ct.info.other": "OUTRAS FORMAS DE CONTACTO",
-        "ct.info.phone.placeholder": "[a confirmar]",
         "ct.info.address.placeholder": "[a confirmar]",
         "ct.info.other.placeholder": "LinkedIn — [a confirmar]",
     },
@@ -39,7 +38,6 @@ I18N = merge_i18n({
         "ct.form.success": "Thank you. Your message is ready in your email client — just confirm sending.",
         "ct.info.email": "EMAIL", "ct.info.phone": "PHONE", "ct.info.address": "ADDRESS",
         "ct.info.other": "OTHER WAYS TO REACH US",
-        "ct.info.phone.placeholder": "[to be confirmed]",
         "ct.info.address.placeholder": "[to be confirmed]",
         "ct.info.other.placeholder": "LinkedIn — [to be confirmed]",
     },
@@ -59,7 +57,6 @@ I18N = merge_i18n({
         "ct.form.success": "Gracias. Su mensaje está listo en su cliente de correo — solo falta confirmar el envío.",
         "ct.info.email": "CORREO", "ct.info.phone": "TELÉFONO", "ct.info.address": "DIRECCIÓN",
         "ct.info.other": "OTRAS FORMAS DE CONTACTO",
-        "ct.info.phone.placeholder": "[a confirmar]",
         "ct.info.address.placeholder": "[a confirmar]",
         "ct.info.other.placeholder": "LinkedIn — [a confirmar]",
     },
@@ -130,7 +127,7 @@ BODY = """
         <div class="contact-info-divider"></div>
         <div class="contact-info-group">
           <h4 data-i18n="ct.info.phone">TELEFONE</h4>
-          <p class="placeholder" data-i18n="ct.info.phone.placeholder">[a confirmar]</p>
+          <a href="tel:+971524331781">+971 52 433 1781</a>
         </div>
         <div class="contact-info-divider"></div>
         <div class="contact-info-group">
