@@ -22,17 +22,19 @@
     "ft.markets": "MERCADOS",
     "ft.solutions": "SOLUÇÕES",
     "ft.africa": "África",
-    "ft.copy": "© 2026 Adpetros. Todos os direitos reservados.",
+    "ft.copy": "© 2026 ADPETROS. Todos os direitos reservados.",
     "mk.pin.ve": "Venezuela",
     "mk.pin.sa": "América do Sul",
-    "ft.email": "geral@adpetros.com"
+    "ft.email": "info@adpetros.com",
+    "cta.talk": "Fale connosco",
+    "cta.project": "Falar sobre o meu projeto"
   },
   "en": {
     "nav.home": "Home",
     "nav.about": "About Us",
     "nav.solutions": "Solutions",
     "nav.contact": "Contact",
-    "nav.cta": "Talk to the team",
+    "nav.cta": "Get in touch",
     "mm.eyebrow": "SOLUTIONS",
     "mm.eng.t": "Engineering",
     "mm.eng.d": "Technical development of the project",
@@ -50,10 +52,12 @@
     "ft.markets": "MARKETS",
     "ft.solutions": "SOLUTIONS",
     "ft.africa": "Africa",
-    "ft.copy": "© 2026 Adpetros. All rights reserved.",
+    "ft.copy": "© 2026 ADPETROS. All rights reserved.",
     "mk.pin.ve": "Venezuela",
     "mk.pin.sa": "South America",
-    "ft.email": "geral@adpetros.com"
+    "ft.email": "info@adpetros.com",
+    "cta.talk": "Get in touch",
+    "cta.project": "Talk about my project"
   },
   "es": {
     "nav.home": "Inicio",
@@ -78,9 +82,11 @@
     "ft.markets": "MERCADOS",
     "ft.solutions": "SOLUCIONES",
     "ft.africa": "África",
-    "ft.copy": "© 2026 Adpetros. Todos los derechos reservados.",
+    "ft.copy": "© 2026 ADPETROS. Todos los derechos reservados.",
     "mk.pin.ve": "Venezuela",
     "mk.pin.sa": "Sudamérica",
-    "ft.email": "geral@adpetros.com"
+    "ft.email": "info@adpetros.com",
+    "cta.talk": "Hable con nosotros",
+    "cta.project": "Hablar sobre mi proyecto"
   }
 }

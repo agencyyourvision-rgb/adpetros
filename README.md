@@ -61,5 +61,6 @@ Site 100% estático — sem "Build Command" nem "Output Directory" a configurar 
 
 ## Por confirmar
 
-- **Morada**: continua sem ser fornecida — aparece como "[a confirmar]" na página de Contactos até ser recebida.
-- **LinkedIn**: idem, "[a confirmar]" na página de Contactos.
+- **LinkedIn**: continua sem ser fornecido — aparece como "[a confirmar]" na página de Contactos até ser recebido.
+
+*(O campo de Morada foi removido da página de Contactos, a pedido do cliente.)*
