@@ -56,6 +56,8 @@ I18N = merge_i18n({
     "an.eng.c4": "Engenharia elétrica e instrumentação",
     "an.eng.c5": "Integridade e inspeção de ativos",
     "an.eng.c6": "Automação e controlo de processo",
+    "an.eng.c7": "Engenharia de Petróleo e Gás",
+    "an.eng.c7p": "As seis especialidades aplicadas especificamente a projetos de petróleo, gás e petroquímica — desde instalações upstream até infraestrutura midstream e downstream.",
     "an.eng.cta": "Conhecer a nossa engenharia",
 
     "an.work.eyebrow": "EXPERIÊNCIA LOCAL. OPORTUNIDADES GLOBAIS.",
@@ -125,18 +127,20 @@ I18N = merge_i18n({
     "an.eng.c4": "Electrical engineering and instrumentation",
     "an.eng.c5": "Asset integrity and inspection",
     "an.eng.c6": "Automation and process control",
+    "an.eng.c7": "Oil & Gas Engineering",
+    "an.eng.c7p": "All six disciplines applied specifically to oil, gas and petrochemical projects — from upstream facilities to midstream and downstream infrastructure.",
     "an.eng.cta": "See our engineering",
 
     "an.work.eyebrow": "LOCAL EXPERIENCE. GLOBAL OPPORTUNITIES.",
     "an.work.title1": "Want to invest in oil and gas?",
     "an.work.title2": "Start with the right partner.",
-    "an.work.p1": "ADPETROS knows the Venezuelan market, its main operators and the structures needed to develop new business in the sector.",
-    "an.work.p2": "With relationships built with government entities, institutions, operators and local partners, we help international companies understand the market, identify opportunities and create the conditions needed to move forward.",
-    "an.work.p3": "From opportunity to operation, we are the link between international investment and the local market.",
+    "an.work.p1": "Adpetros thoroughly understands the Venezuelan energy landscape, its primary operators, and the frameworks required to develop new business in the sector.",
+    "an.work.p2": "Leveraging deep relationships built alongside government entities, academic institutions, operators, and local partners, we help international companies analyze the market, identify high-value opportunities, and establish the conditions necessary to move forward.",
+    "an.work.p3": "From opportunity to operation, we serve as the vital link between international investment and the local market.",
 
     "an.cta.eyebrow": "GET IN TOUCH",
-    "an.cta.title1": "Want to evaluate an oil & gas project",
-    "an.cta.title2": "in Venezuela? We're the right partner.",
+    "an.cta.title1": "Ready to invest in oil & gas in Venezuela?",
+    "an.cta.title2": "Start with the right partner: ADPETROS.",
     "an.cta.p": "Talk to our team or explore the solutions we offer for each phase of a project.",
     "an.cta.cta1": "Talk to the team",
     "an.cta.cta2": "See our solutions",
@@ -194,6 +198,8 @@ I18N = merge_i18n({
     "an.eng.c4": "Ingeniería eléctrica e instrumentación",
     "an.eng.c5": "Integridad e inspección de activos",
     "an.eng.c6": "Automatización y control de procesos",
+    "an.eng.c7": "Ingeniería de Petróleo y Gas",
+    "an.eng.c7p": "Las seis especialidades aplicadas específicamente a proyectos de petróleo, gas y petroquímica — desde instalaciones upstream hasta infraestructura midstream y downstream.",
     "an.eng.cta": "Conocer nuestra ingeniería",
 
     "an.work.eyebrow": "EXPERIENCIA LOCAL. OPORTUNIDADES GLOBALES.",
@@ -366,6 +372,13 @@ BODY = f"""
       <div class="eng-card">
         <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M9 4v16M4 9h5M4 15h5" stroke="currentColor" stroke-width="1.6"/></svg>
         <h4 data-i18n="an.eng.c6">Automação e controlo de processo</h4>
+      </div>
+      <div class="eng-card eng-card-wide">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2c4 5 7 9.5 7 13a7 7 0 11-14 0c0-3.5 3-8 7-13z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <div class="eng-card-wide-text">
+          <h4 data-i18n="an.eng.c7">Engenharia de Petróleo e Gás</h4>
+          <p data-i18n="an.eng.c7p">As seis especialidades aplicadas especificamente a projetos de petróleo, gás e petroquímica — desde instalações upstream até infraestrutura midstream e downstream.</p>
+        </div>
       </div>
     </div>
 

@@ -242,7 +242,7 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .nav.solid{background:rgba(6,36,48,.78);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);padding:14px 0;border-color:var(--line-dark)}
 .nav-inner{max-width:var(--container);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
 .logo{font-family:var(--ff-display);font-weight:800;font-size:20px;letter-spacing:-.01em;color:var(--white);display:flex;align-items:center;gap:10px}
-.logo-mark{width:11px;height:11px;border-radius:3px;background:var(--green);flex:0 0 auto}
+.logo-img{height:28px;width:auto;display:block}
 .nav-links{display:flex;align-items:center;gap:6px;list-style:none}
 .nav-links > li{position:relative}
 .nav-links a.nav-link{
@@ -790,7 +790,7 @@ body.cookie-visible .wa-float{bottom:84px}
 <!-- =================== NAV =================== -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#top" class="logo"><span class="logo-mark"></span>ADPETROS</a>
+    <a href="#top" class="logo"><img src="assets/img/logo-adpetros.png" alt="ADPETROS" class="logo-img"></a>
 
     <ul class="nav-links">
       <li><a href="#top" class="nav-link active" data-i18n="nav.home">Início</a></li>
@@ -1170,7 +1170,7 @@ body.cookie-visible .wa-float{bottom:84px}
 
       <article class="feat-card feat-alt">
         <div class="feat-visual has-photo" aria-hidden="true">
-          <img src="assets/img/9-lg.jpg" alt="" loading="lazy">
+          <img src="assets/img/new/aperto-de-maos.jpg" alt="" loading="lazy">
           <div class="feat-grid-bg"></div>
           <div class="feat-ring feat-ring-1"></div>
           <div class="feat-ring feat-ring-2"></div>
@@ -1584,7 +1584,7 @@ body.cookie-visible .wa-float{bottom:84px}
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#top" class="logo"><span class="logo-mark"></span>ADPETROS</a>
+        <a href="#top" class="logo"><img src="assets/img/logo-adpetros.png" alt="ADPETROS" class="logo-img"></a>
         <p data-i18n="ft.tagline">Engenharia de óleo e gás. Experiência local. Capacidade de execução.</p>
       </div>
       <div class="footer-col">
@@ -2422,7 +2422,7 @@ gsap.utils.toArray('.map-pin').forEach((pin, i)=>{
 /* Solution steps + Why cards + Engineering cards: subtle parallax on hover handled by CSS; scroll stagger via.reveal already applied */
 
 /* ---------- WhatsApp floating button ---------- */
-const WHATSAPP_NUMBER = '971524331781'; /* Número confirmado pelo cliente: +971 52 433 1781 */
+const WHATSAPP_NUMBER = '351965160651'; /* Número confirmado pelo cliente: +351 965 160 651 */
 (function initWhatsApp(){
   const btn = document.getElementById('waFloat');
   if(!btn) return;

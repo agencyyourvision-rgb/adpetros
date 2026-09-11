@@ -227,7 +227,7 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .nav.solid{background:rgba(6,36,48,.78);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);padding:14px 0;border-color:var(--line-dark)}
 .nav-inner{max-width:var(--container);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
 .logo{font-family:var(--ff-display);font-weight:800;font-size:20px;letter-spacing:-.01em;color:var(--white);display:flex;align-items:center;gap:10px}
-.logo-mark{width:11px;height:11px;border-radius:3px;background:var(--green);flex:0 0 auto}
+.logo-img{height:28px;width:auto;display:block}
 .nav-links{display:flex;align-items:center;gap:6px;list-style:none}
 .nav-links > li{position:relative}
 .nav-links a.nav-link{
@@ -680,11 +680,16 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .eng-card svg{width:22px;height:22px;color:var(--ink-dim);margin-bottom:16px;transition:color .4s var(--ease)}
 .eng-card:hover svg{color:var(--green)}
 .eng-card h4{font-size:15.5px;font-weight:500;line-height:1.3;color:#fff}
+.eng-card-wide{grid-column:1/-1;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.eng-card-wide svg{margin-bottom:0;flex:0 0 auto;width:30px;height:30px}
+.eng-card-wide .eng-card-wide-text{flex:1 1 260px}
+.eng-card-wide h4{font-size:17px;margin-bottom:6px}
+.eng-card-wide p{font-size:14.5px;line-height:1.6;color:rgba(237,242,244,.62)}
 
 /* ================= SECTION 10 FLARE ================= */
 .flare-section{position:relative;overflow:hidden}
 .flare-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center}
-@media(min-width:980px){.flare-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:980px){.flare-grid{grid-template-columns:1.7fr 1fr}}
 .flare-visual{position:relative;aspect-ratio:1/1;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,var(--petrol-800),var(--petrol-950));border:1px solid var(--line-dark)}
 /* .is-diagram: variant used to present a real technical diagram (client-supplied) instead of the
    generic flame illustration. The source diagram is landscape, so instead of forcing the card's
@@ -694,7 +699,7 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
    bottom flex flow and simply grows to whatever height that content needs. */
 .flare-visual.is-diagram{aspect-ratio:auto;display:flex;flex-direction:column;gap:20px;padding:24px}
 .flare-visual.is-diagram .flare-metrics{position:static}
-.flare-diagram-plate{background:#fff;border-radius:14px;padding:18px;box-shadow:0 18px 40px rgba(4,8,13,.35)}
+.flare-diagram-plate{background:#fff;border-radius:14px;padding:10px;box-shadow:0 18px 40px rgba(4,8,13,.35)}
 .flare-diagram-plate img{display:block;width:100%;height:auto;border-radius:4px}
 .flare-diagram-caption{margin:0;font-size:12px;line-height:1.5;color:rgba(255,255,255,.5);text-align:center}
 .flame-wrap{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
@@ -973,7 +978,7 @@ body.cookie-visible .wa-float{bottom:84px}
 <!-- =================== NAV =================== -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="/" class="logo"><span class="logo-mark"></span>ADPETROS</a>
+    <a href="/" class="logo"><img src="/assets/img/logo-adpetros.png" alt="ADPETROS" class="logo-img"></a>
 
     <ul class="nav-links">
       <li><a href="/" class="nav-link" data-i18n="nav.home">Início</a></li>
@@ -1130,7 +1135,22 @@ body.cookie-visible .wa-float{bottom:84px}
         <div class="contact-info-divider"></div>
         <div class="contact-info-group">
           <h4 data-i18n="ct.info.phone">TELEFONE</h4>
-          <a href="tel:+971524331781">+971 52 433 1781</a>
+          <a href="tel:+351965160651">+351 965 160 651</a>
+        </div>
+        <div class="contact-info-divider"></div>
+        <div class="contact-info-group">
+          <h4 data-i18n="ct.info.whatsapp">WHATSAPP</h4>
+          <a href="https://wa.me/351965160651" target="_blank" rel="noopener">+351 965 160 651</a>
+        </div>
+        <div class="contact-info-divider"></div>
+        <div class="contact-info-group">
+          <h4 data-i18n="ct.info.address">MORADA</h4>
+          <p>ADPETROS, Lda.<br>Av. Bombeiros Voluntários, Edifício Nova Paredes, n.º 21, 1.º andar, Escritório 10<br>4580-053 Paredes, Portugal</p>
+        </div>
+        <div class="contact-info-divider"></div>
+        <div class="contact-info-group">
+          <h4 data-i18n="ct.info.reg">NÚMERO DE REGISTO DA EMPRESA</h4>
+          <p>516 545 230 (Portugal)</p>
         </div>
         <div class="contact-info-divider"></div>
         <div class="contact-info-group">
@@ -1148,7 +1168,7 @@ body.cookie-visible .wa-float{bottom:84px}
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#top" class="logo"><span class="logo-mark"></span>ADPETROS</a>
+        <a href="#top" class="logo"><img src="/assets/img/logo-adpetros.png" alt="ADPETROS" class="logo-img"></a>
         <p data-i18n="ft.tagline">Engenharia de óleo e gás. Experiência local. Capacidade de execução.</p>
       </div>
       <div class="footer-col">
@@ -1306,6 +1326,9 @@ const I18N = {
     "ct.title1": "Vamos falar",
     "ct.title2": "sobre o seu projeto.",
     "ct.lead": "Está a avaliar um investimento, uma operação ou uma oportunidade num dos mercados onde atuamos? Preencha o formulário ou utilize os contactos abaixo — a nossa equipa responde o mais brevemente possível.",
+    "ct.info.address": "MORADA",
+    "ct.info.whatsapp": "WHATSAPP",
+    "ct.info.reg": "NÚMERO DE REGISTO DA EMPRESA",
     "ct.form.name": "Nome",
     "ct.form.company": "Empresa",
     "ct.form.email": "E-mail profissional",
@@ -1355,9 +1378,12 @@ const I18N = {
     "cta.talk": "Get in touch",
     "cta.project": "Talk about my project",
     "ct.eyebrow": "GET IN TOUCH",
-    "ct.title1": "Let's talk",
-    "ct.title2": "about your project.",
-    "ct.lead": "Are you assessing an investment, an operation or an opportunity in one of the markets where we operate? Fill in the form or use the contacts below — our team replies as soon as possible.",
+    "ct.title1": "Partner with ADPETROS.",
+    "ct.title2": "Let's discuss your project.",
+    "ct.lead": "Whether you are evaluating a new investment, optimizing an active operation, or exploring regional market opportunities, our team is ready to assist. Complete the form below or contact us directly to connect with our engineering and compliance specialists. We look forward to accelerating your project.",
+    "ct.info.address": "ADDRESS",
+    "ct.info.whatsapp": "WHATSAPP",
+    "ct.info.reg": "FIRM REGISTRATION NUMBER",
     "ct.form.name": "Name",
     "ct.form.company": "Company",
     "ct.form.email": "Professional email",
@@ -1410,6 +1436,9 @@ const I18N = {
     "ct.title1": "Hablemos",
     "ct.title2": "sobre su proyecto.",
     "ct.lead": "¿Está evaluando una inversión, una operación o una oportunidad en uno de los mercados donde operamos? Complete el formulario o utilice los contactos abajo — nuestro equipo responde lo antes posible.",
+    "ct.info.address": "DIRECCIÓN",
+    "ct.info.whatsapp": "WHATSAPP",
+    "ct.info.reg": "NÚMERO DE REGISTRO DE LA EMPRESA",
     "ct.form.name": "Nombre",
     "ct.form.company": "Empresa",
     "ct.form.email": "Correo electrónico profesional",
@@ -1636,7 +1665,7 @@ if(contactForm){
 }
 
 /* ---------- WhatsApp floating button ---------- */
-const WHATSAPP_NUMBER = '971524331781'; /* Número confirmado pelo cliente: +971 52 433 1781 */
+const WHATSAPP_NUMBER = '351965160651'; /* Número confirmado pelo cliente: +351 965 160 651 */
 (function initWhatsApp(){
   const btn = document.getElementById('waFloat');
   if(!btn) return;

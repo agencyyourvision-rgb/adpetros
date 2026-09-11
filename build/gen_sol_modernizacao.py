@@ -66,14 +66,14 @@ I18N = merge_i18n({
     "m.hero.eyebrow": "SOLUTIONS · ASSET RECOVERY & MODERNISATION",
     "m.hero.title1": "Recovering and optimising",
     "m.hero.title2": "already existing installations and equipment.",
-    "m.hero.lead": "Not every asset needs to be replaced. Often, the greatest return comes from extending the life of what you already operate — through a rigorous technical diagnosis and a targeted modernisation plan, built around your specific equipment and constraints.",
+    "m.hero.lead": "Building from scratch is no longer the only path to progress. We help operators extract the maximum ROI from existing facilities through rigorous diagnoses and targeted modernization framework.",
     "m.hero.cta1": "Talk about an asset", "m.hero.cta2": "See all solutions",
 
     "m.prob.eyebrow": "THE PROBLEM",
     "m.prob.title1": "Refineries and industrial facilities",
     "m.prob.title2": "lose efficiency over time, often without immediate visibility.",
-    "m.prob.p1": "Equipment ages, processes drift away from their optimal operating range, and minor faults build up until they become major problems — in production, safety, or cost.",
-    "m.prob.p2": "Without an independent technical diagnosis, it's difficult to know where to invest first.",
+    "m.prob.p1": "Equipment ages, processes lose optimization, and minor faults accumulate until they escalate into major production, safety, or financial risks.",
+    "m.prob.p2": "Without an independent technical diagnosis, it is difficult to determine exactly where capital should be allocated first.",
 
     "m.help.eyebrow": "HOW ADPETROS HELPS",
     "m.help.title1": "From diagnosis",

@@ -255,7 +255,7 @@ WHATSAPP_HTML = """<a href="#" id="waFloat" class="wa-float" aria-label="Falar n
 </a>"""
 
 WHATSAPP_JS = """/* ---------- WhatsApp floating button ---------- */
-const WHATSAPP_NUMBER = '971524331781'; /* Número confirmado pelo cliente: +971 52 433 1781 */
+const WHATSAPP_NUMBER = '351965160651'; /* Número confirmado pelo cliente: +351 965 160 651 */
 (function initWhatsApp(){
   const btn = document.getElementById('waFloat');
   if(!btn) return;
@@ -497,7 +497,7 @@ def photo_section_html(*, img, alt, eyebrow_key, eyebrow_def, title1_key, title1
 
 
 def example_situation_html(*, prefix, eyebrow_def, title_def, text_def, img, alt, img_first=False,
-                            cta_href=None, cta_key=None, cta_def=None):
+                            cta_href=None, cta_key=None, cta_def=None, text2_def=None):
     """'Imagine a seguinte situação' — a light, easy-to-scan two-column example
     (text + real photo) used on solution detail pages to make the service concrete."""
     order_style = ' style="order:2"' if img_first else ''
@@ -509,11 +509,15 @@ def example_situation_html(*, prefix, eyebrow_def, title_def, text_def, img, alt
             <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>'''
+    p2_html = ''
+    if text2_def:
+        p2_html = f'''
+        <p class="reveal example-p" style="margin-top:14px" data-i18n="{prefix}.ex.p2">{text2_def}</p>'''
     text_block = f'''
       <div class="example-text"{order_style}>
         <div class="example-badge"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.6.8.6 1.3V16h5.8v-.8c0-.5.2-1 .6-1.3A6 6 0 0 0 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="{prefix}.ex.eyebrow">{eyebrow_def}</span></div>
         <h2 class="big-title reveal" data-i18n="{prefix}.ex.title">{title_def}</h2>
-        <p class="reveal example-p" data-i18n="{prefix}.ex.p">{text_def}</p>{cta_html}
+        <p class="reveal example-p" data-i18n="{prefix}.ex.p">{text_def}</p>{p2_html}{cta_html}
       </div>'''
     photo_block = f'''
       <div class="example-photo reveal-img"><img src="{img}" alt="{alt}" loading="lazy"></div>'''

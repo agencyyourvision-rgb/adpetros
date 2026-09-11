@@ -57,10 +57,10 @@ Site 100% estático — sem "Build Command" nem "Output Directory" a configurar 
 ## Contactos confirmados
 
 - **E-mail**: `info@adpetros.com` — usado no rodapé, na página de Contactos e como destino do formulário (abre o cliente de e-mail do visitante com a mensagem pronta a enviar).
-- **WhatsApp / telefone**: `+971 52 433 1781`, confirmado pelo cliente. O botão flutuante de WhatsApp está ativo em todas as páginas (`WHATSAPP_NUMBER` em cada `<script>`, ou em `build/sitegen.py` para as páginas geradas) e o mesmo número está visível na página de Contactos.
+- **Telefone / WhatsApp**: `+351 965 160 651`, confirmado pelo cliente. O botão flutuante de WhatsApp está ativo em todas as páginas (`WHATSAPP_NUMBER` em cada `<script>`, ou em `build/sitegen.py` para as páginas geradas) e o mesmo número está visível na página de Contactos (como Telefone e como WhatsApp separadamente).
+- **Morada**: ADPETROS, Lda., Av. Bombeiros Voluntários, Edifício Nova Paredes, n.º 21, 1.º andar, Escritório 10, 4580-053 Paredes, Portugal — visível na página de Contactos.
+- **Número de registo da empresa**: 516 545 230 (Portugal) — visível na página de Contactos.
 
 ## Por confirmar
 
 - **LinkedIn**: continua sem ser fornecido — aparece como "[a confirmar]" na página de Contactos até ser recebido.
-
-*(O campo de Morada foi removido da página de Contactos, a pedido do cliente.)*

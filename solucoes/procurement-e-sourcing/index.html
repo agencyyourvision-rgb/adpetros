@@ -228,7 +228,7 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .nav.solid{background:rgba(6,36,48,.78);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);padding:14px 0;border-color:var(--line-dark)}
 .nav-inner{max-width:var(--container);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
 .logo{font-family:var(--ff-display);font-weight:800;font-size:20px;letter-spacing:-.01em;color:var(--white);display:flex;align-items:center;gap:10px}
-.logo-mark{width:11px;height:11px;border-radius:3px;background:var(--green);flex:0 0 auto}
+.logo-img{height:28px;width:auto;display:block}
 .nav-links{display:flex;align-items:center;gap:6px;list-style:none}
 .nav-links > li{position:relative}
 .nav-links a.nav-link{
@@ -681,11 +681,16 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .eng-card svg{width:22px;height:22px;color:var(--ink-dim);margin-bottom:16px;transition:color .4s var(--ease)}
 .eng-card:hover svg{color:var(--green)}
 .eng-card h4{font-size:15.5px;font-weight:500;line-height:1.3;color:#fff}
+.eng-card-wide{grid-column:1/-1;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.eng-card-wide svg{margin-bottom:0;flex:0 0 auto;width:30px;height:30px}
+.eng-card-wide .eng-card-wide-text{flex:1 1 260px}
+.eng-card-wide h4{font-size:17px;margin-bottom:6px}
+.eng-card-wide p{font-size:14.5px;line-height:1.6;color:rgba(237,242,244,.62)}
 
 /* ================= SECTION 10 FLARE ================= */
 .flare-section{position:relative;overflow:hidden}
 .flare-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center}
-@media(min-width:980px){.flare-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:980px){.flare-grid{grid-template-columns:1.7fr 1fr}}
 .flare-visual{position:relative;aspect-ratio:1/1;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,var(--petrol-800),var(--petrol-950));border:1px solid var(--line-dark)}
 /* .is-diagram: variant used to present a real technical diagram (client-supplied) instead of the
    generic flame illustration. The source diagram is landscape, so instead of forcing the card's
@@ -695,7 +700,7 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
    bottom flex flow and simply grows to whatever height that content needs. */
 .flare-visual.is-diagram{aspect-ratio:auto;display:flex;flex-direction:column;gap:20px;padding:24px}
 .flare-visual.is-diagram .flare-metrics{position:static}
-.flare-diagram-plate{background:#fff;border-radius:14px;padding:18px;box-shadow:0 18px 40px rgba(4,8,13,.35)}
+.flare-diagram-plate{background:#fff;border-radius:14px;padding:10px;box-shadow:0 18px 40px rgba(4,8,13,.35)}
 .flare-diagram-plate img{display:block;width:100%;height:auto;border-radius:4px}
 .flare-diagram-caption{margin:0;font-size:12px;line-height:1.5;color:rgba(255,255,255,.5);text-align:center}
 .flame-wrap{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
@@ -974,7 +979,7 @@ body.cookie-visible .wa-float{bottom:84px}
 <!-- =================== NAV =================== -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="/" class="logo"><span class="logo-mark"></span>ADPETROS</a>
+    <a href="/" class="logo"><img src="/assets/img/logo-adpetros.png" alt="ADPETROS" class="logo-img"></a>
 
     <ul class="nav-links">
       <li><a href="/" class="nav-link" data-i18n="nav.home">Início</a></li>
@@ -1172,6 +1177,7 @@ body.cookie-visible .wa-float{bottom:84px}
         <div class="example-badge"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.6.8.6 1.3V16h5.8v-.8c0-.5.2-1 .6-1.3A6 6 0 0 0 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="p.ex.eyebrow">EXEMPLO PRÁTICO</span></div>
         <h2 class="big-title reveal" data-i18n="p.ex.title">Imagine a seguinte situação:</h2>
         <p class="reveal example-p" data-i18n="p.ex.p">Um projeto está parado à espera de um equipamento específico, e não há um fornecedor de confiança à vista no mercado local. Encontramos, negociamos e tratamos da logística — para o projeto não parar.</p>
+        <p class="reveal example-p" style="margin-top:14px" data-i18n="p.ex.p2">A nossa equipa de procurement entra em ação para encontrar, negociar e entregar o componente, equipamento ou maquinaria necessários através das nossas redes já validadas, protegendo o calendário do projeto e minimizando qualquer paragem não planeada.</p>
         <div class="reveal" style="margin-top:28px">
           <a href="/contactos/" class="btn btn-primary" data-i18n="cta.project">Falar sobre o meu projeto
             <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1211,7 +1217,7 @@ body.cookie-visible .wa-float{bottom:84px}
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#top" class="logo"><span class="logo-mark"></span>ADPETROS</a>
+        <a href="#top" class="logo"><img src="/assets/img/logo-adpetros.png" alt="ADPETROS" class="logo-img"></a>
         <p data-i18n="ft.tagline">Engenharia de óleo e gás. Experiência local. Capacidade de execução.</p>
       </div>
       <div class="footer-col">
@@ -1401,6 +1407,7 @@ const I18N = {
     "p.ex.eyebrow": "EXEMPLO PRÁTICO",
     "p.ex.title": "Imagine a seguinte situação:",
     "p.ex.p": "Um projeto está parado à espera de um equipamento específico, e não há um fornecedor de confiança à vista no mercado local. Encontramos, negociamos e tratamos da logística — para o projeto não parar.",
+    "p.ex.p2": "A nossa equipa de procurement entra em ação para encontrar, negociar e entregar o componente, equipamento ou maquinaria necessários através das nossas redes já validadas, protegendo o calendário do projeto e minimizando qualquer paragem não planeada.",
     "p.cta.eyebrow": "FALE CONNOSCO",
     "p.cta.title1": "Precisa de equipamentos ou fornecedores",
     "p.cta.title2": "para um projeto na Venezuela?",
@@ -1440,14 +1447,14 @@ const I18N = {
     "p.hero.eyebrow": "GLOBAL PROCUREMENT & SUPPLY CHAIN SOURCING",
     "p.hero.title1": "The right suppliers,",
     "p.hero.title2": "in the right place.",
-    "p.hero.lead": "Securing the right equipment, components, and suppliers is often the biggest bottleneck when entering a new market. We combine global sourcing capability with an established local supplier network to keep your project's supply chain moving — from first quote to final delivery.",
+    "p.hero.lead": "We identify, select, and acquire the equipment, technical components, and specialized services your project needs to move forward, leveraging the trusted vendor network we have already built across our active operational regions.",
     "p.hero.cta1": "Talk about a project",
     "p.hero.cta2": "See all solutions",
     "p.prob.eyebrow": "THE PROBLEM",
-    "p.prob.title1": "Buying well in a new market",
-    "p.prob.title2": "is harder without an already-known supplier network.",
-    "p.prob.p1": "Finding trustworthy suppliers, negotiating favorable terms, and securing reliable delivery timelines is slow and risky when it's done from scratch, from a distance, in an unfamiliar market.",
-    "p.prob.p2": "An already-proven local procurement network removes that uncertainty and keeps the project moving at the pace it needs.",
+    "p.prob.title1": "Procuring assets in an unfamiliar market",
+    "p.prob.title2": "is exceptionally difficult without an established vendor network.",
+    "p.prob.p1": "Finding reliable suppliers, negotiating terms, and securing delivery timelines are slow and high-risk processes when done remotely from scratch.",
+    "p.prob.p2": "An already tested local procurement network drastically mitigates those risks and accelerates your project timeline.",
     "p.help.eyebrow": "HOW ADPETROS HELPS",
     "p.help.title1": "From supplier identification",
     "p.help.title2": "to delivery on the ground.",
@@ -1459,14 +1466,15 @@ const I18N = {
     "p.help.s3p": "We coordinate negotiation, contracting and delivery of the equipment and components needed.",
     "p.photo.eyebrow": "ON THE GROUND, FROM DAY ONE",
     "p.photo.title1": "Decades of operations in these markets",
-    "p.photo.title2": "built a trusted network that already knows the ground.",
-    "p.photo.text": "That network of local suppliers and partners works for your project from day one, eliminating lead-time risks before they start.",
+    "p.photo.title2": "have built a trusted network with a deep understanding of the local landscape.",
+    "p.photo.text": "That established network of regional suppliers and partners is fully deployed to support your project, starting from the very first request for quote (RFQ), eliminating lead-time risks from day one.",
     "p.inc.eyebrow": "END-TO-END PROCUREMENT & SOURCING",
-    "p.inc.title1": "A purchasing process",
+    "p.inc.title1": "A complete procurement process,",
     "p.ex.eyebrow": "PRACTICAL EXAMPLE",
-    "p.ex.title": "Imagine the following situation:",
-    "p.ex.p": "A project is stalled waiting for a specific piece of equipment, and there's no trusted supplier in sight on the local market. We find, negotiate and handle the logistics — so the project doesn't stop.",
-    "p.inc.title2": "coordinated from start to finish.",
+    "p.ex.title": "Consider this scenario:",
+    "p.ex.p": "When a project stalls due to a missing long-lead equipment asset, supply chain bottlenecks can trigger massive financial losses.",
+    "p.ex.p2": "Our procurement team steps in to source, negotiate, and deliver the required component, equipment, or machinery through our pre-vetted networks, safeguarding your timeline and minimizing any unplanned downtime.",
+    "p.inc.title2": "coordinated from start to finish:",
     "p.inc1": "Identifying local and international suppliers",
     "p.inc2": "Qualifying suppliers on strict technical standards",
     "p.inc3": "Procuring critical equipment and materials",
@@ -1534,6 +1542,7 @@ const I18N = {
     "p.ex.eyebrow": "EJEMPLO PRÁCTICO",
     "p.ex.title": "Imagine la siguiente situación:",
     "p.ex.p": "Un proyecto está parado esperando un equipo específico, y no hay un proveedor de confianza a la vista en el mercado local. Lo encontramos, lo negociamos y gestionamos la logística — para que el proyecto no se detenga.",
+    "p.ex.p2": "Nuestro equipo de procurement interviene para encontrar, negociar y entregar el componente, equipo o maquinaria necesarios a través de nuestras redes ya validadas, protegiendo el cronograma del proyecto y minimizando cualquier parada no planificada.",
     "p.photo.title2": "crearon una red de confianza que ya conoce el terreno.",
     "p.photo.text": "Esa red de proveedores y socios locales trabaja para su proyecto desde el primer día, eliminando riesgos de plazo antes de que surjan.",
     "p.inc.eyebrow": "PROCUREMENT Y SOURCING DE EXTREMO A EXTREMO",
@@ -1757,7 +1766,7 @@ gsap.to('.hero .hero-lead', {opacity:1, y:0, duration:1, ease:'power3.out', dela
 gsap.to('.hero .hero-ctas', {opacity:1, y:0, duration:1, ease:'power3.out', delay:1.15});
 
 /* ---------- WhatsApp floating button ---------- */
-const WHATSAPP_NUMBER = '971524331781'; /* Número confirmado pelo cliente: +971 52 433 1781 */
+const WHATSAPP_NUMBER = '351965160651'; /* Número confirmado pelo cliente: +351 965 160 651 */
 (function initWhatsApp(){
   const btn = document.getElementById('waFloat');
   if(!btn) return;

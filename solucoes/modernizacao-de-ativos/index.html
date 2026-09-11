@@ -228,7 +228,7 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .nav.solid{background:rgba(6,36,48,.78);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);padding:14px 0;border-color:var(--line-dark)}
 .nav-inner{max-width:var(--container);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
 .logo{font-family:var(--ff-display);font-weight:800;font-size:20px;letter-spacing:-.01em;color:var(--white);display:flex;align-items:center;gap:10px}
-.logo-mark{width:11px;height:11px;border-radius:3px;background:var(--green);flex:0 0 auto}
+.logo-img{height:28px;width:auto;display:block}
 .nav-links{display:flex;align-items:center;gap:6px;list-style:none}
 .nav-links > li{position:relative}
 .nav-links a.nav-link{
@@ -681,11 +681,16 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .eng-card svg{width:22px;height:22px;color:var(--ink-dim);margin-bottom:16px;transition:color .4s var(--ease)}
 .eng-card:hover svg{color:var(--green)}
 .eng-card h4{font-size:15.5px;font-weight:500;line-height:1.3;color:#fff}
+.eng-card-wide{grid-column:1/-1;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.eng-card-wide svg{margin-bottom:0;flex:0 0 auto;width:30px;height:30px}
+.eng-card-wide .eng-card-wide-text{flex:1 1 260px}
+.eng-card-wide h4{font-size:17px;margin-bottom:6px}
+.eng-card-wide p{font-size:14.5px;line-height:1.6;color:rgba(237,242,244,.62)}
 
 /* ================= SECTION 10 FLARE ================= */
 .flare-section{position:relative;overflow:hidden}
 .flare-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center}
-@media(min-width:980px){.flare-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:980px){.flare-grid{grid-template-columns:1.7fr 1fr}}
 .flare-visual{position:relative;aspect-ratio:1/1;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,var(--petrol-800),var(--petrol-950));border:1px solid var(--line-dark)}
 /* .is-diagram: variant used to present a real technical diagram (client-supplied) instead of the
    generic flame illustration. The source diagram is landscape, so instead of forcing the card's
@@ -695,7 +700,7 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
    bottom flex flow and simply grows to whatever height that content needs. */
 .flare-visual.is-diagram{aspect-ratio:auto;display:flex;flex-direction:column;gap:20px;padding:24px}
 .flare-visual.is-diagram .flare-metrics{position:static}
-.flare-diagram-plate{background:#fff;border-radius:14px;padding:18px;box-shadow:0 18px 40px rgba(4,8,13,.35)}
+.flare-diagram-plate{background:#fff;border-radius:14px;padding:10px;box-shadow:0 18px 40px rgba(4,8,13,.35)}
 .flare-diagram-plate img{display:block;width:100%;height:auto;border-radius:4px}
 .flare-diagram-caption{margin:0;font-size:12px;line-height:1.5;color:rgba(255,255,255,.5);text-align:center}
 .flame-wrap{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
@@ -974,7 +979,7 @@ body.cookie-visible .wa-float{bottom:84px}
 <!-- =================== NAV =================== -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="/" class="logo"><span class="logo-mark"></span>ADPETROS</a>
+    <a href="/" class="logo"><img src="/assets/img/logo-adpetros.png" alt="ADPETROS" class="logo-img"></a>
 
     <ul class="nav-links">
       <li><a href="/" class="nav-link" data-i18n="nav.home">Início</a></li>
@@ -1255,7 +1260,7 @@ body.cookie-visible .wa-float{bottom:84px}
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#top" class="logo"><span class="logo-mark"></span>ADPETROS</a>
+        <a href="#top" class="logo"><img src="/assets/img/logo-adpetros.png" alt="ADPETROS" class="logo-img"></a>
         <p data-i18n="ft.tagline">Engenharia de óleo e gás. Experiência local. Capacidade de execução.</p>
       </div>
       <div class="footer-col">
@@ -1497,14 +1502,14 @@ const I18N = {
     "m.hero.eyebrow": "SOLUTIONS · ASSET RECOVERY & MODERNISATION",
     "m.hero.title1": "Recovering and optimising",
     "m.hero.title2": "already existing installations and equipment.",
-    "m.hero.lead": "Not every asset needs to be replaced. Often, the greatest return comes from extending the life of what you already operate — through a rigorous technical diagnosis and a targeted modernisation plan, built around your specific equipment and constraints.",
+    "m.hero.lead": "Building from scratch is no longer the only path to progress. We help operators extract the maximum ROI from existing facilities through rigorous diagnoses and targeted modernization framework.",
     "m.hero.cta1": "Talk about an asset",
     "m.hero.cta2": "See all solutions",
     "m.prob.eyebrow": "THE PROBLEM",
     "m.prob.title1": "Refineries and industrial facilities",
     "m.prob.title2": "lose efficiency over time, often without immediate visibility.",
-    "m.prob.p1": "Equipment ages, processes drift away from their optimal operating range, and minor faults build up until they become major problems — in production, safety, or cost.",
-    "m.prob.p2": "Without an independent technical diagnosis, it's difficult to know where to invest first.",
+    "m.prob.p1": "Equipment ages, processes lose optimization, and minor faults accumulate until they escalate into major production, safety, or financial risks.",
+    "m.prob.p2": "Without an independent technical diagnosis, it is difficult to determine exactly where capital should be allocated first.",
     "m.help.eyebrow": "HOW ADPETROS HELPS",
     "m.help.title1": "From diagnosis",
     "m.help.title2": "to implementing the improvement.",
@@ -1840,7 +1845,7 @@ gsap.to('.hero .hero-lead', {opacity:1, y:0, duration:1, ease:'power3.out', dela
 gsap.to('.hero .hero-ctas', {opacity:1, y:0, duration:1, ease:'power3.out', delay:1.15});
 
 /* ---------- WhatsApp floating button ---------- */
-const WHATSAPP_NUMBER = '971524331781'; /* Número confirmado pelo cliente: +971 52 433 1781 */
+const WHATSAPP_NUMBER = '351965160651'; /* Número confirmado pelo cliente: +351 965 160 651 */
 (function initWhatsApp(){
   const btn = document.getElementById('waFloat');
   if(!btn) return;

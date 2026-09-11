@@ -228,7 +228,7 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .nav.solid{background:rgba(6,36,48,.78);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);padding:14px 0;border-color:var(--line-dark)}
 .nav-inner{max-width:var(--container);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
 .logo{font-family:var(--ff-display);font-weight:800;font-size:20px;letter-spacing:-.01em;color:var(--white);display:flex;align-items:center;gap:10px}
-.logo-mark{width:11px;height:11px;border-radius:3px;background:var(--green);flex:0 0 auto}
+.logo-img{height:28px;width:auto;display:block}
 .nav-links{display:flex;align-items:center;gap:6px;list-style:none}
 .nav-links > li{position:relative}
 .nav-links a.nav-link{
@@ -681,11 +681,16 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .eng-card svg{width:22px;height:22px;color:var(--ink-dim);margin-bottom:16px;transition:color .4s var(--ease)}
 .eng-card:hover svg{color:var(--green)}
 .eng-card h4{font-size:15.5px;font-weight:500;line-height:1.3;color:#fff}
+.eng-card-wide{grid-column:1/-1;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.eng-card-wide svg{margin-bottom:0;flex:0 0 auto;width:30px;height:30px}
+.eng-card-wide .eng-card-wide-text{flex:1 1 260px}
+.eng-card-wide h4{font-size:17px;margin-bottom:6px}
+.eng-card-wide p{font-size:14.5px;line-height:1.6;color:rgba(237,242,244,.62)}
 
 /* ================= SECTION 10 FLARE ================= */
 .flare-section{position:relative;overflow:hidden}
 .flare-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center}
-@media(min-width:980px){.flare-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:980px){.flare-grid{grid-template-columns:1.7fr 1fr}}
 .flare-visual{position:relative;aspect-ratio:1/1;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,var(--petrol-800),var(--petrol-950));border:1px solid var(--line-dark)}
 /* .is-diagram: variant used to present a real technical diagram (client-supplied) instead of the
    generic flame illustration. The source diagram is landscape, so instead of forcing the card's
@@ -695,7 +700,7 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
    bottom flex flow and simply grows to whatever height that content needs. */
 .flare-visual.is-diagram{aspect-ratio:auto;display:flex;flex-direction:column;gap:20px;padding:24px}
 .flare-visual.is-diagram .flare-metrics{position:static}
-.flare-diagram-plate{background:#fff;border-radius:14px;padding:18px;box-shadow:0 18px 40px rgba(4,8,13,.35)}
+.flare-diagram-plate{background:#fff;border-radius:14px;padding:10px;box-shadow:0 18px 40px rgba(4,8,13,.35)}
 .flare-diagram-plate img{display:block;width:100%;height:auto;border-radius:4px}
 .flare-diagram-caption{margin:0;font-size:12px;line-height:1.5;color:rgba(255,255,255,.5);text-align:center}
 .flame-wrap{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
@@ -974,7 +979,7 @@ body.cookie-visible .wa-float{bottom:84px}
 <!-- =================== NAV =================== -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="/" class="logo"><span class="logo-mark"></span>ADPETROS</a>
+    <a href="/" class="logo"><img src="/assets/img/logo-adpetros.png" alt="ADPETROS" class="logo-img"></a>
 
     <ul class="nav-links">
       <li><a href="/" class="nav-link" data-i18n="nav.home">Início</a></li>
@@ -1253,7 +1258,7 @@ body.cookie-visible .wa-float{bottom:84px}
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#top" class="logo"><span class="logo-mark"></span>ADPETROS</a>
+        <a href="#top" class="logo"><img src="/assets/img/logo-adpetros.png" alt="ADPETROS" class="logo-img"></a>
         <p data-i18n="ft.tagline">Engenharia de óleo e gás. Experiência local. Capacidade de execução.</p>
       </div>
       <div class="footer-col">
@@ -1511,14 +1516,14 @@ const I18N = {
     "en.prob.p1": "When associated gas has no defined destination, flaring becomes the default choice. That means losing a resource with real commercial value while adding to the operation's CO₂ and methane emissions footprint.",
     "en.prob.p2": "Increasingly, regulators, investors and partners expect measurable flaring-reduction and decarbonisation plans — not just stated intentions.",
     "en.visual.eyebrow": "GAS VALORISATION",
-    "en.visual.title1": "When gas is wasted,",
-    "en.visual.title2": "much more than energy is lost.",
-    "en.visual.p1": "ADPETROS develops solutions to recover and add value to associated gas that would otherwise be flared or vented during operations.",
-    "en.visual.sub": "Where recovered gas can be put to work:",
+    "en.visual.title1": "Capturing lost energy &",
+    "en.visual.title2": "generating new revenue.",
+    "en.visual.p1": "Routine flaring and venting throw away valuable market assets. We design turnkey systems to recover associated gas directly at the source.",
+    "en.visual.sub": "Treating it for immediate integration into:",
     "en.visual.li1": "On-site power generation systems",
     "en.visual.li2": "Local pipeline distribution networks",
     "en.visual.li3": "Commercial petrochemical feedstocks",
-    "en.visual.p2": "Turning that gas into one of these outcomes creates value from a resource that was previously wasted, while directly reducing the emissions associated with flaring.",
+    "en.visual.p2": "Our engineered solutions simultaneously mitigate your carbon footprint and recover trapped asset value while protecting the environment and people's health.",
     "en.visual.tag1": "ON-SITE GENERATION",
     "en.visual.tag2": "DISTRIBUTION NETWORK",
     "en.visual.caption": "Illustrative example of an on-site power generation and distribution system.",
@@ -1547,8 +1552,8 @@ const I18N = {
     "en.inc5": "Operations decarbonisation",
     "en.inc6": "Carbon credits",
     "en.ex.eyebrow": "PRACTICAL EXAMPLE",
-    "en.ex.title": "Imagine the following situation:",
-    "en.ex.p": "There's gas being flared in an operation, and no one has precisely quantified how much value is being lost. We help precisely measure that latent potential, turning a costly environmental waste stream into a steady revenue source.",
+    "en.ex.title": "Consider this scenario:",
+    "en.ex.p": "Gas is actively being flared during your operations. We step in to precisely measure that latent potential, turning a costly environmental waste stream into a steady revenue source.",
     "en.inc7": "Technical feasibility studies",
     "en.inc8": "Technical operations follow-up",
     "en.mk.text": "This is one of the areas where our local experience — especially in Venezuela and Africa — adds the most value to a gas valorisation project.",
@@ -1856,7 +1861,7 @@ gsap.to('.hero .hero-lead', {opacity:1, y:0, duration:1, ease:'power3.out', dela
 gsap.to('.hero .hero-ctas', {opacity:1, y:0, duration:1, ease:'power3.out', delay:1.15});
 
 /* ---------- WhatsApp floating button ---------- */
-const WHATSAPP_NUMBER = '971524331781'; /* Número confirmado pelo cliente: +971 52 433 1781 */
+const WHATSAPP_NUMBER = '351965160651'; /* Número confirmado pelo cliente: +351 965 160 651 */
 (function initWhatsApp(){
   const btn = document.getElementById('waFloat');
   if(!btn) return;

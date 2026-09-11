@@ -39,6 +39,7 @@ I18N = merge_i18n({
 
     "p.ex.eyebrow": "EXEMPLO PRÁTICO", "p.ex.title": "Imagine a seguinte situação:",
     "p.ex.p": "Um projeto está parado à espera de um equipamento específico, e não há um fornecedor de confiança à vista no mercado local. Encontramos, negociamos e tratamos da logística — para o projeto não parar.",
+    "p.ex.p2": "A nossa equipa de procurement entra em ação para encontrar, negociar e entregar o componente, equipamento ou maquinaria necessários através das nossas redes já validadas, protegendo o calendário do projeto e minimizando qualquer paragem não planeada.",
     "p.cta.eyebrow": "FALE CONNOSCO",
     "p.cta.title1": "Precisa de equipamentos ou fornecedores",
     "p.cta.title2": "para um projeto na Venezuela?",
@@ -49,14 +50,14 @@ I18N = merge_i18n({
     "p.hero.eyebrow": "GLOBAL PROCUREMENT & SUPPLY CHAIN SOURCING",
     "p.hero.title1": "The right suppliers,",
     "p.hero.title2": "in the right place.",
-    "p.hero.lead": "Securing the right equipment, components, and suppliers is often the biggest bottleneck when entering a new market. We combine global sourcing capability with an established local supplier network to keep your project's supply chain moving — from first quote to final delivery.",
+    "p.hero.lead": "We identify, select, and acquire the equipment, technical components, and specialized services your project needs to move forward, leveraging the trusted vendor network we have already built across our active operational regions.",
     "p.hero.cta1": "Talk about a project", "p.hero.cta2": "See all solutions",
 
     "p.prob.eyebrow": "THE PROBLEM",
-    "p.prob.title1": "Buying well in a new market",
-    "p.prob.title2": "is harder without an already-known supplier network.",
-    "p.prob.p1": "Finding trustworthy suppliers, negotiating favorable terms, and securing reliable delivery timelines is slow and risky when it's done from scratch, from a distance, in an unfamiliar market.",
-    "p.prob.p2": "An already-proven local procurement network removes that uncertainty and keeps the project moving at the pace it needs.",
+    "p.prob.title1": "Procuring assets in an unfamiliar market",
+    "p.prob.title2": "is exceptionally difficult without an established vendor network.",
+    "p.prob.p1": "Finding reliable suppliers, negotiating terms, and securing delivery timelines are slow and high-risk processes when done remotely from scratch.",
+    "p.prob.p2": "An already tested local procurement network drastically mitigates those risks and accelerates your project timeline.",
 
     "p.help.eyebrow": "HOW ADPETROS HELPS",
     "p.help.title1": "From supplier identification",
@@ -67,14 +68,15 @@ I18N = merge_i18n({
 
     "p.photo.eyebrow": "ON THE GROUND, FROM DAY ONE",
     "p.photo.title1": "Decades of operations in these markets",
-    "p.photo.title2": "built a trusted network that already knows the ground.",
-    "p.photo.text": "That network of local suppliers and partners works for your project from day one, eliminating lead-time risks before they start.",
+    "p.photo.title2": "have built a trusted network with a deep understanding of the local landscape.",
+    "p.photo.text": "That established network of regional suppliers and partners is fully deployed to support your project, starting from the very first request for quote (RFQ), eliminating lead-time risks from day one.",
 
     "p.inc.eyebrow": "END-TO-END PROCUREMENT & SOURCING",
-    "p.inc.title1": "A purchasing process",
-    "p.ex.eyebrow": "PRACTICAL EXAMPLE", "p.ex.title": "Imagine the following situation:",
-    "p.ex.p": "A project is stalled waiting for a specific piece of equipment, and there's no trusted supplier in sight on the local market. We find, negotiate and handle the logistics — so the project doesn't stop.",
-    "p.inc.title2": "coordinated from start to finish.",
+    "p.inc.title1": "A complete procurement process,",
+    "p.ex.eyebrow": "PRACTICAL EXAMPLE", "p.ex.title": "Consider this scenario:",
+    "p.ex.p": "When a project stalls due to a missing long-lead equipment asset, supply chain bottlenecks can trigger massive financial losses.",
+    "p.ex.p2": "Our procurement team steps in to source, negotiate, and deliver the required component, equipment, or machinery through our pre-vetted networks, safeguarding your timeline and minimizing any unplanned downtime.",
+    "p.inc.title2": "coordinated from start to finish:",
     "p.inc1": "Identifying local and international suppliers", "p.inc2": "Qualifying suppliers on strict technical standards",
     "p.inc3": "Procuring critical equipment and materials", "p.inc4": "Sourcing specialized components",
     "p.inc5": "Managing negotiation, risk mitigation, and contracting", "p.inc6": "Overseeing global logistics and field delivery",
@@ -109,6 +111,7 @@ I18N = merge_i18n({
     "p.photo.title1": "Décadas de operación en estos mercados",
     "p.ex.eyebrow": "EJEMPLO PRÁCTICO", "p.ex.title": "Imagine la siguiente situación:",
     "p.ex.p": "Un proyecto está parado esperando un equipo específico, y no hay un proveedor de confianza a la vista en el mercado local. Lo encontramos, lo negociamos y gestionamos la logística — para que el proyecto no se detenga.",
+    "p.ex.p2": "Nuestro equipo de procurement interviene para encontrar, negociar y entregar el componente, equipo o maquinaria necesarios a través de nuestras redes ya validadas, protegiendo el cronograma del proyecto y minimizando cualquier parada no planificada.",
     "p.photo.title2": "crearon una red de confianza que ya conoce el terreno.",
     "p.photo.text": "Esa red de proveedores y socios locales trabaja para su proyecto desde el primer día, eliminando riesgos de plazo antes de que surjan.",
 
@@ -150,6 +153,7 @@ photo_section = photo_section_html(
 example_html = example_situation_html(
     prefix='p', eyebrow_def='EXEMPLO PRÁTICO', title_def='Imagine a seguinte situação:',
     text_def='Um projeto está parado à espera de um equipamento específico, e não há um fornecedor de confiança à vista no mercado local. Encontramos, negociamos e tratamos da logística — para o projeto não parar.',
+    text2_def='A nossa equipa de procurement entra em ação para encontrar, negociar e entregar o componente, equipamento ou maquinaria necessários através das nossas redes já validadas, protegendo o calendário do projeto e minimizando qualquer paragem não planeada.',
     img='/assets/img/14-lg.jpg', alt='Plataforma industrial à espera de equipamento',
     cta_href='/contactos/', cta_key='cta.project', cta_def='Falar sobre o meu projeto',
 )

@@ -227,7 +227,7 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .nav.solid{background:rgba(6,36,48,.78);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);padding:14px 0;border-color:var(--line-dark)}
 .nav-inner{max-width:var(--container);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px}
 .logo{font-family:var(--ff-display);font-weight:800;font-size:20px;letter-spacing:-.01em;color:var(--white);display:flex;align-items:center;gap:10px}
-.logo-mark{width:11px;height:11px;border-radius:3px;background:var(--green);flex:0 0 auto}
+.logo-img{height:28px;width:auto;display:block}
 .nav-links{display:flex;align-items:center;gap:6px;list-style:none}
 .nav-links > li{position:relative}
 .nav-links a.nav-link{
@@ -680,11 +680,16 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .eng-card svg{width:22px;height:22px;color:var(--ink-dim);margin-bottom:16px;transition:color .4s var(--ease)}
 .eng-card:hover svg{color:var(--green)}
 .eng-card h4{font-size:15.5px;font-weight:500;line-height:1.3;color:#fff}
+.eng-card-wide{grid-column:1/-1;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.eng-card-wide svg{margin-bottom:0;flex:0 0 auto;width:30px;height:30px}
+.eng-card-wide .eng-card-wide-text{flex:1 1 260px}
+.eng-card-wide h4{font-size:17px;margin-bottom:6px}
+.eng-card-wide p{font-size:14.5px;line-height:1.6;color:rgba(237,242,244,.62)}
 
 /* ================= SECTION 10 FLARE ================= */
 .flare-section{position:relative;overflow:hidden}
 .flare-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center}
-@media(min-width:980px){.flare-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:980px){.flare-grid{grid-template-columns:1.7fr 1fr}}
 .flare-visual{position:relative;aspect-ratio:1/1;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,var(--petrol-800),var(--petrol-950));border:1px solid var(--line-dark)}
 /* .is-diagram: variant used to present a real technical diagram (client-supplied) instead of the
    generic flame illustration. The source diagram is landscape, so instead of forcing the card's
@@ -694,7 +699,7 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
    bottom flex flow and simply grows to whatever height that content needs. */
 .flare-visual.is-diagram{aspect-ratio:auto;display:flex;flex-direction:column;gap:20px;padding:24px}
 .flare-visual.is-diagram .flare-metrics{position:static}
-.flare-diagram-plate{background:#fff;border-radius:14px;padding:18px;box-shadow:0 18px 40px rgba(4,8,13,.35)}
+.flare-diagram-plate{background:#fff;border-radius:14px;padding:10px;box-shadow:0 18px 40px rgba(4,8,13,.35)}
 .flare-diagram-plate img{display:block;width:100%;height:auto;border-radius:4px}
 .flare-diagram-caption{margin:0;font-size:12px;line-height:1.5;color:rgba(255,255,255,.5);text-align:center}
 .flame-wrap{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
@@ -973,7 +978,7 @@ body.cookie-visible .wa-float{bottom:84px}
 <!-- =================== NAV =================== -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="/" class="logo"><span class="logo-mark"></span>ADPETROS</a>
+    <a href="/" class="logo"><img src="/assets/img/logo-adpetros.png" alt="ADPETROS" class="logo-img"></a>
 
     <ul class="nav-links">
       <li><a href="/" class="nav-link" data-i18n="nav.home">Início</a></li>
@@ -1274,6 +1279,13 @@ body.cookie-visible .wa-float{bottom:84px}
         <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M9 4v16M4 9h5M4 15h5" stroke="currentColor" stroke-width="1.6"/></svg>
         <h4 data-i18n="an.eng.c6">Automação e controlo de processo</h4>
       </div>
+      <div class="eng-card eng-card-wide">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2c4 5 7 9.5 7 13a7 7 0 11-14 0c0-3.5 3-8 7-13z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <div class="eng-card-wide-text">
+          <h4 data-i18n="an.eng.c7">Engenharia de Petróleo e Gás</h4>
+          <p data-i18n="an.eng.c7p">As seis especialidades aplicadas especificamente a projetos de petróleo, gás e petroquímica — desde instalações upstream até infraestrutura midstream e downstream.</p>
+        </div>
+      </div>
     </div>
 
     <div style="margin-top:44px" class="reveal">
@@ -1333,7 +1345,7 @@ body.cookie-visible .wa-float{bottom:84px}
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="#top" class="logo"><span class="logo-mark"></span>ADPETROS</a>
+        <a href="#top" class="logo"><img src="/assets/img/logo-adpetros.png" alt="ADPETROS" class="logo-img"></a>
         <p data-i18n="ft.tagline">Engenharia de óleo e gás. Experiência local. Capacidade de execução.</p>
       </div>
       <div class="footer-col">
@@ -1534,6 +1546,8 @@ const I18N = {
     "an.eng.c4": "Engenharia elétrica e instrumentação",
     "an.eng.c5": "Integridade e inspeção de ativos",
     "an.eng.c6": "Automação e controlo de processo",
+    "an.eng.c7": "Engenharia de Petróleo e Gás",
+    "an.eng.c7p": "As seis especialidades aplicadas especificamente a projetos de petróleo, gás e petroquímica — desde instalações upstream até infraestrutura midstream e downstream.",
     "an.eng.cta": "Conhecer a nossa engenharia",
     "an.work.eyebrow": "EXPERIÊNCIA LOCAL. OPORTUNIDADES GLOBAIS.",
     "an.work.title1": "Quer investir em óleo e gás?",
@@ -1641,16 +1655,18 @@ const I18N = {
     "an.eng.c4": "Electrical engineering and instrumentation",
     "an.eng.c5": "Asset integrity and inspection",
     "an.eng.c6": "Automation and process control",
+    "an.eng.c7": "Oil & Gas Engineering",
+    "an.eng.c7p": "All six disciplines applied specifically to oil, gas and petrochemical projects — from upstream facilities to midstream and downstream infrastructure.",
     "an.eng.cta": "See our engineering",
     "an.work.eyebrow": "LOCAL EXPERIENCE. GLOBAL OPPORTUNITIES.",
     "an.work.title1": "Want to invest in oil and gas?",
     "an.work.title2": "Start with the right partner.",
-    "an.work.p1": "ADPETROS knows the Venezuelan market, its main operators and the structures needed to develop new business in the sector.",
-    "an.work.p2": "With relationships built with government entities, institutions, operators and local partners, we help international companies understand the market, identify opportunities and create the conditions needed to move forward.",
-    "an.work.p3": "From opportunity to operation, we are the link between international investment and the local market.",
+    "an.work.p1": "Adpetros thoroughly understands the Venezuelan energy landscape, its primary operators, and the frameworks required to develop new business in the sector.",
+    "an.work.p2": "Leveraging deep relationships built alongside government entities, academic institutions, operators, and local partners, we help international companies analyze the market, identify high-value opportunities, and establish the conditions necessary to move forward.",
+    "an.work.p3": "From opportunity to operation, we serve as the vital link between international investment and the local market.",
     "an.cta.eyebrow": "GET IN TOUCH",
-    "an.cta.title1": "Want to evaluate an oil & gas project",
-    "an.cta.title2": "in Venezuela? We're the right partner.",
+    "an.cta.title1": "Ready to invest in oil & gas in Venezuela?",
+    "an.cta.title2": "Start with the right partner: ADPETROS.",
     "an.cta.p": "Talk to our team or explore the solutions we offer for each phase of a project.",
     "an.cta.cta1": "Talk to the team",
     "an.cta.cta2": "See our solutions",
@@ -1748,6 +1764,8 @@ const I18N = {
     "an.eng.c4": "Ingeniería eléctrica e instrumentación",
     "an.eng.c5": "Integridad e inspección de activos",
     "an.eng.c6": "Automatización y control de procesos",
+    "an.eng.c7": "Ingeniería de Petróleo y Gas",
+    "an.eng.c7p": "Las seis especialidades aplicadas específicamente a proyectos de petróleo, gas y petroquímica — desde instalaciones upstream hasta infraestructura midstream y downstream.",
     "an.eng.cta": "Conocer nuestra ingeniería",
     "an.work.eyebrow": "EXPERIENCIA LOCAL. OPORTUNIDADES GLOBALES.",
     "an.work.title1": "¿Quiere invertir en petróleo y gas?",
@@ -1984,7 +2002,7 @@ gsap.to('.hero .hero-lead', {opacity:1, y:0, duration:1, ease:'power3.out', dela
 gsap.to('.hero .hero-ctas', {opacity:1, y:0, duration:1, ease:'power3.out', delay:1.15});
 
 /* ---------- WhatsApp floating button ---------- */
-const WHATSAPP_NUMBER = '971524331781'; /* Número confirmado pelo cliente: +971 52 433 1781 */
+const WHATSAPP_NUMBER = '351965160651'; /* Número confirmado pelo cliente: +351 965 160 651 */
 (function initWhatsApp(){
   const btn = document.getElementById('waFloat');
   if(!btn) return;

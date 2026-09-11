@@ -7,6 +7,9 @@ I18N = merge_i18n({
         "ct.eyebrow": "FALE CONNOSCO",
         "ct.title1": "Vamos falar", "ct.title2": "sobre o seu projeto.",
         "ct.lead": "Está a avaliar um investimento, uma operação ou uma oportunidade num dos mercados onde atuamos? Preencha o formulário ou utilize os contactos abaixo — a nossa equipa responde o mais brevemente possível.",
+        "ct.info.address": "MORADA",
+        "ct.info.whatsapp": "WHATSAPP",
+        "ct.info.reg": "NÚMERO DE REGISTO DA EMPRESA",
         "ct.form.name": "Nome", "ct.form.company": "Empresa",
         "ct.form.email": "E-mail profissional", "ct.form.position": "Cargo",
         "ct.form.market": "Mercado de interesse",
@@ -23,8 +26,11 @@ I18N = merge_i18n({
     },
     'en': {
         "ct.eyebrow": "GET IN TOUCH",
-        "ct.title1": "Let's talk", "ct.title2": "about your project.",
-        "ct.lead": "Are you assessing an investment, an operation or an opportunity in one of the markets where we operate? Fill in the form or use the contacts below — our team replies as soon as possible.",
+        "ct.title1": "Partner with ADPETROS.", "ct.title2": "Let's discuss your project.",
+        "ct.lead": "Whether you are evaluating a new investment, optimizing an active operation, or exploring regional market opportunities, our team is ready to assist. Complete the form below or contact us directly to connect with our engineering and compliance specialists. We look forward to accelerating your project.",
+        "ct.info.address": "ADDRESS",
+        "ct.info.whatsapp": "WHATSAPP",
+        "ct.info.reg": "FIRM REGISTRATION NUMBER",
         "ct.form.name": "Name", "ct.form.company": "Company",
         "ct.form.email": "Professional email", "ct.form.position": "Position",
         "ct.form.market": "Market of interest",
@@ -43,6 +49,9 @@ I18N = merge_i18n({
         "ct.eyebrow": "HABLEMOS",
         "ct.title1": "Hablemos", "ct.title2": "sobre su proyecto.",
         "ct.lead": "¿Está evaluando una inversión, una operación o una oportunidad en uno de los mercados donde operamos? Complete el formulario o utilice los contactos abajo — nuestro equipo responde lo antes posible.",
+        "ct.info.address": "DIRECCIÓN",
+        "ct.info.whatsapp": "WHATSAPP",
+        "ct.info.reg": "NÚMERO DE REGISTRO DE LA EMPRESA",
         "ct.form.name": "Nombre", "ct.form.company": "Empresa",
         "ct.form.email": "Correo electrónico profesional", "ct.form.position": "Cargo",
         "ct.form.market": "Mercado de interés",
@@ -124,7 +133,22 @@ BODY = """
         <div class="contact-info-divider"></div>
         <div class="contact-info-group">
           <h4 data-i18n="ct.info.phone">TELEFONE</h4>
-          <a href="tel:+971524331781">+971 52 433 1781</a>
+          <a href="tel:+351965160651">+351 965 160 651</a>
+        </div>
+        <div class="contact-info-divider"></div>
+        <div class="contact-info-group">
+          <h4 data-i18n="ct.info.whatsapp">WHATSAPP</h4>
+          <a href="https://wa.me/351965160651" target="_blank" rel="noopener">+351 965 160 651</a>
+        </div>
+        <div class="contact-info-divider"></div>
+        <div class="contact-info-group">
+          <h4 data-i18n="ct.info.address">MORADA</h4>
+          <p>ADPETROS, Lda.<br>Av. Bombeiros Voluntários, Edifício Nova Paredes, n.º 21, 1.º andar, Escritório 10<br>4580-053 Paredes, Portugal</p>
+        </div>
+        <div class="contact-info-divider"></div>
+        <div class="contact-info-group">
+          <h4 data-i18n="ct.info.reg">NÚMERO DE REGISTO DA EMPRESA</h4>
+          <p>516 545 230 (Portugal)</p>
         </div>
         <div class="contact-info-divider"></div>
         <div class="contact-info-group">
