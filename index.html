@@ -2371,14 +2371,29 @@ gsap.utils.toArray('.reveal-img').forEach(el=>{
 });
 
 /*.stagger groups (children animate one after another). Optional data-stagger-dir="left|right"
-   gives the whole group a short diagonal entrance instead of the default straight rise. */
+   gives the whole group a short diagonal entrance instead of the default straight rise.
+   IMPORTANT — onStart vs onComplete for the class removal below: the pre-animation "hidden"
+   state for these children comes from the plain CSS rule ".stagger > *{opacity:0;...}", keyed
+   off the PARENT carrying the .stagger class (not from GSAP's own inline styles — a fromTo()
+   tween with a scrollTrigger does NOT render its "from" values until the trigger actually
+   fires, so before that moment the CSS rule is the only thing keeping the children hidden).
+   clearProps, however, fires PER CHILD as each one's own staggered segment finishes — not once
+   for the whole group. That used to be a real bug here: the class was removed in onComplete,
+   which only fires once when the LAST child finishes, so every earlier child had its inline
+   opacity/transform stripped by clearProps while the parent still carried .stagger — and the
+   moment that happened, ".stagger > *{opacity:0}" re-asserted itself and the already-revealed
+   card visibly vanished, only snapping back when the last card finally finished and the class
+   came off. Removing the class in onStart instead — which fires once, right when the tween
+   begins — closes that gap: GSAP's own inline "from" state takes over in the same tick the CSS
+   rule stops applying, so there's no visible change, and no child's later clearProps has a
+   stale CSS rule left to fall back into. Confirmed via isolated repro before/after this change. */
 gsap.utils.toArray('.stagger').forEach(group=>{
   const dir = group.getAttribute('data-stagger-dir');
   const fromVars = dir === 'left' ? {opacity:0, x:-22, y:14} : dir === 'right' ? {opacity:0, x:22, y:14} : {opacity:0, y:28};
   const toVars = dir ? {opacity:1, x:0, y:0} : {opacity:1, y:0};
   gsap.fromTo(group.children, fromVars, {
    ...toVars, duration:.8, ease:'power3.out', stagger:0.09, clearProps:'opacity,transform',
-    onComplete:()=>group.classList.remove('stagger'),
+    onStart:()=>group.classList.remove('stagger'),
     scrollTrigger:{trigger:group, start:'top 90%', once:true}
   });
 });
