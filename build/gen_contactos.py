@@ -21,8 +21,6 @@ I18N = merge_i18n({
         "ct.form.note": "Ao enviar, o seu cliente de e-mail abre com a mensagem pronta a enviar para a nossa equipa.",
         "ct.form.success": "Obrigado. A sua mensagem está pronta no seu cliente de e-mail — basta confirmar o envio.",
         "ct.info.email": "E-MAIL", "ct.info.phone": "TELEFONE",
-        "ct.info.other": "OUTRAS FORMAS DE CONTACTO",
-        "ct.info.other.placeholder": "LinkedIn — [a confirmar]",
     },
     'en': {
         "ct.eyebrow": "GET IN TOUCH",
@@ -42,8 +40,6 @@ I18N = merge_i18n({
         "ct.form.note": "On submit, your email client opens with the message ready to send to our team.",
         "ct.form.success": "Thank you. Your message is ready in your email client — just confirm sending.",
         "ct.info.email": "EMAIL", "ct.info.phone": "PHONE",
-        "ct.info.other": "OTHER WAYS TO REACH US",
-        "ct.info.other.placeholder": "LinkedIn — [to be confirmed]",
     },
     'es': {
         "ct.eyebrow": "HABLEMOS",
@@ -63,8 +59,6 @@ I18N = merge_i18n({
         "ct.form.note": "Al enviar, su cliente de correo se abrirá con el mensaje listo para enviar a nuestro equipo.",
         "ct.form.success": "Gracias. Su mensaje está listo en su cliente de correo — solo falta confirmar el envío.",
         "ct.info.email": "CORREO", "ct.info.phone": "TELÉFONO",
-        "ct.info.other": "OTRAS FORMAS DE CONTACTO",
-        "ct.info.other.placeholder": "LinkedIn — [a confirmar]",
     },
 })
 
@@ -149,11 +143,6 @@ BODY = """
         <div class="contact-info-group">
           <h4 data-i18n="ct.info.reg">NÚMERO DE REGISTO DA EMPRESA</h4>
           <p>516 545 230 (Portugal)</p>
-        </div>
-        <div class="contact-info-divider"></div>
-        <div class="contact-info-group">
-          <h4 data-i18n="ct.info.other">OUTRAS FORMAS DE CONTACTO</h4>
-          <p class="placeholder" data-i18n="ct.info.other.placeholder">LinkedIn — [a confirmar]</p>
         </div>
       </div>
     </div>

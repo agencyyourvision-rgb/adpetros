@@ -691,6 +691,18 @@ h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-.03em;
 .flare-section{position:relative;overflow:hidden}
 .flare-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center}
 @media(min-width:980px){.flare-grid{grid-template-columns:1.7fr 1fr}}
+/* .flare-row: used instead of .flare-grid + .container on the diagram variant, so the diagram
+   column can bleed to the true left edge of the viewport (client asked for the diagram "bem
+   maior" and "encostar mais na borda") instead of being boxed inside the page's normal container
+   padding. The copy column keeps the site's normal right-hand padding via --pad. */
+.flare-row{display:block}
+.flare-diagram-col{padding:0 var(--pad);min-width:0}
+.flare-copy-col{padding:0 var(--pad);margin-top:48px;min-width:0}
+@media(min-width:980px){
+  .flare-row{display:flex;align-items:center;gap:48px}
+  .flare-diagram-col{flex:1 1 58%;max-width:940px;padding-left:clamp(0px,2vw,24px);padding-right:0}
+  .flare-copy-col{flex:1 1 400px;padding-left:0;margin-top:0}
+}
 .flare-visual{position:relative;aspect-ratio:1/1;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,var(--petrol-800),var(--petrol-950));border:1px solid var(--line-dark)}
 /* .is-diagram: variant used to present a real technical diagram (client-supplied) instead of the
    generic flame illustration. The source diagram is landscape, so instead of forcing the card's
@@ -1764,17 +1776,28 @@ gsap.utils.toArray('.reveal-img').forEach(el=>{
 /* .stagger groups (children animate one after another). Optional data-stagger-dir="left|right" on the
    group gives the whole group a short diagonal entrance instead of the default straight rise — used
    sparingly so different sections have a slightly different rhythm without feeling random.
-   once:true is important here: without it, a ScrollTrigger.refresh() after window 'load' (e.g. once
-   late-loading photography settles the page's final height) can re-evaluate this trigger's position
-   and — because clearProps already stripped the tween's inline styles — snap the group back to its
-   "from" state and replay it, which reads as a jarring blink/flash on entrance. */
+   IMPORTANT — onStart vs onComplete for the class removal below: the pre-animation "hidden" state
+   for these children comes from the plain CSS rule ".stagger > *{opacity:0;...}", keyed off the
+   PARENT carrying the .stagger class (not from GSAP's own inline styles — a fromTo() tween with a
+   scrollTrigger does NOT render its "from" values until the trigger actually fires, so before that
+   moment the CSS rule is the only thing keeping the children hidden). clearProps, however, fires PER
+   CHILD as each one's own staggered segment finishes — not once for the whole group. That used to be
+   a real bug here: the class was removed in onComplete, which only fires once when the LAST child
+   finishes, so every earlier child had its inline opacity/transform stripped by clearProps while the
+   parent still carried .stagger — and the moment that happened, ".stagger > *{opacity:0}"
+   re-asserted itself and the already-revealed element visibly vanished, only snapping back when the
+   last one finally finished and the class came off (a "disappears and reappears" flash on entrance).
+   Removing the class in onStart instead — which fires once, right when the tween begins — closes
+   that gap: GSAP's own inline "from" state takes over in the same tick the CSS rule stops applying,
+   so there's no visible change, and no child's later clearProps has a stale CSS rule to fall back
+   into. Confirmed fixed via isolated repro plus a full page scroll-through under throttled network. */
 gsap.utils.toArray('.stagger').forEach(group=>{
   const dir = group.getAttribute('data-stagger-dir');
   const fromVars = dir === 'left' ? {opacity:0, x:-22, y:14} : dir === 'right' ? {opacity:0, x:22, y:14} : {opacity:0, y:28};
   const toVars = dir ? {opacity:1, x:0, y:0} : {opacity:1, y:0};
   gsap.fromTo(group.children, fromVars, {
     ...toVars, duration:.8, ease:'power3.out', stagger:0.09, clearProps:'opacity,transform',
-    onComplete:()=>group.classList.remove('stagger'),
+    onStart:()=>group.classList.remove('stagger'),
     scrollTrigger:{trigger:group, start:'top 90%', once:true}
   });
 });
